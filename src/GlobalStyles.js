@@ -5,17 +5,21 @@
  */
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import './assets/css/reset.css';
+
+/**기본스타일 reset*/
+import reset from 'styled-reset';
+// import './assets/css/reset.css';
 
 
 const GlobalStyles = createGlobalStyle`
+    ${reset};
     *{
 
     }
     :root{
-        
+        --main-color1 : black;
+        --main-color2 : tomato; 
     }
 `;
-
 
 export default GlobalStyles;
