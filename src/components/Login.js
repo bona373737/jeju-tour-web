@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListItem = () => {
+const Login = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const ListItem = () => {
     );
 };
 
-export default ListItem;
+export default Login;

@@ -1,13 +1,12 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button1 from './Button1';
+import StyledNav from '../styles/StyledNav';
 
 const Nav = () => {
     return (
         <div>
-            <Button1 to="/tab/:tab">관광지</Button1>
-            <Button1 to="/tab/:tab">숙소</Button1>
-            <Button1 to="/tab/:tab">음식</Button1>
+            <StyledNav to="/place">관광지</StyledNav>
+            <StyledNav to="/accom">숙소</StyledNav>
+            <StyledNav to="/food">음식</StyledNav>
         </div>
     );
 };

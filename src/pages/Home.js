@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Nav from './Nav';
-import CardItem from './CardItem';
+import Nav from '../components/Nav';
+import CardItem from '../styles/CardItem';
 
 const Home = () => {
     return (

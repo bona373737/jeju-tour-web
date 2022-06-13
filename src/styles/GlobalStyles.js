@@ -16,6 +16,9 @@ const GlobalStyles = createGlobalStyle`
     *{
 
     }
+    a{
+        text-decoration: none;
+    }
     :root{
         --main-color1 : black;
         --main-color2 : tomato; 
