@@ -12,15 +12,34 @@ import reset from 'styled-reset';
 
 
 const GlobalStyles = createGlobalStyle`
-    ${reset};
+    ${ reset };
     *{
 
     }
-    a{
-        text-decoration: none;
+    a { text-decoration: none; }
+    
+    :root {
+        --blue : #0058FF;
+        --sky : #E3EEFF; 
+        --gray : #666;
+        --black : #000;
+        --subblue: #7E84A3;
     }
-    :root{
-        --main-color2 : tomato;
+
+    .menufont {
+            font-family: ‘SUIT’, sans-serif;
+            font-weight: 200;
+            font-size: 36px;
+            color: #000;
+
+        .titlefont {
+            font-size: 36px;
+        }
+
+        .subfont {
+            font-weight: 600;
+            font-size: 18px;
+        }
     }
 `;
 
