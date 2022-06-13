@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import "../assets/scss/color.scss";
 import Sidebar from './Sidebar'; 
 import Search from './Search';
 
@@ -10,8 +9,8 @@ import Search from './Search';
 const HeaderContainer = styled.div`
     box-sizing: border-box;
     width: 100%;
-    height: 10vh;
-    background-color: var(--blue);
+    height: 8vh;
+    background-color: var(--white);
 
     .content-wrap{
         box-sizing: border-box;
@@ -35,7 +34,7 @@ const Header = () => {
                 </NavLink>
                 <div className="icons">
                     <h1>검색</h1>
-                    <h1>햄버거</h1>
+                    <h1>☰</h1>
                 </div>
             </div>
             
