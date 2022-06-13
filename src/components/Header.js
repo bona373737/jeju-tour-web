@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import '../assets/scss/color.scss';
+import "../assets/scss/color.scss";
 import Sidebar from './Sidebar'; 
 import Search from './Search';
 
@@ -11,8 +11,8 @@ const HeaderContainer = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 10vh;
-    background-color: --main-color2;
-    /* background-color: $main-color; */
+    /* background-color: --main-color2; */
+    background-color: $main-color;
 
     .content-wrap{
         box-sizing: border-box;
