@@ -20,8 +20,7 @@ const GlobalStyles = createGlobalStyle`
         text-decoration: none;
     }
     :root{
-        --main-color1 : black;
-        --main-color2 : tomato; 
+        --main-color2 : tomato;
     }
 `;
 
