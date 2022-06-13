@@ -4,13 +4,13 @@
  *              관광지,숙소,음식 각 데이터를 불러와 화면에 리스트 출력
  */
 import React from 'react';
-import Nav from '../components/Nav';
+import TabButton from '../components/TabButton';
 import ListItem from '../styles/ListItem';
 
-const Accom = () => {
+const Tab = () => {
     return (
         <div>
-          <Nav></Nav>
+          <TabButton></TabButton>
           {/* map으로 ListItem 반복출력 */}
           <ListItem></ListItem>
           <ListItem></ListItem>
@@ -19,4 +19,4 @@ const Accom = () => {
     );
 };
 
-export default Accom;
+export default Tab;

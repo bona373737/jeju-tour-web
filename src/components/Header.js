@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
     box-sizing: border-box;
     width: 100%;
     height: 10vh;
-    background-color: var(--main-color2);
+    background-color: var(--blue);
 
     .content-wrap{
         box-sizing: border-box;
