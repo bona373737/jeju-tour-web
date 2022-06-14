@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const TabButtonStyle = styled.div`
     width: 100%;
     height: 60px;
-    background-color: gray;
+    background-color: var(--white);
 `
 
 const TabButton = () => {

@@ -20,10 +20,11 @@ const GlobalStyles = createGlobalStyle`
     
     :root {
         --blue : #0058FF;
+        --subblue: #7E84A3;
         --sky : #E3EEFF; 
         --gray : #666;
         --black : #000;
-        --subblue: #7E84A3;
+        --white: #fff;
     }
 
     .menufont {
