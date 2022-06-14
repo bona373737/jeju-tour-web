@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const SidebarContainer = styled.div`
     box-sizing: border-box;
     width: 80%;
-    height: 93.4vh;
+    height: 93vh;
     position: absolute;
     z-index: 10;
     top: 70px;
