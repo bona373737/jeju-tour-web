@@ -33,22 +33,32 @@ const Background = styled.div`
 const ModalSection = styled.div`
     position: absolute;
     width: 100%;
-    height: 7vh;
+    height: 20vh;
     top: 6.6vh;
     left: 0;
-    background-color: rgba(255, 255, 255, 1);
-    padding: 16px;
+    background-color: var(--white);
     z-index: 11;
     ${(props) => modalSettings(props.isOpen)}
 `;
 
 const Form = styled.div`
-    ${(props) => modalSettings(props.isOpen)}
+    position: absolute;
+    width: 100%;
+    height: 6.6vh;
+    top: 0;
+    left: 0;
+    
     input {
-        position: absolute;
-        top: 0;
+        position: relative;
+        width: 10vw;
+        top: 32%;
+        right: 10%;
+        height: 3.5vh;
+        border: 1px solid var(--sky);
         z-index: 11;
     }
+
+    ${(props) => modalSettings(props.isOpen)}
 `;
 
 const Search = memo(({ isOpen }) => {
@@ -61,7 +71,7 @@ const Search = memo(({ isOpen }) => {
             <Background isOpen={isOpen} />
             <ModalSection isOpen={isOpen}>
             </ModalSection>
-            <Form onSubmit={onSearchSubmit}>
+            <Form onSubmit={onSearchSubmit} isOpen={isOpen}>
                 <input type='search' name='search' placeholder='검색어를 입력하세요.' />
                 <button type='submit'>검색</button>
             </Form>
