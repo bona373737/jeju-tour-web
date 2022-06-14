@@ -3,6 +3,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SidebarContainer = styled.div`
+    /* 화면에 안보이게 일단 display:none */
+    display: none;
+
     box-sizing: border-box;
     width: 80%;
     height: 90vh;
