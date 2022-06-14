@@ -2,41 +2,116 @@ import React from 'react';
 import StyledTab from '../styles/StyledTab';
 import styled from 'styled-components';
 
-import TravelIcon from '../assets/icon/pin.png';
-import HotelIcon from '../assets/icon/hotel.png';
-import FoodIcon from '../assets/icon/food.png';
+import TravelIcon from "../assets/icon/pin.png";
+import HotelIcon from "../assets/icon/hotel.png";
+import FoodIcon from "../assets/icon/food.png";
+import TravelIconAct from "../assets/icon/pin_active.png";
+import HotelIconAct from "../assets/icon/hotel_active.png";
+import FoodIconAct from "../assets/icon/food_active.png";
 
 const TabButtonStyle = styled.div`
     box-sizing: border-box;
-    width: 100%;
-    height: 8vh;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--white);
+    width: 100%;
+    height: 7vh;
+    position: relative;
+    top: 7vh;
+    z-index: 9;
 
-    .travelIcon {
-        position: absolute;
-        width: 20px;
-    }
+    .tab_area {
+        margin: 0 auto;
+        width: 80%;
+        height: 100%;
 
-    .hotelIcon {
-        position: absolute;
-        width: 20px;
-    }
+        .tab {
+            background-color: var(--white);
+            width: 33.33333%;
+            height: 7vh;
+            float: left;
 
-    .foodIcon {
-        position: absolute;
-        width: 20px
+            .line {
+                background-color: #ddd;
+                width: 100%;
+                height: 0.4vh;
+                position: relative;
+                top: 96%;
+            }
+
+            .text {
+                color: var(--gray);
+                position: relative;   
+                top: 18%;
+                padding-left: 0.5em;
+                font-size: 0.9em;             
+            }
+
+            .travel_icon {
+                position: relative;
+                height: 2.5vh;
+                top: 24%;
+                padding-left: 1.1em;
+            }
+
+            .hotel_icon {
+                position: relative;
+                height: 2.3vh;
+                top: 24%;
+                padding-left: 1.7em;
+            }
+
+            .food_icon {
+                position: relative;
+                height: 2.3vh;
+                top: 24%;
+                padding-left: 1.7em;
+            }
+        }
     }
 `;
 
 const TabButton = () => {
     return (
         <TabButtonStyle>
-            <img className='travelIcon' src={TravelIcon} alt='travelicon' />
-            <StyledTab to="/place">관광지</StyledTab>
-            <img className='travelIcon' src={HotelIcon} alt='travelicon' />
-            <StyledTab to="/accom">숙소</StyledTab>
-            <img className='travelIcon' src={FoodIcon} alt='travelicon' />
-            <StyledTab to="/food">음식</StyledTab>
+            <div className="tab_area">
+                <div className="tab">
+                    <div className="line"></div>
+                        <img
+                            className="travel_icon"
+                            src={TravelIcon}
+                            alt="travelicon"
+                        />
+                        <StyledTab to="/place">
+                            <span className="text">여행지</span>
+                        </StyledTab>
+
+                </div>
+
+                <div className="tab">
+                    <div className="line"></div>
+                        <img
+                            className="hotel_icon"
+                            src={HotelIcon}
+                            alt="hotelicon"
+                        />
+                        <StyledTab to="/accom">
+                            <span className="text">숙소</span>
+                        </StyledTab>
+
+                </div>
+
+                <div className="tab">
+                    <div className="line"></div>
+                        <img
+                            className="food_icon"
+                            src={FoodIcon}
+                            alt="foodicon"
+                        />
+                        <StyledTab to="/food">
+                            <span className="text">음식</span>
+                        </StyledTab>
+                </div>
+            </div>
         </TabButtonStyle>
     );
 };
