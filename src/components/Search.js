@@ -32,7 +32,7 @@ const Background = styled.div`
 
 const ModalSection = styled.div`
     position: absolute;
-    width: auto;
+    width: 100%;
     height: 7vh;
     top: 6.6vh;
     left: 0;
