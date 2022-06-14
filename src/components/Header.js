@@ -10,15 +10,15 @@ import SearchButton from '../assets/icon/search.png';
 import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
-    .content-wrap {
+    .content_wrap {
         box-sizing: border-box;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+        background-color: var(--white);
         width: 100%;
-        height: 6.6vh;
-        position: sticky;
+        height: 7vh;
+        position: fixed;
         display: flex;
         align-items: center;
-        background-color: var(--white);
         z-index: 10;
 
         .logo_area {
@@ -40,16 +40,15 @@ const HeaderContainer = styled.div`
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 16%;
+            right: 20%;
             box-sizing: border-box;
             width: 10vw;
             height: 100%;
 
-            .searchButton {
+            .search_button {
                 position: relative;
                 height: 2.5vh;
                 top: 32%;
-                margin: 0 auto;
             }
         }
 
@@ -57,16 +56,15 @@ const HeaderContainer = styled.div`
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 5%;
+            right: 8%;
             box-sizing: border-box;
             width: 12vw;
             height: 100%;
 
-            .menuButton {
+            .menu_button {
                 position: relative;
                 top: 34%;
                 height: 2.2vh;
-                margin: 0 auto;
             }
         }
 
@@ -77,15 +75,9 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = () => {
-    // 검색 버튼 toggle
-    const [isOpen, setIsOpen] = useState(false);
-    const onClick = useCallback(() => {
-        setIsOpen((isOpen) => !isOpen);
-    }, []);
-
     return (
         <HeaderContainer>
-            <div className="content-wrap">
+            <div className="content_wrap">
                 <NavLink to="/">
                     <div className="logo_area">
                         <img className="logo" src={Logo} alt="Logo" />
@@ -95,17 +87,20 @@ const Header = () => {
 
                 <div className="icon1">
                     <img
-                        className="searchButton" src={SearchButton} alt="search"  onClick={onClick}/>
+                        className="search_button"
+                        src={SearchButton}
+                        alt="search"
+                    />
                     <h1>검색</h1>
                 </div>
                 <div className="icon2">
-                    <img className="menuButton" src={MenuButton} alt="menu" />
+                    <img className="menu_button" src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>
             </div>
 
             {/*조건부 렌더링_검색,햄버거 토글*/}
-            <Search isOpen={isOpen}/>
+            <Search></Search>
             <Sidebar></Sidebar>
         </HeaderContainer>
     );
