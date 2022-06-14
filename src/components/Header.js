@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -56,6 +56,10 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = () => {
+    //sidebar 토글기능
+    const [showSidebar, setShowSidebar] = useState(false);
+    const toggleSidebar = useCallback((e)=>setShowSidebar(!showSidebar),[showSidebar])
+
     return (
         <HeaderContainer>
             <div className="content-wrap">
@@ -66,14 +70,16 @@ const Header = () => {
                 <div className="icons">
                     <img className='searchButton' src={SearchButton} alt="search" />
                     <h1>검색</h1>
-                    <img className='menuButton' src={MenuButton} alt="menu" />
-                    <h1>☰</h1>
+                    <img className='menuButton' src={MenuButton} alt="menu" onClick={toggleSidebar} />
+                    {/* <h1>☰</h1> */}
                 </div>
             </div>
 
             {/*조건부 렌더링_검색,햄버거 토글*/}
+            {
+                showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
+            }
             <Search></Search>
-            <Sidebar></Sidebar>
         </HeaderContainer>
     );
 };
