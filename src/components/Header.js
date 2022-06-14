@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import "../assets/scss/color.scss";
 import Sidebar from './Sidebar'; 
 import Search from './Search';
 
