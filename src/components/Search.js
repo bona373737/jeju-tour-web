@@ -15,8 +15,8 @@ const fadeOut = keyframes`
 // components
 const modalSettings = (isOpen) => css`
     visibility: ${isOpen ? "visible" : "hidden"};
-    animation: ${isOpen ? fadeIn : fadeOut} 0.1s ease-out;
-    transition: visibility 0.1s ease-out;
+    animation: ${isOpen ? fadeIn : fadeOut} 0.15s ease-out;
+    transition: visibility 0.15s ease-out;
 `;
 
 const Background = styled.div`
@@ -44,21 +44,20 @@ const ModalSection = styled.div`
 const Form = styled.div`
     position: absolute;
     width: 100%;
-    height: 6.6vh;
+    height: 7vh;
     top: 0;
     left: 0;
-    
+    ${(props) => modalSettings(props.isOpen)}
+
     input {
         position: relative;
         top: 32%;
-        right: 10%;
-        width: 10vw;
+        left: 34%;
+        width: 34%;
         height: 3.5vh;
         border: 1px solid var(--sky);
         z-index: 11;
     }
-
-    ${(props) => modalSettings(props.isOpen)}
 `;
 
 const Search = memo(({ isOpen }) => {
@@ -72,7 +71,7 @@ const Search = memo(({ isOpen }) => {
             <ModalSection isOpen={isOpen}>
             </ModalSection>
             <Form onSubmit={onSearchSubmit} isOpen={isOpen}>
-                <input type='search' name='search' placeholder='검색어를 입력하세요.' />
+                <input type='search' name='search' placeholder=' 검색어를 입력하세요.' />
                 <button type='submit'>검색</button>
             </Form>
         </>
