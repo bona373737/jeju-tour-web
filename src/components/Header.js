@@ -15,12 +15,12 @@ const HeaderContainer = styled.div`
     .content_wrap {
         box-sizing: border-box;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+        background-color: var(--white);
         width: 100%;
-        height: 6.6vh;
-        position: sticky;
+        height: 7vh;
+        position: fixed;
         display: flex;
         align-items: center;
-        background-color: var(--white);
         z-index: 10;
 
         .logo_area {
@@ -38,11 +38,11 @@ const HeaderContainer = styled.div`
             }
         }
 
-        .icon_1 {
+        .icon1 {
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 16%;
+            right: 20%;
             box-sizing: border-box;
             width: 10vw;
             height: 100%;
@@ -51,15 +51,14 @@ const HeaderContainer = styled.div`
                 position: relative;
                 height: 2.5vh;
                 top: 32%;
-                margin: 0 auto;
             }
         }
 
-        .icon_2 {
+        .icon2 {
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 5%;
+            right: 8%;
             box-sizing: border-box;
             width: 12vw;
             height: 100%;
@@ -68,7 +67,6 @@ const HeaderContainer = styled.div`
                 position: relative;
                 top: 34%;
                 height: 2.2vh;
-                margin: 0 auto;
             }
         }
 
@@ -95,12 +93,16 @@ const Header = () => {
                     </div>
                 </NavLink>
 
-                <div className="icon_1">
+                <div className="icon1">
                     <img
-                        className="search_button" src={SearchButton} alt="search" onClick={onClick}/>
+                        className="search_button"
+                        src={SearchButton}
+                        alt="search"
+                        onClick={onClick}
+                    />
                     <h1>검색</h1>
                 </div>
-                <div className="icon_2">
+                <div className="icon2">
                     <img className="menu_button" src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>

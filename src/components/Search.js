@@ -50,9 +50,9 @@ const Form = styled.div`
     
     input {
         position: relative;
-        width: 10vw;
         top: 32%;
         right: 10%;
+        width: 10vw;
         height: 3.5vh;
         border: 1px solid var(--sky);
         z-index: 11;
