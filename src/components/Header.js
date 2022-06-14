@@ -10,7 +10,7 @@ import SearchButton from '../assets/icon/search.png';
 import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
-    .content_wrap {
+    .content-wrap {
         box-sizing: border-box;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
         width: 100%;
@@ -36,7 +36,7 @@ const HeaderContainer = styled.div`
             }
         }
 
-        .icon_1 {
+        .icon1 {
             background-color: var(--white);
             display: flex;
             position: absolute;
@@ -45,7 +45,7 @@ const HeaderContainer = styled.div`
             width: 10vw;
             height: 100%;
 
-            .search_button {
+            .searchButton {
                 position: relative;
                 height: 2.5vh;
                 top: 32%;
@@ -53,7 +53,7 @@ const HeaderContainer = styled.div`
             }
         }
 
-        .icon_2 {
+        .icon2 {
             background-color: var(--white);
             display: flex;
             position: absolute;
@@ -62,7 +62,7 @@ const HeaderContainer = styled.div`
             width: 12vw;
             height: 100%;
 
-            .menu_button {
+            .menuButton {
                 position: relative;
                 top: 34%;
                 height: 2.2vh;
@@ -78,28 +78,28 @@ const HeaderContainer = styled.div`
 
 const Header = () => {
     // 검색 버튼 toggle
-    const [isOpen, setIsOpen] = React.useState(false);
-    const onClick = React.useCallback(() => {
+    const [isOpen, setIsOpen] = useState(false);
+    const onClick = useCallback(() => {
         setIsOpen((isOpen) => !isOpen);
     }, []);
 
     return (
         <HeaderContainer>
-            <div className="content_wrap">
+            <div className="content-wrap">
                 <NavLink to="/">
                     <div className="logo_area">
-                        <img className="logo" src={Logo} alt="logo" />
+                        <img className="logo" src={Logo} alt="Logo" />
                         <h1>tray</h1>
                     </div>
                 </NavLink>
 
-                <div className="icon_1">
+                <div className="icon1">
                     <img
-                        className="search_button" src={SearchButton} alt="search" onClick={onClick}/>
+                        className="searchButton" src={SearchButton} alt="search"  onClick={onClick}/>
                     <h1>검색</h1>
                 </div>
-                <div className="icon_2">
-                    <img className="menu_button" src={MenuButton} alt="menu" />
+                <div className="icon2">
+                    <img className="menuButton" src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>
             </div>
