@@ -5,38 +5,53 @@ import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar'; 
 import Search from './Search';
 
-import Logo from "../assets/icon/TRAY.png";
-
+import Logo from '../assets/icon/TRAY.png';
+import SearchButton from '../assets/icon/search.png';
+import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
-    box-sizing: border-box;
-    width: 100%;
-    height: 8vh;
-    background-color: var(--white);
+
 
     .content-wrap {
         box-sizing: border-box;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
         width: 100%;
-        height: 60px;
+        height: 70px;
+        position: sticky;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        box-shadow: 0.5em;
-        background-color: #eee;
+        background-color: var(--white);
+
+        .logo {
+            position: absolute;
+            width: 90px;
+            top: 24px;
+            left: 40px;
+        }
 
         .icons {
             display: flex;
+
+            .searchButton {
+                position: absolute;
+                width: 24px;
+                top: 24px;
+                right: 76px;
+            }
+
+            .menuButton {
+                position: absolute;
+                width: 20px;
+                top: 26px;
+                right: 36px;
+            }
         }   
 
         h1 {
             text-indent: -9999em;
         }
 
-        img {
-            width: 60px;
-            position: absolute;
-            left: 20px;
-        }
+
     }
 `;
 
@@ -45,13 +60,13 @@ const Header = () => {
         <HeaderContainer>
             <div className="content-wrap">
                 <NavLink to="/">
-                    <img src={Logo} alt="Logo" />
+                    <img className='logo' src={Logo} alt="Logo" />
                     <h1>TRAY</h1>
                 </NavLink>
                 <div className="icons">
-                    <h1>
-                        검색
-                    </h1>
+                    <img className='searchButton' src={SearchButton} alt="search" />
+                    <h1>검색</h1>
+                    <img className='menuButton' src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>
             </div>

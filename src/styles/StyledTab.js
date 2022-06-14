@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const StyledTabContainer = styled(NavLink)`
-    width: 50px;
+
 `;
 
 const StyledTab = ({to,children}) => {
