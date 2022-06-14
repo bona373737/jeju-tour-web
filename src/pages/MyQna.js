@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Login = () => {
+const MyQna = () => {
     return (
         <div>
-            로그인페이지
+            내문의 페이지
         </div>
     );
 };
 
-export default Login;
+export default MyQna;

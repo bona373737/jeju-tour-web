@@ -7,6 +7,9 @@ import ListDetail from '../components/ListDetail';
 import CardDetail from '../components/CardDetail';
 import Login from '../components/Login'
 import Signup from './Signup';
+import MyLike from './MyLike'
+import MyReview from './MyReview';
+import MyQna from './MyQna';
 
 const Main = () => {
     return (
@@ -26,6 +29,11 @@ const Main = () => {
                 {/* 로그임,회원가입 페이지 */}
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
+                {/* 사이드바의 메뉴 페이지 */}
+                <Route path='/mylike' element={<MyLike/>}/>
+                <Route path='/myreview' element={<MyReview/>}/>
+                <Route path='/myqna' element={<MyQna/>}/>
+
             </Routes>
         </div>
     );

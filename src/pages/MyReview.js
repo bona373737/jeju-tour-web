@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Login = () => {
+const MyReview = () => {
     return (
         <div>
-            로그인페이지
+            내 리뷰페이지
         </div>
     );
 };
 
-export default Login;
+export default MyReview;
