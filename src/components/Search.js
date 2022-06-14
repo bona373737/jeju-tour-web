@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from 'react';
 import styled, { css, keyframes } from "styled-components";
 
 // animations
@@ -15,9 +15,8 @@ const fadeOut = keyframes`
 // components
 const modalSettings = (isOpen) => css`
     visibility: ${isOpen ? "visible" : "hidden"};
-    z-index: 15;
-    animation: ${isOpen ? fadeIn : fadeOut} 0.15s ease-out;
-    transition: visibility 0.15s ease-out;
+    animation: ${isOpen ? fadeIn : fadeOut} 0.1s ease-out;
+    transition: visibility 0.1s ease-out;
 `;
 
 const Background = styled.div`
@@ -33,22 +32,39 @@ const Background = styled.div`
 
 const ModalSection = styled.div`
     position: absolute;
-    width: 400px;
-    height: 400px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: auto;
+    height: 7vh;
+    top: 6.6vh;
+    left: 0;
     background-color: rgba(255, 255, 255, 1);
     padding: 16px;
+    z-index: 11;
     ${(props) => modalSettings(props.isOpen)}
 `;
 
+const Form = styled.div`
+    ${(props) => modalSettings(props.isOpen)}
+    input {
+        position: absolute;
+        top: 0;
+        z-index: 11;
+    }
+`;
+
 const Search = memo(({ isOpen }) => {
+    const onSearchSubmit = useCallback(e => {
+        e.preventDefault();
+    }, []);
+
     return (
         <>
             <Background isOpen={isOpen} />
             <ModalSection isOpen={isOpen}>
             </ModalSection>
+            <Form onSubmit={onSearchSubmit}>
+                <input type='search' name='search' placeholder='검색어를 입력하세요.' />
+                <button type='submit'>검색</button>
+            </Form>
         </>
     );
 });
