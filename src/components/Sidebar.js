@@ -8,11 +8,10 @@ const SidebarContainer = styled.div`
     height: 93vh;
     position: absolute;
     z-index: 10;
-    top: 70px;
+    top: 7vh;
     /* right: 0; 오른쪽으로 정렬하고 싶은데 왜 안먹지 ㅋㅋㅋ*/
     left: 20%;
-    /* background-color: white; */
-    background-color: tomato;
+    background-color: var(--white);
     padding: 20px 20px;
 
     .login{
@@ -42,7 +41,7 @@ const SidebarContainer = styled.div`
 
 const Sidebar = ({setShowSidebar}) => {
     //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     
     //클릭시 페이지이동과 함께 sidebar닫아주는 함수
     const navigate = useNavigate();
