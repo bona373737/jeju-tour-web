@@ -106,7 +106,7 @@ const Header = () => {
                     <h1>검색</h1>
                 </div>
                 <div className="icon2">
-                    <img className='menuButton' src={MenuButton} alt="menu" onClick={toggleSidebar} />
+                    <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
                     <h1>☰</h1>
                 </div>
             </div>
