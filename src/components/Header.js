@@ -10,48 +10,69 @@ import SearchButton from '../assets/icon/search.png';
 import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
-
-
     .content-wrap {
         box-sizing: border-box;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
         width: 100%;
-        height: 70px;
+        height: 6.6vh;
         position: sticky;
         display: flex;
         align-items: center;
         background-color: var(--white);
+        z-index: 10;
 
-        .logo {
-            position: absolute;
-            width: 90px;
-            top: 24px;
-            left: 40px;
+        .logo_area {
+            background-color: var(--white);
+            display: flex;
+            box-sizing: border-box;
+            height: 6.6vh;
+            width: 40vw;
+
+            .logo {
+                margin: 0 auto;
+                height: 5.4vw;
+                position: relative;
+                top: 32%;
+            }
         }
 
-        .icons {
+        .icon1 {
+            background-color: var(--white);
             display: flex;
+            position: absolute;
+            right: 16%;
+            box-sizing: border-box;
+            width: 10vw;
+            height: 100%;
 
             .searchButton {
-                position: absolute;
-                width: 24px;
-                top: 24px;
-                right: 76px;
+                position: relative;
+                height: 2.5vh;
+                top: 32%;
+                margin: 0 auto;
             }
+        }
+
+        .icon2 {
+            background-color: var(--white);
+            display: flex;
+            position: absolute;
+            right: 5%;
+            box-sizing: border-box;
+            width: 12vw;
+            height: 100%;
 
             .menuButton {
-                position: absolute;
-                width: 20px;
-                top: 26px;
-                right: 36px;
+                position: relative;
+                top: 34%;
+                height: 2.2vh;
+                margin: 0 auto;
             }
-        }   
+        }
 
         h1 {
             text-indent: -9999em;
         }
-
-
     }
 `;
 
@@ -60,13 +81,22 @@ const Header = () => {
         <HeaderContainer>
             <div className="content-wrap">
                 <NavLink to="/">
-                    <img className='logo' src={Logo} alt="Logo" />
-                    <h1>TRAY</h1>
+                    <div className="logo_area">
+                        <img className="logo" src={Logo} alt="Logo" />
+                        <h1>tray</h1>
+                    </div>
                 </NavLink>
-                <div className="icons">
-                    <img className='searchButton' src={SearchButton} alt="search" />
+
+                <div className="icon1">
+                    <img
+                        className="searchButton"
+                        src={SearchButton}
+                        alt="search"
+                    />
                     <h1>검색</h1>
-                    <img className='menuButton' src={MenuButton} alt="menu" />
+                </div>
+                <div className="icon2">
+                    <img className="menuButton" src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>
             </div>
