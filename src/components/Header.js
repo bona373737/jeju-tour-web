@@ -77,6 +77,12 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = () => {
+    // 검색 버튼 toggle
+    const [isOpen, setIsOpen] = useState(false);
+    const onClick = useCallback(() => {
+        setIsOpen((isOpen) => !isOpen);
+    }, []);
+
     return (
         <HeaderContainer>
             <div className="content-wrap">
@@ -89,10 +95,7 @@ const Header = () => {
 
                 <div className="icon1">
                     <img
-                        className="searchButton"
-                        src={SearchButton}
-                        alt="search"
-                    />
+                        className="searchButton" src={SearchButton} alt="search"  onClick={onClick}/>
                     <h1>검색</h1>
                 </div>
                 <div className="icon2">
@@ -102,7 +105,7 @@ const Header = () => {
             </div>
 
             {/*조건부 렌더링_검색,햄버거 토글*/}
-            <Search></Search>
+            <Search isOpen={isOpen}/>
             <Sidebar></Sidebar>
         </HeaderContainer>
     );
