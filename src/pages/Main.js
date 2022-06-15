@@ -1,5 +1,6 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
+import styled from 'styled-components';
 
 import Home from './Home';
 import Tab from './Tab';
@@ -11,9 +12,14 @@ import MyLike from './MyLike'
 import MyReview from './MyReview';
 import MyQna from './MyQna';
 
+//header높이 만큼 Main영역 상단에 padding값 적용
+const MainContainer=styled.div`
+    padding-top: 7vh;
+`;
+
 const Main = () => {
     return (
-        <div>
+        <MainContainer>
             <Routes>
                 {/*메인화면 */}
                 <Route path="/" exact element={<Home/>}/>
@@ -35,7 +41,7 @@ const Main = () => {
                 <Route path='/myqna' element={<MyQna/>}/>
 
             </Routes>
-        </div>
+        </MainContainer>
     );
 };
 
