@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -76,14 +76,18 @@ const HeaderContainer = styled.div`
     }
 `;
 
-const Header = () => {
-    //sidebar 토글기능
+const Header = memo(() => {
+    // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback((e)=>setShowSidebar(!showSidebar),[showSidebar])
+    const toggleSidebar = useCallback(() => {
+        setShowSidebar(showSidebar => !showSidebar);
+        setIsOpen((isOpen) => false);
+    }, []);
     // 검색 버튼 toggle
-    const [isOpen, setIsOpen] = React.useState(false);
-    const onClick = React.useCallback(() => {
+    const [isOpen, setIsOpen] = useState(false);
+    const onClick = useCallback(() => {
         setIsOpen((isOpen) => !isOpen);
+        setShowSidebar((showSidebar) => false);
     }, []);
 
     return (
@@ -118,6 +122,6 @@ const Header = () => {
             <Search isOpen={isOpen}/>
         </HeaderContainer>
     );
-};
+});
 
 export default Header;
