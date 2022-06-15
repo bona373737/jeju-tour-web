@@ -79,11 +79,18 @@ const HeaderContainer = styled.div`
 const Header = () => {
     //sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback((e)=>setShowSidebar(!showSidebar),[showSidebar])
+    //setter함수를 직접 변경
+    // const toggleSidebar = useCallback(()=>setShowSidebar(!showSidebar),[showSidebar]);
+    const toggleSidebar = useCallback(()=>{
+        setShowSidebar(showSidebar => !showSidebar)
+        setIsOpen((isOpen) => false);
+    },[]);
+
     // 검색 버튼 toggle
     const [isOpen, setIsOpen] = React.useState(false);
     const onClick = React.useCallback(() => {
         setIsOpen((isOpen) => !isOpen);
+        setShowSidebar((showSidebar)=>false);
     }, []);
 
     return (
@@ -105,16 +112,15 @@ const Header = () => {
                     />
                     <h1>검색</h1>
                 </div>
-                <div className="icon2">
-                    <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
+                <div className="icon2" onClick={toggleSidebar}>
+                    <img className='menu_button' src={MenuButton} alt="menu" />
                     <h1>☰</h1>
                 </div>
+                {/*조건부 렌더링_검색,햄버거 토글*/}
+                {
+                    showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
+                }
             </div>
-
-            {/*조건부 렌더링_검색,햄버거 토글*/}
-            {
-                showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
-            }
             <Search isOpen={isOpen}/>
         </HeaderContainer>
     );
