@@ -79,7 +79,6 @@ const HeaderContainer = styled.div`
 const Header = memo(() => {
     // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-<<<<<<< HEAD
     //setter함수를 직접 변경
     // const toggleSidebar = useCallback(()=>setShowSidebar(!showSidebar),[showSidebar]);
     const toggleSidebar = useCallback(()=>{
@@ -87,21 +86,11 @@ const Header = memo(() => {
         setIsOpen((isOpen) => false);
     },[]);
 
-=======
-    const toggleSidebar = useCallback(() => {
-        setShowSidebar(showSidebar => !showSidebar);
-        setIsOpen((isOpen) => false);
-    }, []);
->>>>>>> 5cc2d7177984bf7633d8ab455ab26be82fc3d3cd
     // 검색 버튼 toggle
     const [isOpen, setIsOpen] = useState(false);
     const onClick = useCallback(() => {
         setIsOpen((isOpen) => !isOpen);
-<<<<<<< HEAD
-        setShowSidebar((showSidebar)=>false);
-=======
         setShowSidebar((showSidebar) => false);
->>>>>>> 5cc2d7177984bf7633d8ab455ab26be82fc3d3cd
     }, []);
 
     return (
