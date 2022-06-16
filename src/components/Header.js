@@ -42,7 +42,7 @@ const HeaderContainer = styled.div`
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 20%;
+            right: 15%;
             box-sizing: border-box;
             width: 10vw;
             height: 100%;
@@ -58,7 +58,7 @@ const HeaderContainer = styled.div`
             background-color: var(--white);
             display: flex;
             position: absolute;
-            right: 8%;
+            right: 3%;
             box-sizing: border-box;
             width: 12vw;
             height: 100%;
