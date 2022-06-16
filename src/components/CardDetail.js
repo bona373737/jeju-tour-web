@@ -9,12 +9,21 @@ import Pic3 from "../assets/img/머체왓숲길(3).jpeg";
 const CardDetailContent = styled.div`
     width: 100%;
 
-    img {
-        width: auto;
+    .carddetail_imgwrapper {
+        position: relative;
+        width: 100%;
         height: 30vh;
-        overflow: hidden;
-        margin: 0 auto;
-        position: absolute;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translate(50, 50);
+            object-fit: cover;
+            margin: auto;
+        }
     }
 
     .carddetail_title {
@@ -45,7 +54,6 @@ const CardDetailContent = styled.div`
         p {
             padding-top: 4%;
             padding-bottom: 4%;
-            
         }
 
         h1 {
@@ -59,18 +67,18 @@ const CardDetailContent = styled.div`
             position: relative;
             padding: 4% 0 4% 0;
         }
-
-        
     }
 `;
 
 const CardDetail = memo(() => {
     return (
         <CardDetailContent>
-            <img src={Theme1} alt="theme1" />
-            <div className="carddetail_title">
-                <p className="subfont">제주의 걷기 좋은 길</p>
-                <h1 className="menufont">곶자왈</h1>
+            <div className="carddetail_imgwrapper">
+                <img src={Theme1} alt="theme1" />
+                <div className="carddetail_title">
+                    <p className="subfont">제주의 걷기 좋은 길</p>
+                    <h1 className="menufont">곶자왈</h1>
+                </div>
             </div>
 
             <div className="carddetail_content">

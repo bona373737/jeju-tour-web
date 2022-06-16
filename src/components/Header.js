@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import React, { memo, useCallback, useState } from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 
-import Logo from "../assets/icon/TRAY.png";
-import SearchButton from "../assets/icon/search.png";
-import MenuButton from "../assets/icon/menubutton.png";
+import Logo from '../assets/icon/logo.png';
+import SearchButton from '../assets/icon/search.png';
+import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -81,17 +81,24 @@ const HeaderContainer = styled.div`
     }
 `;
 
-const Header = () => {
-    //sidebar 토글기능
+const Header = memo(() => {
+    // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback(
-        (e) => setShowSidebar(!showSidebar),
-        [showSidebar]
-    );
-    // 검색 버튼 toggle
-    const [isOpen, setIsOpen] = React.useState(false);
-    const onClick = React.useCallback(() => {
-        setIsOpen((isOpen) => !isOpen);
+    // setter함수를 직접 변경
+    // const toggleSidebar = useCallback(()=>setShowSidebar(!showSidebar),[showSidebar]);
+    const toggleSidebar = useCallback(()=>{
+        setShowSidebar(showSidebar => !showSidebar)
+        setIsOpen((isOpen) => false);
+    },[]);
+
+    // search 열림/닫힘 기능
+    const [isOpen, setIsOpen] = useState(false);
+    const openSearch = useCallback(() => {
+        setIsOpen(true);
+        setShowSidebar((showSidebar) => false);
+    }, []);
+    const closeSearch = useCallback(() => {
+        setIsOpen(false)
     }, []);
 
     return (
@@ -105,31 +112,19 @@ const Header = () => {
                 </NavLink>
                 <div className="icons_right">
                     <div className="icon1">
-                        <img
-                            className="search_button"
-                            src={SearchButton}
-                            alt="search"
-                            onClick={onClick}
-                        />
+                        <img className="search_button" src={SearchButton} alt="search" onClick={openSearch} />
                         <h1>검색</h1>
                     </div>
+                    <Search open={isOpen} close={closeSearch}/>
                     <div className="icon2">
-                        <img
-                            className="menu_button"
-                            src={MenuButton}
-                            alt="menu"
-                            onClick={toggleSidebar}
-                        />
+                        <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
                         <h1>☰</h1>
                     </div>
+                    {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
                 </div>
-            </div>
-
-            {/*조건부 렌더링_검색,햄버거 토글*/}
-            {showSidebar ? <Sidebar setShowSidebar={setShowSidebar} /> : ""}
-            <Search isOpen={isOpen} />
+            </div>            
         </HeaderContainer>
     );
-};
+});
 
 export default Header;

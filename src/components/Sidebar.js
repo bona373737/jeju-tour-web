@@ -1,42 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled,{keyframes} from 'styled-components';
+
+const fadeIn = keyframes`
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+`;
 
 const SidebarContainer = styled.div`
-    box-sizing: border-box;
-    width: 80%;
-    height: 93vh;
+    width: 100%;
+    height: 97vh;
     position: absolute;
-    z-index: 10;
     top: 7vh;
-    /* right: 0; 오른쪽으로 정렬하고 싶은데 왜 안먹지 ㅋㅋㅋ*/
-    left: 20%;
-    background-color: var(--white);
-    padding: 20px 20px;
+    background-color: rgba(255,255,255,0);
+    z-index: 11;
+    animation: ${fadeIn} 0.3s;
 
-    .login{
-        background-color: white;
-        height: 15%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .user_inform{
-        background-color: white;
-        height: 15%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center; 
-    }
-    .menu{
-        margin: 15px 0;
-        li{
-            display: block;
+    .sidebar_content{
+        box-sizing: border-box;
+        width: 70%;
+        margin-left: 30%;
+        height: 97vh;
+
+        background-color: var(--white);
+        padding: 20px 20px;
+        .back{
             width: 100%;
-            padding: 15px 0;
-        }//li end
-    }//menu end
+            
+            background-color: black;
+        }
+        .login{
+            background-color: white;
+            height: 15%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user_inform{
+            background-color: white;
+            height: 15%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+        }
+        .menu{
+            margin: 15px 0;
+            li{
+                display: block;
+                width: 100%;
+                padding: 15px 0;
+            }//li end
+        }//menu end
+    }//sidebar_content end
 `;
 
 const Sidebar = ({setShowSidebar}) => {
@@ -45,17 +65,37 @@ const Sidebar = ({setShowSidebar}) => {
     
     //클릭시 페이지이동과 함께 sidebar닫아주는 함수
     const navigate = useNavigate();
-    const movePage=(e)=>{
+    const movePage=useCallback((e)=>{
         navigate(e.target.dataset.path);
         setShowSidebar(false);
-    }
+    },[])
+    //클릭시 페이지이동과 함께 sidebar닫아주는 함수 +비회원접속제한
+    const movePage2=useCallback((e)=>{
+        if(isLogin===true){
+            navigate(e.target.dataset.path);
+            setShowSidebar(false);
+        }else{
+            alert("로그인하세요")
+            navigate("/login");
+            setShowSidebar(false);
+        }
+    },[])
+
+    //sidebar가 unmount될때 fadeout애니메이션 적용??
+    useEffect(()=>{
+        return(()=>{
+
+        })
+    },[])
 
     return (
         <SidebarContainer>
+            <div className="sidebar_content">
+            <div className="back"></div>
             {
                 //로그인여부에 따라 조건부 렌더링
                 isLogin? ( 
-                    <div className="user_inform">
+                    <div className="user_inform" data-path="/profile" onClick={movePage}>
                     <h1>Hello</h1>
                     <h1>Bona!(변수)</h1>
                     </div>
@@ -67,18 +107,19 @@ const Sidebar = ({setShowSidebar}) => {
             }
             {/* menu 링크 */}
             <ul className='menu'>
-            <li onClick={movePage} data-path='/mylike'>내 저장</li>
-            <li onClick={movePage} data-path='/myreview'>내 리뷰</li>
-            <li onClick={movePage} data-path='/myqna'>내 문의</li>
+            <li onClick={movePage2} data-path='/mylike'>내 저장</li>
+            <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
+            <li onClick={movePage2} data-path='/myqna'>내 문의</li>
             <li onClick={movePage} data-path=''>여행도구</li>
             <li onClick={movePage} data-path='/sc'>고객센터</li>
             {
                 isLogin? (<li>로그아웃</li>):''
             }
             </ul>
+            </div>
         </SidebarContainer>
         
     );
-};
+}; 
 
 export default Sidebar;
