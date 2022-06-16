@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
@@ -76,14 +76,21 @@ const HeaderContainer = styled.div`
     }
 `;
 
-const Header = () => {
-    //sidebar 토글기능
+const Header = memo(() => {
+    // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback((e)=>setShowSidebar(!showSidebar),[showSidebar])
-    // 검색 버튼 toggle
-    const [isOpen, setIsOpen] = React.useState(false);
-    const onClick = React.useCallback(() => {
-        setIsOpen((isOpen) => !isOpen);
+    const toggleSidebar = useCallback(() => {
+        setShowSidebar(showSidebar => !showSidebar);
+        setIsOpen((isOpen) => false);
+    }, []);
+    // search 열림/닫힘 기능
+    const [isOpen, setIsOpen] = useState(false);
+    const openSearch = useCallback(() => {
+        setIsOpen(true);
+        setShowSidebar((showSidebar) => false);
+    }, []);
+    const closeSearch = useCallback(() => {
+        setIsOpen(false)
     }, []);
 
     return (
@@ -97,27 +104,19 @@ const Header = () => {
                 </NavLink>
 
                 <div className="icon1">
-                    <img
-                        className="search_button"
-                        src={SearchButton}
-                        alt="search"
-                        onClick={onClick}
-                    />
+                    <img className="search_button" src={SearchButton} alt="search" onClick={openSearch} />
                     <h1>검색</h1>
                 </div>
+                <Search open={isOpen} close={closeSearch}/>
+
                 <div className="icon2">
                     <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
                     <h1>☰</h1>
                 </div>
-            </div>
-
-            {/*조건부 렌더링_검색,햄버거 토글*/}
-            {
-                showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
-            }
-            <Search isOpen={isOpen}/>
+                {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
+            </div>            
         </HeaderContainer>
     );
-};
+});
 
 export default Header;
