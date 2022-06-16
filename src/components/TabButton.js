@@ -19,6 +19,8 @@ const TabButtonStyle = styled.div`
     z-index: 9;
 
     .tab_area {
+        display: flex;
+        justify-content: space-between;
         margin: 0 auto;
         width: 80%;
         height: 100%;
@@ -26,61 +28,30 @@ const TabButtonStyle = styled.div`
         .tab {
             background-color: var(--white);
             width: 33.33333%;
-            height: 7vh;
-            float: left;
-            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
 
             .line {
                 background-color: #ddd;
                 width: 100%;
+                margin: 0 auto;
                 height: 0.4vh;
                 position: relative;
                 top: 96%;
             }
 
-            .icontext_area1 {
-                width: 70px;
-                height: 100%;
-                margin: 0 auto;
-
-                .text {
-                    color: var(--gray);
-                    position: relative;
-                    top: 17%;
-                    padding-left: 0.5em;
-                    font-size: 0.9em;
-                }
-
-                .travel_icon {
-                    position: relative;
-                    height: 2.5vh;
-                    top: 24%;
-                }
+            .text {
+                color: var(--gray);
+                padding-left: 0.5em;
+                font-size: 0.9em;
             }
 
-            .icontext_area2 {
-                width: 52px;
-                height: 100%;
-                margin: 0 auto;
+            .travel_icon {
+                height: 2.5vh;
+            }
 
-                .text {
-                    color: var(--gray);
-                    position: relative;
-                    top: 20%;
-                    padding-left: 0.5em;
-                    font-size: 0.9em;
-                }
-                .hotel_icon {
-                    position: relative;
-                    height: 2.3vh;
-                    top: 25%;
-                }
-
-                .food_icon {
-                    position: relative;
-                    height: 2.3vh;
-                    top: 25%;
-                }
+            .hotel_icon, .food_icon {
+                height: 2.3vh;
             }
         }
     }
@@ -93,42 +64,36 @@ const TabButton = memo(() => {
                 <div className="tab">
                     <div className="line"></div>
                     <StyledTab to="/place">
-                        <div className="icontext_area1">
-                            <img
-                                className="travel_icon"
-                                src={TravelIcon}
-                                alt="travelicon"
-                            />
-                            <span className="text">여행지</span>
-                        </div>
+                        <img
+                            className="travel_icon"
+                            src={TravelIcon}
+                            alt="travelicon"
+                        />
+                        <span className="text">여행지</span>
                     </StyledTab>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
                     <StyledTab to="/accom">
-                        <div className="icontext_area2">
-                            <img
-                                className="hotel_icon"
-                                src={HotelIcon}
-                                alt="hotelicon"
-                            />
-                            <span className="text">숙소</span>
-                        </div>
+                        <img
+                            className="hotel_icon"
+                            src={HotelIcon}
+                            alt="hotelicon"
+                        />
+                        <span className="text">숙소</span>
                     </StyledTab>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
                     <StyledTab to="/food">
-                        <div className="icontext_area2">
-                            <img
-                                className="food_icon"
-                                src={FoodIcon}
-                                alt="foodicon"
-                            />
-                            <span className="text">음식</span>
-                        </div>
+                        <img
+                            className="food_icon"
+                            src={FoodIcon}
+                            alt="foodicon"
+                        />
+                        <span className="text">음식</span>
                     </StyledTab>
                 </div>
             </div>
