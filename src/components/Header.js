@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Sidebar from './Sidebar'; 
 import Search from './Search';
 
-import Logo from '../assets/icon/TRAY.png';
+import Logo from '../assets/icon/logo.png';
 import SearchButton from '../assets/icon/search.png';
 import MenuButton from '../assets/icon/menubutton.png';
 
