@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import StyledTab from '../styles/StyledTab';
 import styled from 'styled-components';
 
@@ -16,7 +16,6 @@ const TabButtonStyle = styled.div`
     width: 100%;
     height: 7vh;
     position: relative;
-    top: 7vh;
     z-index: 9;
 
     .tab_area {
@@ -70,7 +69,7 @@ const TabButtonStyle = styled.div`
     }
 `;
 
-const TabButton = () => {
+const TabButton = memo(() => {
     return (
         <TabButtonStyle>
             <div className="tab_area">
@@ -114,6 +113,6 @@ const TabButton = () => {
             </div>
         </TabButtonStyle>
     );
-};
+});
 
 export default TabButton;
