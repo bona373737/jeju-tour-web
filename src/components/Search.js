@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import styled from "styled-components";
 
 import CloseButton from '../assets/icon/close.png';
-import SearchButton from '../assets/icon/search_white.png';
+import SearchButton from '../assets/icon/search_active.png';
 
 const SearchContainer = styled.div`
     width: 100%;
