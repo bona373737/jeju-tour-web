@@ -2,8 +2,8 @@ import React, { memo, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import Sidebar from './Sidebar'; 
-import Search from './Search';
+import Sidebar from "./Sidebar";
+import Search from "./Search";
 
 import Logo from '../assets/icon/logo.png';
 import SearchButton from '../assets/icon/search.png';
@@ -31,42 +31,47 @@ const HeaderContainer = styled.div`
             width: 40vw;
 
             .logo {
+                display: flex;
                 margin: 0 auto;
-                height: 5.4vw;
+                height: 2.7vh;
                 position: relative;
-                top: 32%;
+                top: 31%;
             }
         }
 
-        .icon1 {
-            background-color: var(--white);
-            display: flex;
-            position: absolute;
-            right: 15%;
-            box-sizing: border-box;
-            width: 10vw;
+        .icons_right {
+            margin: 0 auto;
+            width: 100px;
             height: 100%;
 
-            .search_button {
-                position: relative;
-                height: 2.5vh;
-                top: 32%;
+            .icon1 {
+                background-color: var(--white);
+                position: absolute;
+                right: 15%;
+                box-sizing: border-box;
+                width: 40px;
+                height: 100%;
+
+                .search_button {
+                    position: relative;
+                    height: 2.5vh;
+                    top: 32%;
+                }
             }
-        }
 
-        .icon2 {
-            background-color: var(--white);
-            display: flex;
-            position: absolute;
-            right: 3%;
-            box-sizing: border-box;
-            width: 12vw;
-            height: 100%;
+            .icon2 {
+                background-color: var(--white);
+                position: absolute;
+                right: 3%;
+                box-sizing: border-box;
+                width: 12vw;
+                height: 100%;
 
-            .menu_button {
-                position: relative;
-                top: 34%;
-                height: 2.2vh;
+                .menu_button {
+                    position: relative;
+                    top: 34%;
+                    height: 2.2vh;
+                }
             }
         }
 
@@ -79,7 +84,7 @@ const HeaderContainer = styled.div`
 const Header = memo(() => {
     // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    //setter함수를 직접 변경
+    // setter함수를 직접 변경
     // const toggleSidebar = useCallback(()=>setShowSidebar(!showSidebar),[showSidebar]);
     const toggleSidebar = useCallback(()=>{
         setShowSidebar(showSidebar => !showSidebar)
@@ -105,18 +110,18 @@ const Header = memo(() => {
                         <h1>tray</h1>
                     </div>
                 </NavLink>
-
-                <div className="icon1">
-                    <img className="search_button" src={SearchButton} alt="search" onClick={openSearch} />
-                    <h1>검색</h1>
+                <div className="icons_right">
+                    <div className="icon1">
+                        <img className="search_button" src={SearchButton} alt="search" onClick={openSearch} />
+                        <h1>검색</h1>
+                    </div>
+                    <Search open={isOpen} close={closeSearch}/>
+                    <div className="icon2">
+                        <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
+                        <h1>☰</h1>
+                    </div>
+                    {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
                 </div>
-                <Search open={isOpen} close={closeSearch}/>
-
-                <div className="icon2">
-                    <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
-                    <h1>☰</h1>
-                </div>
-                {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
             </div>            
         </HeaderContainer>
     );
