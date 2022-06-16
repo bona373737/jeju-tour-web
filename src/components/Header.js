@@ -1,13 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import React, { useCallback, useState } from "react";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-import Sidebar from './Sidebar'; 
-import Search from './Search';
+import Sidebar from "./Sidebar";
+import Search from "./Search";
 
-import Logo from '../assets/icon/TRAY.png';
-import SearchButton from '../assets/icon/search.png';
-import MenuButton from '../assets/icon/menubutton.png';
+import Logo from "../assets/icon/TRAY.png";
+import SearchButton from "../assets/icon/search.png";
+import MenuButton from "../assets/icon/menubutton.png";
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -31,42 +31,47 @@ const HeaderContainer = styled.div`
             width: 40vw;
 
             .logo {
+                display: flex;
                 margin: 0 auto;
-                height: 5.4vw;
+                height: 2.7vh;
                 position: relative;
-                top: 32%;
+                top: 31%;
             }
         }
 
-        .icon1 {
-            background-color: var(--white);
-            display: flex;
-            position: absolute;
-            right: 15%;
-            box-sizing: border-box;
-            width: 10vw;
+        .icons_right {
+            margin: 0 auto;
+            width: 100px;
             height: 100%;
 
-            .search_button {
-                position: relative;
-                height: 2.5vh;
-                top: 32%;
+            .icon1 {
+                background-color: var(--white);
+                position: absolute;
+                right: 15%;
+                box-sizing: border-box;
+                width: 40px;
+                height: 100%;
+
+                .search_button {
+                    position: relative;
+                    height: 2.5vh;
+                    top: 32%;
+                }
             }
-        }
 
-        .icon2 {
-            background-color: var(--white);
-            display: flex;
-            position: absolute;
-            right: 3%;
-            box-sizing: border-box;
-            width: 12vw;
-            height: 100%;
+            .icon2 {
+                background-color: var(--white);
+                position: absolute;
+                right: 3%;
+                box-sizing: border-box;
+                width: 12vw;
+                height: 100%;
 
-            .menu_button {
-                position: relative;
-                top: 34%;
-                height: 2.2vh;
+                .menu_button {
+                    position: relative;
+                    top: 34%;
+                    height: 2.2vh;
+                }
             }
         }
 
@@ -79,7 +84,10 @@ const HeaderContainer = styled.div`
 const Header = () => {
     //sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback((e)=>setShowSidebar(!showSidebar),[showSidebar])
+    const toggleSidebar = useCallback(
+        (e) => setShowSidebar(!showSidebar),
+        [showSidebar]
+    );
     // 검색 버튼 toggle
     const [isOpen, setIsOpen] = React.useState(false);
     const onClick = React.useCallback(() => {
@@ -95,27 +103,31 @@ const Header = () => {
                         <h1>tray</h1>
                     </div>
                 </NavLink>
-
-                <div className="icon1">
-                    <img
-                        className="search_button"
-                        src={SearchButton}
-                        alt="search"
-                        onClick={onClick}
-                    />
-                    <h1>검색</h1>
-                </div>
-                <div className="icon2">
-                    <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
-                    <h1>☰</h1>
+                <div className="icons_right">
+                    <div className="icon1">
+                        <img
+                            className="search_button"
+                            src={SearchButton}
+                            alt="search"
+                            onClick={onClick}
+                        />
+                        <h1>검색</h1>
+                    </div>
+                    <div className="icon2">
+                        <img
+                            className="menu_button"
+                            src={MenuButton}
+                            alt="menu"
+                            onClick={toggleSidebar}
+                        />
+                        <h1>☰</h1>
+                    </div>
                 </div>
             </div>
 
             {/*조건부 렌더링_검색,햄버거 토글*/}
-            {
-                showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
-            }
-            <Search isOpen={isOpen}/>
+            {showSidebar ? <Sidebar setShowSidebar={setShowSidebar} /> : ""}
+            <Search isOpen={isOpen} />
         </HeaderContainer>
     );
 };
