@@ -79,10 +79,13 @@ const HeaderContainer = styled.div`
 const Header = memo(() => {
     // sidebar 토글기능
     const [showSidebar, setShowSidebar] = useState(false);
-    const toggleSidebar = useCallback(() => {
-        setShowSidebar(showSidebar => !showSidebar);
+    //setter함수를 직접 변경
+    // const toggleSidebar = useCallback(()=>setShowSidebar(!showSidebar),[showSidebar]);
+    const toggleSidebar = useCallback(()=>{
+        setShowSidebar(showSidebar => !showSidebar)
         setIsOpen((isOpen) => false);
-    }, []);
+    },[]);
+
     // search 열림/닫힘 기능
     const [isOpen, setIsOpen] = useState(false);
     const openSearch = useCallback(() => {
