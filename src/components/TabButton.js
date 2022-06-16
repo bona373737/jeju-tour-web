@@ -39,7 +39,7 @@ const TabButtonStyle = styled.div`
             }
 
             .icontext_area1 {
-                width: 68px;
+                width: 70px;
                 height: 100%;
                 margin: 0 auto;
 

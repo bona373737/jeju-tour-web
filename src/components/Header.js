@@ -11,7 +11,8 @@ import MenuButton from '../assets/icon/menubutton.png';
 
 const HeaderContainer = styled.div`
     width: 100%;
-
+    min-width: 400px;
+    
     .content_wrap {
         box-sizing: border-box;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
