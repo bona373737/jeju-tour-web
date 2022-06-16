@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { getDefaultNormalizer } from '@testing-library/react';
+
+import PlaceSlice from './slices/PlaceSlice';
 
 const store = configureStore({
     reducer:{
+        place:PlaceSlice
 
     },
     middleware: (getDefaultNormalizer)=>getDefaultNormalizer({serializableCheck:false}),
