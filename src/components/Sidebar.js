@@ -17,7 +17,7 @@ const SidebarContainer = styled.div`
     position: absolute;
     top: 7vh;
     background-color: rgba(255,255,255,0);
-    z-index: 11;
+    z-index: 80;
     animation: ${fadeIn} 0.3s;
 
     .sidebar_content{

@@ -120,8 +120,8 @@ const Header = memo(() => {
                         <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
                         <h1>☰</h1>
                     </div>
-                    {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
                 </div>
+                    {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
             </div>            
         </HeaderContainer>
     );
