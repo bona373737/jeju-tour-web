@@ -83,11 +83,14 @@ const Header = memo(() => {
         setShowSidebar(showSidebar => !showSidebar);
         setIsOpen((isOpen) => false);
     }, []);
-    // 검색 버튼 toggle
+    // search 열림/닫힘 기능
     const [isOpen, setIsOpen] = useState(false);
-    const onClick = useCallback(() => {
-        setIsOpen((isOpen) => !isOpen);
+    const openSearch = useCallback(() => {
+        setIsOpen(true);
         setShowSidebar((showSidebar) => false);
+    }, []);
+    const closeSearch = useCallback(() => {
+        setIsOpen(false)
     }, []);
 
     return (
@@ -101,25 +104,17 @@ const Header = memo(() => {
                 </NavLink>
 
                 <div className="icon1">
-                    <img
-                        className="search_button"
-                        src={SearchButton}
-                        alt="search"
-                        onClick={onClick}
-                    />
+                    <img className="search_button" src={SearchButton} alt="search" onClick={openSearch} />
                     <h1>검색</h1>
                 </div>
+                <Search open={isOpen} close={closeSearch}/>
+
                 <div className="icon2">
                     <img className='menu_button' src={MenuButton} alt="menu" onClick={toggleSidebar} />
                     <h1>☰</h1>
                 </div>
-            </div>
-
-            {/*조건부 렌더링_검색,햄버거 토글*/}
-            {
-                showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""
-            }
-            <Search isOpen={isOpen}/>
+                {showSidebar? <Sidebar setShowSidebar={setShowSidebar}/>:""}
+            </div>            
         </HeaderContainer>
     );
 });
