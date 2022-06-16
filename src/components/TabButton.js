@@ -46,7 +46,7 @@ const TabButtonStyle = styled.div`
                 .text {
                     color: var(--gray);
                     position: relative;
-                    top: 18%;
+                    top: 17%;
                     padding-left: 0.5em;
                     font-size: 0.9em;
                 }
@@ -66,20 +66,20 @@ const TabButtonStyle = styled.div`
                 .text {
                     color: var(--gray);
                     position: relative;
-                    top: 18%;
+                    top: 20%;
                     padding-left: 0.5em;
                     font-size: 0.9em;
                 }
                 .hotel_icon {
                     position: relative;
                     height: 2.3vh;
-                    top: 24%;
+                    top: 25%;
                 }
 
                 .food_icon {
                     position: relative;
                     height: 2.3vh;
-                    top: 24%;
+                    top: 25%;
                 }
             }
         }
