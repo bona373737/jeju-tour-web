@@ -1,35 +1,27 @@
 {
-    "member":[
-
-    ],
-    "like":[
-
-    ],
-    "accom":[
-
-    ],
-    "food":[
-
-    ],
-    "place":[
+    "member": [],
+    "like": [],
+    "accom": [],
+    "food": [],
+    "place": [
         {
             "alltag": "섬속의섬,경관/포토,아이,맑음,자연경관,포토스팟,어린이,봄꽃,유채꽃,유네스코,공용주차장,화장실,편의점,음료대,장애인 전용 주차장,아주 어려움,UNESCO 세계지질공원,실내+실외,상,체험,포토스팟,기타,등산,물놀이,우도 관광,1~2시간",
             "contentsid": "CONT_000000000500477",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "우도(해양도립공원)",
             "region1cd": {
-              "value": "region3",
-              "label": "섬 속의 섬",
-              "refId": "region>region3"
+                "value": "region3",
+                "label": "섬 속의 섬",
+                "refId": "region>region3"
             },
             "region2cd": {
-              "value": "31",
-              "label": "우도",
-              "refId": "region3>31"
+                "value": "31",
+                "label": "우도",
+                "refId": "region3>31"
             },
             "address": "제주특별자치도 제주시 우도면 연평리 904-1",
             "roadaddress": "제주특별자치도 제주시 우도면 삼양고수물길 1",
@@ -51,61 +43,61 @@
             "created": "20160530111636",
             "changed": "20220613144945",
             "catemappList": [
-              {
-                "seq": 29822,
-                "contentsid": {
-                  "value": "CONT_000000000500477",
-                  "label": "우도(해양도립공원)",
-                  "refId": "CONT_000000000500477"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000001257",
-                  "label": "섬속의 섬",
-                  "refId": "cate0000000002>cate0000001257"
-                },
-                "cate3cd": {
-                  "value": "cate0000001258",
-                  "label": "섬속의 섬",
-                  "refId": "cate0000001257>cate0000001258"
-                },
-                "created": "20220224160011"
-              }
+                {
+                    "seq": 29822,
+                    "contentsid": {
+                        "value": "CONT_000000000500477",
+                        "label": "우도(해양도립공원)",
+                        "refId": "CONT_000000000500477"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000001257",
+                        "label": "섬속의 섬",
+                        "refId": "cate0000000002>cate0000001257"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000001258",
+                        "label": "섬속의 섬",
+                        "refId": "cate0000001257>cate0000001258"
+                    },
+                    "created": "20220224160011"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "Udo Maritime Park",
-              "photoid": {
-                "photoid": 19203,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/dd51e08a-a970-466a-972e-f47f405ca644.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e1c2f9e4-bf4c-488c-884c-5674f8d8b119.jpg"
-              }
+                "descseo": "Udo Maritime Park",
+                "photoid": {
+                    "photoid": 19203,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/dd51e08a-a970-466a-972e-f47f405ca644.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e1c2f9e4-bf4c-488c-884c-5674f8d8b119.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 1263,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "일출,오름,경관/포토,부모,자연경관,포토스팟,유네스코,공용주차장,현금결제,카드결제,화장실,무료 WIFI,편의점,음료대,유도 및 안내시설,경보 및 피난시설,임산부 휴게시설,장애인 화장실,장애인 전용 주차장,아주 어려움,UNESCO 세계자연유산,UNESCO 세계지질공원,실외,상,등산,산책로. 올레코스. 오름,1시간 미만",
             "contentsid": "CONT_000000000500349",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "성산일출봉(UNESCO 세계자연유산)",
             "region1cd": {
-              "value": "region2",
-              "label": "서귀포시",
-              "refId": "region>region2"
+                "value": "region2",
+                "label": "서귀포시",
+                "refId": "region>region2"
             },
             "region2cd": {
-              "value": "17",
-              "label": "성산",
-              "refId": "region2>17"
+                "value": "17",
+                "label": "성산",
+                "refId": "region2>17"
             },
             "address": "제주특별자치도 서귀포시 성산읍 성산리 1",
             "roadaddress": "제주특별자치도 서귀포시 성산읍 일출로 284-12",
@@ -127,61 +119,61 @@
             "created": "20160530111636",
             "changed": "20220613145133",
             "catemappList": [
-              {
-                "seq": 30478,
-                "contentsid": {
-                  "value": "CONT_000000000500349",
-                  "label": "성산일출봉(UNESCO 세계자연유산)",
-                  "refId": "CONT_000000000500349"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000035",
-                  "label": "오름",
-                  "refId": "cate0000000009>cate0000000035"
-                },
-                "created": "20220317092423"
-              }
+                {
+                    "seq": 30478,
+                    "contentsid": {
+                        "value": "CONT_000000000500349",
+                        "label": "성산일출봉(UNESCO 세계자연유산)",
+                        "refId": "CONT_000000000500349"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000035",
+                        "label": "오름",
+                        "refId": "cate0000000009>cate0000000035"
+                    },
+                    "created": "20220317092423"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "성산일출봉(UNESCO 세계자연유산)",
-              "photoid": {
-                "photoid": 2018052306801,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201810/17/c072ee1a-2a02-4be7-b0cd-62f4daf2f847.gif",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201810/17/e798d53c-1c8a-4d44-a8ab-111beae96db4.gif"
-              }
+                "descseo": "성산일출봉(UNESCO 세계자연유산)",
+                "photoid": {
+                    "photoid": 2018052306801,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201810/17/c072ee1a-2a02-4be7-b0cd-62f4daf2f847.gif",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201810/17/e798d53c-1c8a-4d44-a8ab-111beae96db4.gif"
+                }
             },
             "PHOTOSHARECOUNT": 978,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "숲길,걷기/등산,친구,커플,흐림,봄,자연경관,도보여행,도보,숲,단풍,화장실,어려움",
             "contentsid": "CONT_000000000500281",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "사려니숲길",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "15",
-              "label": "조천",
-              "refId": "region1>15"
+                "value": "15",
+                "label": "조천",
+                "refId": "region1>15"
             },
             "address": "제주특별자치도 제주시 조천읍 교래리 산 137-1",
             "roadaddress": "제주특별자치도 제주시 조천읍 교래리 산 137-1",
@@ -203,85 +195,85 @@
             "created": "20160530111636",
             "changed": "20220613144829",
             "catemappList": [
-              {
-                "seq": 30636,
-                "contentsid": {
-                  "value": "CONT_000000000500281",
-                  "label": "사려니숲길",
-                  "refId": "CONT_000000000500281"
+                {
+                    "seq": 30636,
+                    "contentsid": {
+                        "value": "CONT_000000000500281",
+                        "label": "사려니숲길",
+                        "refId": "CONT_000000000500281"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000001320",
+                        "label": "도보",
+                        "refId": "cate0000000002>cate0000001320"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000001411",
+                        "label": "생태·숲길",
+                        "refId": "cate0000001320>cate0000001411"
+                    },
+                    "created": "20220418154320"
                 },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000001320",
-                  "label": "도보",
-                  "refId": "cate0000000002>cate0000001320"
-                },
-                "cate3cd": {
-                  "value": "cate0000001411",
-                  "label": "생태·숲길",
-                  "refId": "cate0000001320>cate0000001411"
-                },
-                "created": "20220418154320"
-              },
-              {
-                "seq": 30637,
-                "contentsid": {
-                  "value": "CONT_000000000500281",
-                  "label": "사려니숲길",
-                  "refId": "CONT_000000000500281"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000001321",
-                  "label": "그외",
-                  "refId": "cate0000000009>cate0000001321"
-                },
-                "created": "20220418154320"
-              }
+                {
+                    "seq": 30637,
+                    "contentsid": {
+                        "value": "CONT_000000000500281",
+                        "label": "사려니숲길",
+                        "refId": "CONT_000000000500281"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000001321",
+                        "label": "그외",
+                        "refId": "cate0000000009>cate0000001321"
+                    },
+                    "created": "20220418154320"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "Saryeoni Forest Path",
-              "photoid": {
-                "photoid": 18168,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/552458b3-55a3-4589-b2e7-d8f29d1ca277.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/c9c42359-f82f-43a4-919e-03ecd197a2eb.jpg"
-              }
+                "descseo": "Saryeoni Forest Path",
+                "photoid": {
+                    "photoid": 18168,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/552458b3-55a3-4589-b2e7-d8f29d1ca277.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/c9c42359-f82f-43a4-919e-03ecd197a2eb.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 859,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "경관/포토,커플,아이,맑음,겨울,힐링,자연경관,포토스팟,어린이,어트랙션,동백,수국,공용주차장,현금결제,카드결제,화장실,단독접근가능,단차없음,장애인 화장실,장애인 전용 주차장,수동 휠체어 대여 가능,아주 어려움,실외,중,공연/전시,포토스팟,2~3시간",
             "contentsid": "CNTS_000000000001195",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "카멜리아힐",
             "region1cd": {
-              "value": "region2",
-              "label": "서귀포시",
-              "refId": "region>region2"
+                "value": "region2",
+                "label": "서귀포시",
+                "refId": "region>region2"
             },
             "region2cd": {
-              "value": "23",
-              "label": "안덕",
-              "refId": "region2>23"
+                "value": "23",
+                "label": "안덕",
+                "refId": "region2>23"
             },
             "address": "제주특별자치도 서귀포시 안덕면 상창리 271",
             "roadaddress": "제주 서귀포시 안덕면 병악로 166",
@@ -303,61 +295,61 @@
             "created": "20160818110859",
             "changed": "20220613143256",
             "catemappList": [
-              {
-                "seq": 30719,
-                "contentsid": {
-                  "value": "CNTS_000000000001195",
-                  "label": "카멜리아힐",
-                  "refId": "CNTS_000000000001195"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000001251",
-                  "label": "테마관광지",
-                  "refId": "cate0000000002>cate0000001251"
-                },
-                "cate3cd": {
-                  "value": "cate0000000058",
-                  "label": "테마공원",
-                  "refId": "cate0000001251>cate0000000058"
-                },
-                "created": "20220506085216"
-              }
+                {
+                    "seq": 30719,
+                    "contentsid": {
+                        "value": "CNTS_000000000001195",
+                        "label": "카멜리아힐",
+                        "refId": "CNTS_000000000001195"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000001251",
+                        "label": "테마관광지",
+                        "refId": "cate0000000002>cate0000001251"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000058",
+                        "label": "테마공원",
+                        "refId": "cate0000001251>cate0000000058"
+                    },
+                    "created": "20220506085216"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "카멜리아힐",
-              "photoid": {
-                "photoid": 2019022583487,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/fb0a5c04-e09e-4dee-8d9e-68c4ad774388.JPG",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/b06b8d55-0f87-4efd-8a9f-a682a48a4868.JPG"
-              }
+                "descseo": "카멜리아힐",
+                "photoid": {
+                    "photoid": 2019022583487,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/fb0a5c04-e09e-4dee-8d9e-68c4ad774388.JPG",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/b06b8d55-0f87-4efd-8a9f-a682a48a4868.JPG"
+                }
             },
             "PHOTOSHARECOUNT": 1038,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "일몰,해수욕장,액티비티,아이,맑음,여름,공용주차장,화장실,편의점,음료대,유도 및 안내시설,경보 및 피난시설,아주 어려움,실외,물놀이,1~2시간",
             "contentsid": "CONT_000000000500697",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "협재해수욕장",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "13",
-              "label": "한림",
-              "refId": "region1>13"
+                "value": "13",
+                "label": "한림",
+                "refId": "region1>13"
             },
             "address": "제주특별자치도 제주시 한림읍 협재리 2447",
             "roadaddress": "제주특별자치도 제주시 한림읍 한림로 329-10",
@@ -379,61 +371,61 @@
             "created": "20160530111636",
             "changed": "20220613143448",
             "catemappList": [
-              {
-                "seq": 26524,
-                "contentsid": {
-                  "value": "CONT_000000000500697",
-                  "label": "협재해수욕장",
-                  "refId": "CONT_000000000500697"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000037",
-                  "label": "해변",
-                  "refId": "cate0000000009>cate0000000037"
-                },
-                "created": "20211025092055"
-              }
+                {
+                    "seq": 26524,
+                    "contentsid": {
+                        "value": "CONT_000000000500697",
+                        "label": "협재해수욕장",
+                        "refId": "CONT_000000000500697"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000037",
+                        "label": "해변",
+                        "refId": "cate0000000009>cate0000000037"
+                    },
+                    "created": "20211025092055"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "협재해수욕장",
-              "photoid": {
-                "photoid": 2019022583476,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/32ec3ee6-fad9-440d-95ea-628ff6453a48.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/99fd2f85-ed17-4184-966d-f81cd5eabf31.jpg"
-              }
+                "descseo": "협재해수욕장",
+                "photoid": {
+                    "photoid": 2019022583476,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/32ec3ee6-fad9-440d-95ea-628ff6453a48.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/99fd2f85-ed17-4184-966d-f81cd5eabf31.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 764,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "해변,경관/포토,커플,여름,공용주차장,화장실,편의점,음료대,유도 및 안내시설,아주 어려움",
             "contentsid": "CONT_000000000500496",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "월정리해변",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "16",
-              "label": "구좌",
-              "refId": "region1>16"
+                "value": "16",
+                "label": "구좌",
+                "refId": "region1>16"
             },
             "address": "제주특별자치도 제주시 구좌읍 월정리 33",
             "roadaddress": "제주특별자치도 제주시 구좌읍 월정리 33-3",
@@ -455,61 +447,61 @@
             "created": "20160530111636",
             "changed": "20220613144216",
             "catemappList": [
-              {
-                "seq": 26358,
-                "contentsid": {
-                  "value": "CONT_000000000500496",
-                  "label": "월정리해변",
-                  "refId": "CONT_000000000500496"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000037",
-                  "label": "해변",
-                  "refId": "cate0000000009>cate0000000037"
-                },
-                "created": "20211020133057"
-              }
+                {
+                    "seq": 26358,
+                    "contentsid": {
+                        "value": "CONT_000000000500496",
+                        "label": "월정리해변",
+                        "refId": "CONT_000000000500496"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000037",
+                        "label": "해변",
+                        "refId": "cate0000000009>cate0000000037"
+                    },
+                    "created": "20211020133057"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "Woljeong-ri Beach",
-              "photoid": {
-                "photoid": 19274,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/ec362343-4c4b-4da2-905d-1d4be8b26d44.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/d218b9b6-a3d2-4f64-8f93-fafcb4f9278b.jpg"
-              }
+                "descseo": "Woljeong-ri Beach",
+                "photoid": {
+                    "photoid": 19274,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/ec362343-4c4b-4da2-905d-1d4be8b26d44.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/d218b9b6-a3d2-4f64-8f93-fafcb4f9278b.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 747,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "해수욕장,액티비티,아이,맑음,여름,공용주차장,화장실,편의점,음료대,유도 및 안내시설,경보 및 피난시설,단차없음,장애인 화장실,장애인 전용 주차장,어려움,실외,1~2시간",
             "contentsid": "CONT_000000000500693",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "함덕해수욕장",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "15",
-              "label": "조천",
-              "refId": "region1>15"
+                "value": "15",
+                "label": "조천",
+                "refId": "region1>15"
             },
             "address": "제주특별자치도 제주시 조천읍 함덕리 1008-1",
             "roadaddress": "제주특별자치도 제주시 조천읍 조함해안로 519-10",
@@ -531,61 +523,61 @@
             "created": "20160530111636",
             "changed": "20220613144416",
             "catemappList": [
-              {
-                "seq": 26366,
-                "contentsid": {
-                  "value": "CONT_000000000500693",
-                  "label": "함덕해수욕장",
-                  "refId": "CONT_000000000500693"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000037",
-                  "label": "해변",
-                  "refId": "cate0000000009>cate0000000037"
-                },
-                "created": "20211020143312"
-              }
+                {
+                    "seq": 26366,
+                    "contentsid": {
+                        "value": "CONT_000000000500693",
+                        "label": "함덕해수욕장",
+                        "refId": "CONT_000000000500693"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000037",
+                        "label": "해변",
+                        "refId": "cate0000000009>cate0000000037"
+                    },
+                    "created": "20211020143312"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "함덕해수욕장",
-              "photoid": {
-                "photoid": 2019022561221,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/29/6fa8ac92-91b1-4314-a05e-0c962f9ab2f8.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/29/eebc954b-bfb0-4dda-a593-45427c1e6711.jpg"
-              }
+                "descseo": "함덕해수욕장",
+                "photoid": {
+                    "photoid": 2019022561221,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/29/6fa8ac92-91b1-4314-a05e-0c962f9ab2f8.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/29/eebc954b-bfb0-4dda-a593-45427c1e6711.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 710,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "오름,걷기/등산,친구,맑음,가을,우수관광사업체,공용주차장,현금결제,카드결제,화장실,편의점,음료대,단독접근가능,단차없음,장애인 화장실,장애인 전용 주차장,수동 휠체어 대여 가능,어려움,우수관광사업체,실외,상,등산,산책로, 등산로,1~2시간",
             "contentsid": "CONT_000000000500283",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "산굼부리",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "15",
-              "label": "조천",
-              "refId": "region1>15"
+                "value": "15",
+                "label": "조천",
+                "refId": "region1>15"
             },
             "address": "제주특별자치도 제주시 조천읍 교래리 342-2",
             "roadaddress": "제주특별자치도 제주시 조천읍 비자림로 768",
@@ -607,61 +599,61 @@
             "created": "20160530111636",
             "changed": "20220613145031",
             "catemappList": [
-              {
-                "seq": 29622,
-                "contentsid": {
-                  "value": "CONT_000000000500283",
-                  "label": "산굼부리",
-                  "refId": "CONT_000000000500283"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000035",
-                  "label": "오름",
-                  "refId": "cate0000000009>cate0000000035"
-                },
-                "created": "20220128094340"
-              }
+                {
+                    "seq": 29622,
+                    "contentsid": {
+                        "value": "CONT_000000000500283",
+                        "label": "산굼부리",
+                        "refId": "CONT_000000000500283"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000035",
+                        "label": "오름",
+                        "refId": "cate0000000009>cate0000000035"
+                    },
+                    "created": "20220128094340"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "Sangumburi Crater",
-              "photoid": {
-                "photoid": 18173,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/c44bb372-4717-4e89-ad89-2c5dba285168.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/a7b4a973-40e9-44e6-87d9-46a4c4f3b367.jpg"
-              }
+                "descseo": "Sangumburi Crater",
+                "photoid": {
+                    "photoid": 18173,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/c44bb372-4717-4e89-ad89-2c5dba285168.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/a7b4a973-40e9-44e6-87d9-46a4c4f3b367.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 698,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "일몰,밤,오름,걷기/등산,아이,봄,공용주차장,화장실,유도 및 안내시설,아주 어려움,실외,1시간 미만",
             "contentsid": "CONT_000000000500309",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "새별오름",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "12",
-              "label": "애월",
-              "refId": "region1>12"
+                "value": "12",
+                "label": "애월",
+                "refId": "region1>12"
             },
             "address": "제주특별자치도 제주시 애월읍 봉성리 산 59-8",
             "roadaddress": "제주특별자치도 제주시 애월읍 봉성리 산 59-8",
@@ -683,61 +675,61 @@
             "created": "20160530111636",
             "changed": "20220613144637",
             "catemappList": [
-              {
-                "seq": 28131,
-                "contentsid": {
-                  "value": "CONT_000000000500309",
-                  "label": "새별오름",
-                  "refId": "CONT_000000000500309"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000035",
-                  "label": "오름",
-                  "refId": "cate0000000009>cate0000000035"
-                },
-                "created": "20211214152601"
-              }
+                {
+                    "seq": 28131,
+                    "contentsid": {
+                        "value": "CONT_000000000500309",
+                        "label": "새별오름",
+                        "refId": "CONT_000000000500309"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000035",
+                        "label": "오름",
+                        "refId": "cate0000000009>cate0000000035"
+                    },
+                    "created": "20211214152601"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "새별오름",
-              "photoid": {
-                "photoid": 2019022583537,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/380f2ed7-9680-4f51-a5f7-1c52771d3c11.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/44ef8fe0-fd1b-4638-a01c-df4ee5a005e9.jpg"
-              }
+                "descseo": "새별오름",
+                "photoid": {
+                    "photoid": 2019022583537,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/202110/20/380f2ed7-9680-4f51-a5f7-1c52771d3c11.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/44ef8fe0-fd1b-4638-a01c-df4ee5a005e9.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 660,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "일출,해변,경관/포토,커플,맑음,가을,공용주차장,현금결제,카드결제,화장실,편의점,음료대,저상버스 접근 가능,장애인 화장실,장애인 전용 주차장,어려움,실외,상,등산,기타,산책로,1시간 미만",
             "contentsid": "CONT_000000000500343",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "섭지코지",
             "region1cd": {
-              "value": "region2",
-              "label": "서귀포시",
-              "refId": "region>region2"
+                "value": "region2",
+                "label": "서귀포시",
+                "refId": "region>region2"
             },
             "region2cd": {
-              "value": "17",
-              "label": "성산",
-              "refId": "region2>17"
+                "value": "17",
+                "label": "성산",
+                "refId": "region2>17"
             },
             "address": "제주특별자치도 서귀포시 성산읍 고성리 127-2",
             "roadaddress": "제주특별자치도 서귀포시 성산읍 섭지코지로 107",
@@ -759,61 +751,61 @@
             "created": "20160530111636",
             "changed": "20220613145115",
             "catemappList": [
-              {
-                "seq": 26380,
-                "contentsid": {
-                  "value": "CONT_000000000500343",
-                  "label": "섭지코지",
-                  "refId": "CONT_000000000500343"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000037",
-                  "label": "해변",
-                  "refId": "cate0000000009>cate0000000037"
-                },
-                "created": "20211020171025"
-              }
+                {
+                    "seq": 26380,
+                    "contentsid": {
+                        "value": "CONT_000000000500343",
+                        "label": "섭지코지",
+                        "refId": "CONT_000000000500343"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000037",
+                        "label": "해변",
+                        "refId": "cate0000000009>cate0000000037"
+                    },
+                    "created": "20211020171025"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "섭지코지",
-              "photoid": {
-                "photoid": 2019022561200,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/29/83d7988d-9df2-4540-acbe-23d8b3550bfe.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/29/5e753684-1bfd-4a01-bd60-61d10df8b14b.jpg"
-              }
+                "descseo": "섭지코지",
+                "photoid": {
+                    "photoid": 2019022561200,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/29/83d7988d-9df2-4540-acbe-23d8b3550bfe.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/29/5e753684-1bfd-4a01-bd60-61d10df8b14b.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 552,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "테마공원,커플,친구,부모,아이,혼자,맑음,휴식/힐링,녹차,실내관광지,어트랙션,공용주차장,현금결제,카드결제,화장실,무료 WIFI,편의점,음료대,유도 및 안내시설,경보 및 피난시설,엘리베이터,단독접근가능,단차없음,시각장애인 접근성,장애인 화장실,승강기,장애인 전용 주차장,수동 휠체어 대여 가능,어려움,실외,중,포토스팟,1시간 미만",
             "contentsid": "CONT_000000000500457",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "오설록티뮤지엄",
             "region1cd": {
-              "value": "region2",
-              "label": "서귀포시",
-              "refId": "region>region2"
+                "value": "region2",
+                "label": "서귀포시",
+                "refId": "region>region2"
             },
             "region2cd": {
-              "value": "23",
-              "label": "안덕",
-              "refId": "region2>23"
+                "value": "23",
+                "label": "안덕",
+                "refId": "region2>23"
             },
             "address": "제주특별자치도 서귀포시 안덕면 서광리 1235-1",
             "roadaddress": "제주특별자치도 서귀포시 안덕면 신화역사로 15",
@@ -835,61 +827,61 @@
             "created": "20160530111636",
             "changed": "20220613144721",
             "catemappList": [
-              {
-                "seq": 31114,
-                "contentsid": {
-                  "value": "CONT_000000000500457",
-                  "label": "오설록티뮤지엄",
-                  "refId": "CONT_000000000500457"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000001251",
-                  "label": "테마관광지",
-                  "refId": "cate0000000002>cate0000001251"
-                },
-                "cate3cd": {
-                  "value": "cate0000000053",
-                  "label": "박물관",
-                  "refId": "cate0000001251>cate0000000053"
-                },
-                "created": "20220610165152"
-              }
+                {
+                    "seq": 31114,
+                    "contentsid": {
+                        "value": "CONT_000000000500457",
+                        "label": "오설록티뮤지엄",
+                        "refId": "CONT_000000000500457"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000001251",
+                        "label": "테마관광지",
+                        "refId": "cate0000000002>cate0000001251"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000053",
+                        "label": "박물관",
+                        "refId": "cate0000001251>cate0000000053"
+                    },
+                    "created": "20220610165152"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "오설록티뮤지엄",
-              "photoid": {
-                "photoid": 2019022559246,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/06/c3b686e5-4d17-46f4-9e96-1de49d6af809.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/06/ace38f9a-36db-491f-9ef6-4978d60e3da4.jpg"
-              }
+                "descseo": "오설록티뮤지엄",
+                "photoid": {
+                    "photoid": 2019022559246,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201908/06/c3b686e5-4d17-46f4-9e96-1de49d6af809.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/06/ace38f9a-36db-491f-9ef6-4978d60e3da4.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 461,
             "reservelink": null
-          },
-          {
+        },
+        {
             "alltag": "산,걷기/등산,경관/포토,친구,사계절,자연경관,포토스팟,한라산,언택트,단풍,유네스코,공용주차장,화장실,편의점,음료대,저상버스 접근 가능,장애인 화장실,장애인 전용 주차장,아주 어려움,UNESCO 생물권보전지역,UNESCO 세계자연유산,UNESCO 세계지질공원",
             "contentsid": "CONT_000000000500685",
             "contentscd": {
-              "value": "c1",
-              "label": "관광지",
-              "refId": "contentscd>c1"
+                "value": "c1",
+                "label": "관광지",
+                "refId": "contentscd>c1"
             },
             "title": "한라산국립공원",
             "region1cd": {
-              "value": "region1",
-              "label": "제주시",
-              "refId": "region>region1"
+                "value": "region1",
+                "label": "제주시",
+                "refId": "region>region1"
             },
             "region2cd": {
-              "value": "11",
-              "label": "제주시내",
-              "refId": "region1>11"
+                "value": "11",
+                "label": "제주시내",
+                "refId": "region1>11"
             },
             "address": "제주특별자치도 제주시 1100로 2070-61",
             "roadaddress": "제주특별자치도 제주시 1100로 2070-61",
@@ -911,44 +903,84 @@
             "created": "20160530111636",
             "changed": "20220613145059",
             "catemappList": [
-              {
-                "seq": 30902,
-                "contentsid": {
-                  "value": "CONT_000000000500685",
-                  "label": "한라산국립공원",
-                  "refId": "CONT_000000000500685"
-                },
-                "cate1cd": {
-                  "value": "cate0000000002",
-                  "label": "관광지",
-                  "refId": "contscate>cate0000000002"
-                },
-                "cate2cd": {
-                  "value": "cate0000000009",
-                  "label": "자연",
-                  "refId": "cate0000000002>cate0000000009"
-                },
-                "cate3cd": {
-                  "value": "cate0000000033",
-                  "label": "산",
-                  "refId": "cate0000000009>cate0000000033"
-                },
-                "created": "20220524101911"
-              }
+                {
+                    "seq": 30902,
+                    "contentsid": {
+                        "value": "CONT_000000000500685",
+                        "label": "한라산국립공원",
+                        "refId": "CONT_000000000500685"
+                    },
+                    "cate1cd": {
+                        "value": "cate0000000002",
+                        "label": "관광지",
+                        "refId": "contscate>cate0000000002"
+                    },
+                    "cate2cd": {
+                        "value": "cate0000000009",
+                        "label": "자연",
+                        "refId": "cate0000000002>cate0000000009"
+                    },
+                    "cate3cd": {
+                        "value": "cate0000000033",
+                        "label": "산",
+                        "refId": "cate0000000009>cate0000000033"
+                    },
+                    "created": "20220524101911"
+                }
             ],
             "festivalcontents": null,
             "repPhoto": {
-              "descseo": "Hallasan Mountain",
-              "photoid": {
-                "photoid": 20255,
-                "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/661b71dc-cdec-4eee-8ad4-240285460226.jpg",
-                "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e9cb50d3-bb50-4f68-b6ae-05887ec8715d.jpg"
-              }
+                "descseo": "Hallasan Mountain",
+                "photoid": {
+                    "photoid": 20255,
+                    "imgpath": "https://api.cdn.visitjeju.net/photomng/imgpath/201804/30/661b71dc-cdec-4eee-8ad4-240285460226.jpg",
+                    "thumbnailpath": "https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e9cb50d3-bb50-4f68-b6ae-05887ec8715d.jpg"
+                }
             },
             "PHOTOSHARECOUNT": 586,
             "reservelink": null
-          }
-        ]
+        }
+    ],
+    "search": [
+        {
+            "keyword": "곶자왈",
+            "content": "데이터 컨텐츠 1"
+        },
+        {
+            "keyword": "신혼여행",
+            "content": "데이터 컨텐츠 2"
+        },
+        {
+            "keyword": "금오름",
+            "content": "데이터 컨텐츠 3"
+        },
+        {
+            "keyword": "머체왓숲길",
+            "content": "데이터 컨텐츠 4"
+        },
+        {
+            "keyword": "추자도",
+            "content": "데이터 컨텐츠 5"
+        },
+        {
+            "keyword": "곶자왈",
+            "content": "데이터 컨텐츠 6"
+        },
+        {
+            "keyword": "신혼여행",
+            "content": "데이터 컨텐츠 7"
+        },
+        {
+            "keyword": "금오름",
+            "content": "데이터 컨텐츠 8"
+        },
+        {
+            "keyword": "머체왓숲길",
+            "content": "데이터 컨텐츠 9"
+        },
+        {
+            "keyword": "추자도",
+            "content": "데이터 컨텐츠 10"
+        }
+    ]
 }
-
-    

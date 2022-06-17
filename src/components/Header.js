@@ -98,7 +98,7 @@ const Header = memo(() => {
                     />
                     <h1>검색</h1>
 
-                    <Search open={isOpen} close={closeSearch} />
+                    <Search open={isOpen} setIsOpen={setIsOpen} close={closeSearch} />
 
                     <img
                         className="menu_button"
