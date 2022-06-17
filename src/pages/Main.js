@@ -11,7 +11,7 @@ import Signup from './Signup';
 import MyLike from './MyLike'
 import MyReview from './MyReview';
 import MyQna from './MyQna';
-import KeywordSearch from '../pages/KeywordSearch';
+import KeywordSearch from './KeywordSearch';
 
 //header높이 만큼 Main영역 상단에 padding값 적용
 const MainContainer=styled.div`
