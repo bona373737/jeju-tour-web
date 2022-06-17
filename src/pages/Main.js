@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 import Home from './Home';
 import Tab from './Tab';
-import ListDetail from '../components/ListDetail';
-import CardDetail from '../components/CardDetail';
-import Login from '../components/Login'
+import ListDetail from './ListDetail';
+import CardDetail from './CardDetail';
+import Login from './Login'
 import Signup from './Signup';
 import MyLike from './MyLike'
 import MyReview from './MyReview';

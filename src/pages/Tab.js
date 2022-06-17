@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import TabButton from '../components/TabButton';
-import ListItem from '../styles/ListItem';
+import ListItem from '../components/ListItem';
 
 const Tab = () => {
     return (
