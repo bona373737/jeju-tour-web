@@ -1,5 +1,10 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useState, useCallback } from "react";
 import styled from "styled-components";
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import { useQueryString } from '../hooks/useQueryString';
+import RegexHelper from '../libs/RegexHelper';
+import Hashtag from "./Hashtag";
 
 import CloseButton from '../assets/icon/close.png';
 import SearchButton from '../assets/icon/search_active.png';
@@ -68,14 +73,6 @@ const SearchContainer = styled.div`
                 display: flex;
                 flex-flow: row wrap;
                 justify-content: space-evenly;
-
-                .hashtag {
-                    padding: 3%;
-                    margin-bottom: 3%;
-                    border-radius: 20px;
-                    color: var(--subblue);
-                    background: var(--sky);
-                }
             }
         }
     }
@@ -104,33 +101,56 @@ const SearchContainer = styled.div`
 const Search = memo((props) => {
     // 검색창 열림, 닫힘 상태값
     const { open, close } = props;
+    // 검색어 추출하기
+    const {query} = useQueryString();
     // 검색어 전송
+    const navigate = useNavigate();
     const onSearchSubmit = useCallback(e => {
         e.preventDefault();
-    }, []);
-
+        // 이벤트가 발생한 폼 객체
+        const current = e.target;
+        // 입력값에 대한 유효성 검사
+        try { 
+            RegexHelper.value(current.keyword, '검색어를 입력하세요.');
+        } catch(e) {
+            alert(e.message);
+            current.focus();
+            return;
+        }
+        // 전송 후 검색창 닫기
+        
+        // 이동할 url 주소를 입력
+        navigate(`/search?keyword=${current.keyword.value}`);
+    }, [navigate]);
+    // 해시태그에 삽입될 키워드 배열
+    const TagKeyword = ['곶자왈', '신혼여행', '금오름', '머체왓숲길', '추자도'];
     return (
         <SearchContainer>
             <div className={open ? "dimmed open" : "dimmed"}>
-                {open ? (
+                {open && (
                     <div className="search_box">
                         <form onSubmit={onSearchSubmit}>
-                            <input type='search' name='search' placeholder="검색어를 입력하세요." />
+                            <input type='search' name='keyword' placeholder="검색어를 입력하세요." defaultValue={query} />
                             <button type='submit'>
                                 <img className="search_button" src={SearchButton} alt="search" />
                             </button>
                         </form>
                         <img className="close_button" src={CloseButton} onClick={close} alt="close" />
-                        {/* 추천검색어 --> 실제 데이터랑 연결해야함 */}
                         <div className='hashtag_wrap'>
-                            <span className='hashtag'># 신혼여행</span>
-                            <span className='hashtag'># 곶자왈</span>
-                            <span className='hashtag'># 금오름</span>
-                            <span className='hashtag'># 머체왓숲길</span>
-                            <span className='hashtag'># 추자도</span>
+                            {/* 추천검색어 --> 실제 데이터랑 연결해야함 */}
+                            {TagKeyword.map((v, i) => {
+                                return (
+                                    <Hashtag
+                                        key={i}
+                                        to={`/search?keyword=${encodeURIComponent(v)}`}
+                                        onClick={close}
+                                        children={v}
+                                    />
+                                )
+                            })}
                         </div>
                     </div>
-                ) : null}
+                )}
             </div>
         </SearchContainer>
     );

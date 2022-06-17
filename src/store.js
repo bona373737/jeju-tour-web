@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { getDefaultNormalizer } from '@testing-library/react';
+
+import SearchSlice from './slices/SearchSlice';
 
 const store = configureStore({
     reducer:{
-
+        search: SearchSlice,
     },
     middleware: (getDefaultNormalizer)=>getDefaultNormalizer({serializableCheck:false}),
     devTools:true

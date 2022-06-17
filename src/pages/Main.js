@@ -11,6 +11,7 @@ import Signup from './Signup';
 import MyLike from './MyLike'
 import MyReview from './MyReview';
 import MyQna from './MyQna';
+import KeywordSearch from '../pages/KeywordSearch';
 
 //header높이 만큼 Main영역 상단에 padding값 적용
 const MainContainer=styled.div`
@@ -32,14 +33,15 @@ const Main = () => {
                 <Route path='/place/:id' element={<ListDetail/>}/>
                 <Route path='/accom/:id' element={<ListDetail/>}/>
                 <Route path='/food/:id' element={<ListDetail/>}/>
-                {/* 로그임,회원가입 페이지 */}
+                {/* 로그인,회원가입 페이지 */}
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
                 {/* 사이드바의 메뉴 페이지 */}
                 <Route path='/mylike' element={<MyLike/>}/>
                 <Route path='/myreview' element={<MyReview/>}/>
                 <Route path='/myqna' element={<MyQna/>}/>
-
+                {/* 검색 결과 페이지 */}
+                <Route path='/search' element={<KeywordSearch />}/>
             </Routes>
         </MainContainer>
     );
