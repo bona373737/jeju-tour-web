@@ -5,7 +5,7 @@ export const getKeywordSearch = createAsyncThunk('SearchSlice/getKeywordSearch',
     let result = null;
 
     try {
-        result = await axios.get('http://localhost:3000/search', {
+        result = await axios.get('http://localhost:3001/search', {
             params: {
                 keyword: payload.keyword,
             }

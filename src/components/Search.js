@@ -1,11 +1,10 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import styled from "styled-components";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useQueryString } from '../hooks/useQueryString';
 import RegexHelper from '../libs/RegexHelper';
 import Hashtag from "./Hashtag";
-
 import CloseButton from '../assets/icon/close.png';
 import SearchButton from '../assets/icon/search_active.png';
 
@@ -98,9 +97,7 @@ const SearchContainer = styled.div`
     }
 `;
 
-const Search = memo((props) => {
-    // 검색창 열림, 닫힘 상태값
-    const { open, close } = props;
+const Search = memo(({open, setIsOpen, close}) => {
     // 검색어 추출하기
     const {query} = useQueryString();
     // 검색어 전송
@@ -117,11 +114,11 @@ const Search = memo((props) => {
             current.focus();
             return;
         }
-        // 전송 후 검색창 닫기
-        
         // 이동할 url 주소를 입력
         navigate(`/search?keyword=${current.keyword.value}`);
-    }, [navigate]);
+        // 검색창 닫기
+        setIsOpen(false);
+    }, [setIsOpen, navigate]);
     // 해시태그에 삽입될 키워드 배열
     const TagKeyword = ['곶자왈', '신혼여행', '금오름', '머체왓숲길', '추자도'];
     return (
