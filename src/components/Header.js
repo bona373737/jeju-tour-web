@@ -43,7 +43,6 @@ const HeaderContainer = styled.div`
             align-items: center;
             display: flex;
             height: 100%;
-            width: 50px;
 
             .search_button {
                 height: 2.5vh;
@@ -51,6 +50,7 @@ const HeaderContainer = styled.div`
 
             .menu_button {
                 height: 2.2vh;
+                padding-left: 14px;
             }
         }
     }
