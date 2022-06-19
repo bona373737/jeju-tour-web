@@ -25,7 +25,7 @@ const LoginStyle = styled.div`
 
             .input_text {
                 width: 90%;
-                height: 1.5em;
+                height: 16px;
                 padding: 5%;
                 border: solid 1px #eee;
                 border-radius: 1mm;
@@ -40,6 +40,13 @@ const LoginStyle = styled.div`
                 border-radius: 1mm;
                 color: var(--white);
                 background-color: var(--blue);
+            }
+
+            span {
+                color: red;
+                display: flex;
+                font-size: 14px;
+                padding: 4% 0 4% 0;
             }
         }
 
@@ -87,19 +94,19 @@ const Login = () => {
                         className="input_text"
                         placeholder="아이디"
                     ></input>
-                    <p>아이디를 입력하세요.</p>
+                    <span>아이디를 입력하세요.</span>
                     <br />
                     <input
-                        type="text"
+                        type="password"
                         className="input_text"
                         placeholder="비밀번호"
                     ></input>
-                    <p>비밀번호를 입력하세요.</p>
+                    <span>비밀번호를 입력하세요.</span>
                     <br />
                     <button
                         type="submit"
-                        name="submit"
-                        value="submit"
+                        name="login"
+                        value="login"
                         className="login"
                     >
                         로그인
