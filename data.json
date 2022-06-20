@@ -1,9 +1,55 @@
 {
     "member":[
-
+        {
+          "name":"홍길동",
+          "id":"1",
+          "pw":"#$^%#%#^",
+          "mylike":{
+            "place":[],
+            "accom":[],
+            "food":[]
+          },
+          "myqna":[
+            {
+              "title":"",
+              "content":"",
+              "date":""
+            },
+            {
+              "title":"",
+              "content":"",
+              "date":""
+            }
+          ],
+          "myreview":[
+            {
+              "title":"",
+              "content":"",
+              "date":""
+            },
+            {
+              "title":"",
+              "content":"",
+              "date":""
+            }
+          ]
+        }
     ],
-    "like":[
-
+    "qna":[
+      {
+        "writer":"",
+        "title":"",
+        "content":"",
+        "date":""
+      }
+    ],
+    "review":[
+      {
+        "writer":"",
+        "title":"",
+        "content":"",
+        "date":""
+      }
     ],
     "accom":[
 
