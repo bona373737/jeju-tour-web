@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CardItem from '../styles/CardItem';
+import CardItem from '../components/CardItem';
 import TabButton from '../components/TabButton';
 
 const HomeContant = styled.div`

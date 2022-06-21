@@ -29,21 +29,21 @@ const GlobalStyles = createGlobalStyle`
         --white: #fff;
     }
 
-    .menufont {
-        font-family: ‘SUIT’, sans-serif;
-        font-weight: 200;
-        font-size: 36px;
+    .headfont {
+        font-weight: 600;
+        font-size: 22px;
         color: var(--black);
     }
 
-    .titlefont {
+    .menufont {
+        font-weight: 200;
         font-size: 36px;
         color: var(--black);
     }
 
     .subfont {
         font-weight: 600;
-        font-size: 18px;
+        font-size: 16px;
         color: var(--black);
     }
 
