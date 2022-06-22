@@ -18,7 +18,11 @@ const URL={
 export const getTabList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{
     let result = null;
     try{
-        result = await axios.get(URL[payload.api]);
+        result = await axios.get(URL[payload.api],{
+            params:{
+                id:payload.id? payload.id : null
+            }
+        });
     }
     catch(error){
         result = rejectWithValue(error.response);

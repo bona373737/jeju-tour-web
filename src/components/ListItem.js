@@ -14,15 +14,13 @@ const ListItemContainer = styled.div`
     width: 100%;
     padding: 15px;
     line-height: 25px;
-    background-color: tomato;
 `;
-
 
 const ListItem = ({item,api}) => {
     return (
         <ListItemContainer>
             {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
-            <NavLink to={'/tab/'+api+'/'+item.placeno}>
+            <NavLink to={'/tab/'+api+'/'+item.id} state={{item:item}}>
                 <h1>{item?.title}</h1>
                 <h1>{item?.address}</h1>
                 <h1>{item?.phoneno}</h1>
