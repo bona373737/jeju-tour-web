@@ -63,7 +63,7 @@ const TabButton = memo(() => {
             <div className="tab_area">
                 <div className="tab">
                     <div className="line"></div>
-                    <StyledTab to="/tab/place">
+                    <StyledTab to="/place">
                         <img
                             className="travel_icon"
                             src={TravelIcon}
@@ -75,7 +75,7 @@ const TabButton = memo(() => {
 
                 <div className="tab">
                     <div className="line"></div>
-                    <StyledTab to="/tab/accom">
+                    <StyledTab to="/accom">
                         <img
                             className="hotel_icon"
                             src={HotelIcon}
@@ -87,7 +87,7 @@ const TabButton = memo(() => {
 
                 <div className="tab">
                     <div className="line"></div>
-                    <StyledTab to="/tab/food">
+                    <StyledTab to="/food">
                         <img
                             className="food_icon"
                             src={FoodIcon}

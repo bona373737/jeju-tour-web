@@ -7,12 +7,25 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
-const ListItem = () => {
+const ListItemContainer = styled.div`
+    box-sizing: border-box;
+    width: 100%;
+    padding: 15px;
+    line-height: 25px;
+`;
+
+const ListItem = ({item,api}) => {
     return (
-        <NavLink to='/place/:id'>
-            <h1>관광지,숙소,음식점 리스트</h1>
-        </NavLink>
+        <ListItemContainer>
+            {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
+            <NavLink to={'/tab/'+api+'/'+item.id} state={{item:item}}>
+                <h1>{item?.title}</h1>
+                <h1>{item?.address}</h1>
+                <h1>{item?.phoneno}</h1>
+            </NavLink>
+        </ListItemContainer>
     );
 };
 

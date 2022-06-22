@@ -24,11 +24,15 @@ const Main = () => {
             <Routes>
                 {/*메인화면 */}
                 <Route path="/" exact element={<Home/>}/>
-                <Route path='/tab/:api' element={<Tab/>}/>
+                <Route path='/place' element={<Tab/>}/>
+                <Route path='/accom' element={<Tab/>}/>
+                <Route path='/food' element={<Tab/>}/>
                 {/* 여행컨텐츠 상세페이지 */}
                 <Route path='/magazine/:id' element={<CardDetail/>}/>
                 {/* 관광지,숙박,음식 상세페이지 */}
-                <Route path='/tab/:api/:id' element={<ListDetail/>}/>
+                <Route path='/place/:id' element={<ListDetail/>}/>
+                <Route path='/accom/:id' element={<ListDetail/>}/>
+                <Route path='/food/:id' element={<ListDetail/>}/>
                 {/* 로그인,회원가입 페이지 */}
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
