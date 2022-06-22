@@ -8,12 +8,17 @@ import axios from "axios";
 
 
 //백엔드 구축하고 나면 url변경하기
-const URL = "http://localhost:3001/place";
+const URL={
+    place : "http://localhost:3001/place",
+    accom : "http://localhost:3001/accom",
+    food : "http://localhost:3001/food"
+}
 
-export const getPlaceList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{
+
+export const getTabList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{
     let result = null;
     try{
-        result = await axios.get(URL);
+        result = await axios.get(URL[payload.api]);
     }
     catch(error){
         result = rejectWithValue(error.response);
@@ -21,8 +26,8 @@ export const getPlaceList = createAsyncThunk('PlaceSlice/getPlaceList',async(pay
     return result;
 });
 
-const PlaceSlice = createSlice({
-    name:'place',
+const TabSlice = createSlice({
+    name:'tab',
     initialState:{
         data:null,
         loading:false,
@@ -32,17 +37,17 @@ const PlaceSlice = createSlice({
 
     },
     extraReducers:{
-        [getPlaceList.pending]: (state, {payload})=>{
+        [getTabList.pending]: (state, {payload})=>{
             return { ...state, loading:true}
         },
-        [getPlaceList.fulfilled]: (state, {payload})=>{
+        [getTabList.fulfilled]: (state, {payload})=>{
             return {
                 data: payload?.data,
                 loading: false,
                 error: null
             }
         },
-        [getPlaceList.rejected]:(state, {payload})=>{
+        [getTabList.rejected]:(state, {payload})=>{
             return {
                 data: null,
                 loading: false,
@@ -55,4 +60,4 @@ const PlaceSlice = createSlice({
     }
 })
 
-export default PlaceSlice.reducer;
+export default TabSlice.reducer;

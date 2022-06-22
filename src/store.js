@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import PlaceSlice from './slices/PlaceSlice';
+import TabSlice from './slices/TabSlice';
 import SearchSlice from './slices/SearchSlice';
 
 const store = configureStore({
     reducer:{
-        place:PlaceSlice,
+        tab:TabSlice,
         search: SearchSlice,
     },
     middleware: (getDefaultNormalizer)=>getDefaultNormalizer({serializableCheck:false}),
