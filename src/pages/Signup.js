@@ -137,6 +137,7 @@ const Signup = () => {
 
                 <form>
                     {/* 아이디 */}
+                    <div>
                     <div className="message">
                         <label htmlFor="user_id">아이디</label>&nbsp;<p>*</p>
                     </div>
@@ -150,8 +151,10 @@ const Signup = () => {
                         아이디를 입력하세요.
                     </span>
                     <br />
+                    </div>
 
                     {/* 비밀번호 */}
+                    <div>
                     <div className="message">
                         <label htmlFor="user_pw">비밀번호</label>&nbsp;<p>*</p>
                     </div>
@@ -166,8 +169,10 @@ const Signup = () => {
                         비밀번호를 입력하세요.
                     </span>
                     <br />
+                    </div>
 
                     {/* 비밀번호 확인 */}
+                    <div>
                     <div className="message">
                         <label htmlFor="user_pw_check">비밀번호 확인</label>
                         &nbsp;<p>*</p>
@@ -182,8 +187,10 @@ const Signup = () => {
                         비밀번호가 일치하지 않습니다.
                     </span>
                     <br />
+                    </div>
 
                     {/* 이름 */}
+                    <div>
                     <div className="message">
                         <label htmlFor="user_name">이름</label>&nbsp;<p>*</p>
                     </div>
@@ -197,12 +204,14 @@ const Signup = () => {
                         이름을 입력하세요.
                     </span>
                     <br />
+                    </div>
 
                     {/* 생년월일 */}
                     <div className="message">
                         <label htmlFor="user_yy">생년월일</label>
                     </div>
 
+                    <div>
                     <div className="birth_area">
                         <input
                             id="user_yy"
@@ -245,6 +254,7 @@ const Signup = () => {
                         생년월일을 입력하세요.
                     </span>
                     <br />
+                    </div>
 
                     {/* 이메일 */}
                     <div className="message">
