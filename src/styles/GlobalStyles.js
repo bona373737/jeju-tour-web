@@ -16,7 +16,10 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
     }
 
-    html { font-family: ‘SUIT’, sans-serif; }
+    html { 
+        font-family: ‘SUIT’, sans-serif;
+        font-size: 12px;
+    }
     a { text-decoration: none; }
     button { border: 0; }
     
@@ -31,25 +34,25 @@ const GlobalStyles = createGlobalStyle`
 
     .headfont {
         font-weight: 600;
-        font-size: 22px;
+        font-size: 2rem;
         color: var(--black);
     }
 
     .menufont {
         font-weight: 200;
-        font-size: 36px;
+        font-size: 3rem;
         color: var(--black);
     }
 
     .subfont {
         font-weight: 600;
-        font-size: 16px;
+        font-size: 1.3rem;
         color: var(--black);
     }
 
     .contentfont {
         font-weight: 400;
-        font-size: 16px;
+        font-size: 1.3rem;
         line-height: 0.7cm;
         color: var(--black);
     }

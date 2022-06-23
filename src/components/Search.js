@@ -31,7 +31,6 @@ const SearchContainer = styled.div`
             top: 0;
             left: 0;
             width: 100%;
-            height: 30vh;
             background-color: var(--white);
             animation: box-show 0.3s;
 
@@ -42,6 +41,7 @@ const SearchContainer = styled.div`
                 margin-left: 10%;
 
                 input {
+                    font-size: 1.2rem;
                     padding-left: 2vw;
                     width: 80%;
                     height: 4vh;
@@ -120,7 +120,7 @@ const Search = memo(({open, setIsOpen, close}) => {
         setIsOpen(false);
     }, [setIsOpen, navigate]);
     // 해시태그에 삽입될 키워드 배열
-    const TagKeyword = ['곶자왈', '신혼여행', '금오름', '머체왓숲길', '추자도'];
+    const TagKeyword = ['곶자왈', '신혼여행', '금오름', '머체왓숲길', '추자도', '섭지코지'];
     return (
         <SearchContainer>
             <div className={open ? "dimmed open" : "dimmed"}>
