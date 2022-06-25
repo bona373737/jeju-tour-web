@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useParams,useLocation} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTabList } from '../slices/TabSlice';
 import styled from 'styled-components';
 
 

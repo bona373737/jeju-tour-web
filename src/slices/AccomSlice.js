@@ -1,6 +1,6 @@
 /**
- * @filename PlaceSlice.js
- * @description 관광지데이터를 불러오기
+ * @filename AccomSlice.js
+ * @description 숙소데이터를 불러오기
 
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -8,21 +8,13 @@ import axios from "axios";
 
 
 //백엔드 구축하고 나면 url변경하기
-const URL={
-    place : "http://localhost:3001/place",
-    accom : "http://localhost:3001/accom",
-    food : "http://localhost:3001/food"
-}
+const URL="http://localhost:3001/accom";
 
-
-export const getTabList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{
+/** 다중행 데이터 조회를 위한 비동기 함수 */
+export const getAccomList = createAsyncThunk('AccomSlice/getAccomList',async(payload,{rejectWithValue})=>{
     let result = null;
     try{
-        result = await axios.get(URL[payload.api],{
-            params:{
-                id:payload.id? payload.id : null
-            }
-        });
+        result = await axios.get(URL);
     }
     catch(error){
         result = rejectWithValue(error.response);
@@ -30,8 +22,8 @@ export const getTabList = createAsyncThunk('PlaceSlice/getPlaceList',async(paylo
     return result;
 });
 
-const TabSlice = createSlice({
-    name:'tab',
+const AccomSlice = createSlice({
+    name:'accom',
     initialState:{
         data:null,
         loading:false,
@@ -41,17 +33,18 @@ const TabSlice = createSlice({
 
     },
     extraReducers:{
-        [getTabList.pending]: (state, {payload})=>{
+        /** 다중행 데이터 조회를 위한 액션 함수 */
+        [getAccomList.pending]: (state, {payload})=>{
             return { ...state, loading:true}
         },
-        [getTabList.fulfilled]: (state, {payload})=>{
+        [getAccomList.fulfilled]: (state, {payload})=>{
             return {
                 data: payload?.data,
                 loading: false,
                 error: null
             }
         },
-        [getTabList.rejected]:(state, {payload})=>{
+        [getAccomList.rejected]:(state, {payload})=>{
             return {
                 data: null,
                 loading: false,
@@ -64,4 +57,4 @@ const TabSlice = createSlice({
     }
 })
 
-export default TabSlice.reducer;
+export default AccomSlice.reducer;

@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import TabSlice from './slices/TabSlice';
 import SearchSlice from './slices/SearchSlice';
+import PlaceSlice from './slices/PlaceSlice';
+import AccomSlice from './slices/AccomSlice';
+import FoodSlice from './slices/FoodSlice';
 
 const store = configureStore({
     reducer:{
-        tab:TabSlice,
+        place:PlaceSlice,
+        accom:AccomSlice,
+        food:FoodSlice,
         search: SearchSlice,
     },
     middleware: (getDefaultNormalizer)=>getDefaultNormalizer({serializableCheck:false}),
