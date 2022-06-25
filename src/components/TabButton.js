@@ -43,7 +43,7 @@ const TabButtonStyle = styled.div`
             .text {
                 color: var(--gray);
                 padding-left: 0.5em;
-                font-size: 0.9em;
+                font-size: inherit;
             }
 
             .travel_icon {

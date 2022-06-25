@@ -20,6 +20,7 @@ const Home = () => {
            <CardItem></CardItem>
            <CardItem></CardItem>
         </HomeContant>
+
     );
 };
 

@@ -24,6 +24,10 @@ const HeaderContainer = styled.div`
         margin: 0 auto;
         width: 80%;
         height: 100%;
+     
+        h1 {
+            text-indent: -9999em;
+        }
 
         .logo_area {
             background-color: var(--white);
@@ -53,10 +57,6 @@ const HeaderContainer = styled.div`
                 padding-left: 14px;
             }
         }
-    }
-
-    h1 {
-        text-indent: -9999em;
     }
 `;
 
