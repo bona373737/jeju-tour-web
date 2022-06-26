@@ -13,25 +13,22 @@ const ResultContainer = styled.div`
 
     .search_result {
         width: 100%;
-        font-size: 1.5rem;
-        margin-bottom: 3vh;
+        margin-bottom: 5%;
 
         div {
             width: 80%;
             margin: 0 auto;
-            padding: 5% 0;
-            border-bottom: 0.1rem solid var(--subblue);
+            padding: 5% 0 3% 0;
+            border-bottom: 1px solid var(--subblue);
 
             .keyword {
-                font-weight: 600;
-                padding-right: 3%;
+                padding-right: 5px;
             }
 
             .result {
+                padding-right: 5px;
                 font-weight: 600;
-                padding-left: 3%;
                 color: var(--blue);
-                font-size: 1.6rem;
             }
         }
     }
@@ -58,10 +55,10 @@ const KeywordSearch = memo(() => {
             ) : data && ( */}
                 <ResultContainer>
                     <div className='search_result'>
-                        <div>
-                            <span className='keyword'>곶자왈</span>
-                            <span>검색결과</span>
-                            <span className='result'>(13)</span>
+                        <div className='contentfont'>
+                            <span className='keyword'>"곶자왈"</span>
+                            <span className='result'>1097</span>
+                            <span>개의 결과가 있습니다</span>
                         </div>
                     </div>
                     {/* 검색어와 일치하는 데이터 map으로 반복 or '일치하는 내용이 없습니다'

@@ -3,19 +3,20 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const HashtagContainer = styled(NavLink)`
-    padding: 3%;
-    margin-right: 1%;
-    margin-bottom: 6%;
+    padding: 10px;
+    margin-right: 3%;
+    margin-bottom: 4%;
     border-radius: 20px;
-    color: var(--subblue);
-    background: var(--sky);
-    font-size: 1.1rem;
-`;
+    border: 1px solid var(--blue);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--blue);
+    `;
 
 const Hashtag = ({to, onClick, children}) => {
     return (
         <HashtagContainer to={to} onClick={onClick}>
-            {`# ${children}`}
+            {`#${children}`}
         </HashtagContainer>
     );
 };
