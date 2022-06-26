@@ -10,9 +10,9 @@ const SubmitBtnContainer = styled.button`
     color: white;
 `;
 
-const SubmitBtn = ({children}) => {
+const SubmitBtn = ({children, onClickFun}) => {
     return (
-        <SubmitBtnContainer type='submit'>
+        <SubmitBtnContainer onClick={onClickFun}>
             {children}
         </SubmitBtnContainer>
     );

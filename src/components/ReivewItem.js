@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Collapsible from 'react-collapsible';
 import styled from 'styled-components';
 
@@ -10,6 +10,11 @@ const ReviewItemContainer = styled.li`
     box-sizing: border-box;
     padding: 10px 0;
     border-bottom: 0.5px solid var(--gray);
+
+    textarea{
+        width: 100%;
+        border: 0;
+    }
 
     .btn_wrap{
         height: 60px;
@@ -23,14 +28,28 @@ const ReviewItemContainer = styled.li`
 `;
 
 const ReivewItem = () => {
+    const [editBtn, setEditBtn] = useState(false);
+
     return (
         <ReviewItemContainer>
             <Collapsible trigger={<ReviewTrigger/>}>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita eveniet temporibus optio recusandae animi quae quos error minus nihil, illum perspiciatis blanditiis, nemo tempora delectus necessitatibus consequuntur? Libero, soluta aliquam!
-                </p>
+                {
+                    editBtn? 
+                    <textarea name="" id="" cols="30" rows="10" defaultValue={"Lorem ipsum dolor sit amet consectetur adipisicing elit."}>
+
+                    </textarea>
+                    :
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                }
                 <div className='btn_wrap'>
-                    <SubmitBtn children="수정"></SubmitBtn>
+                    {
+                        editBtn?
+                        <SubmitBtn children="등록" onClickFun={()=>setEditBtn(false)}></SubmitBtn>
+                        :
+                        <SubmitBtn children="수정" onClickFun={()=>setEditBtn(true)}></SubmitBtn>
+                    }
                     <SubmitBtn children="삭제"></SubmitBtn>
                 </div>
             </Collapsible>
