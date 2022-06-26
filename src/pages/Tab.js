@@ -9,11 +9,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPlaceList } from '../slices/PlaceSlice';
 import { getAccomList } from '../slices/AccomSlice';
 import { getFoodSlice } from '../slices/FoodSlice';
-import styled from 'styled-components';
 
 import TabButton from '../components/TabButton';
 import ListItem from '../components/ListItem';
-
+import TagBtn from '../components/TagBtn';
 
 const Tab = () => {
   //path파라미터 값 가져오기
@@ -37,15 +36,12 @@ const Tab = () => {
     return (
         <div>
           <TabButton></TabButton>
-          {
-            api==='place'? <div>
-              <button>#태그명</button>
-              <button>#태그명</button>
-              <button>#태그명</button>
-              <button>#태그명</button>
-              <button>#태그명</button>
-            </div> : null
-          }
+          <div>
+            <TagBtn>#전체</TagBtn>
+            <TagBtn>#태그명</TagBtn>
+            <TagBtn>#태그명</TagBtn>
+          </div>
+          
           {
             data && data.map((v,i)=>{
               return <ListItem key={i} item={v} api={api}></ListItem>
