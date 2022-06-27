@@ -44,9 +44,23 @@ const SidebarContainer = styled.div`
             background-color: white;
             height: 15%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center; 
+            align-items: center;
+            .profile_img{
+                background-color: tomato;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                img{
+                    
+                }
+            }
+            .profile_text{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center; 
+            }
         }
         .menu{
             margin: 15px 0;
@@ -96,8 +110,13 @@ const Sidebar = ({setShowSidebar}) => {
                 //로그인여부에 따라 조건부 렌더링
                 isLogin? ( 
                     <div className="user_inform" data-path="/profile" onClick={movePage}>
-                        <h1>Hello</h1>
-                        <h1>Bona!(변수)</h1>
+                        <div className='profile_img'>
+                            <img src="" alt="img" />
+                        </div>
+                        <div className="profile_text">
+                            <h1>Hello</h1>
+                            <h1>Bona!(변수)</h1>
+                        </div>
                     </div>
                     ):(
                         <div className='login' data-path='/login' onClick={movePage}>
