@@ -16,7 +16,7 @@ import KeywordSearch from './KeywordSearch';
 
 //header높이 만큼 Main영역 상단에 padding값 적용
 const MainContainer=styled.div`
-    padding-top: 7vh;
+    padding-top: 7vh;  
 `;
 
 const Main = () => {

@@ -11,8 +11,7 @@ import styled from 'styled-components';
 
 const ListItemContainer = styled.div`
     box-sizing: border-box;
-    width: 100%;
-    padding: 15px;
+    padding: 15px 0;
     line-height: 25px;
 `;
 

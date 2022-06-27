@@ -1,12 +1,10 @@
 import React from 'react';
-import Collapsible from 'react-collapsible';
 import styled from 'styled-components';
-
 import ReivewItem from '../components/ReivewItem';
 
 const MyReviewContent = styled.div`
-    padding: 10px;
-
+    width: 80%;
+    margin: auto;
 `;
 
 const MyReview = () => {

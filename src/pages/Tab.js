@@ -9,9 +9,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPlaceList } from '../slices/PlaceSlice';
 import { getAccomList } from '../slices/AccomSlice';
 import { getFoodSlice } from '../slices/FoodSlice';
+import styled from 'styled-components';
 
 import TabButton from '../components/TabButton';
 import ListItem from '../components/ListItem';
+import TagBtn from '../components/TagBtn';
+
+const TabContainer = styled.div`
+  .content_wrap{
+    width: 80%;
+    margin: auto;
+  }
+`;
 
 const Tab = () => {
   //path파라미터 값 가져오기
@@ -33,15 +42,22 @@ const Tab = () => {
   },[dispatch,api]);
 
     return (
-        <div>
+        <TabContainer>
           <TabButton></TabButton>
-          <h1>탭</h1>
+          <div className="content_wrap">
+          <div>
+            <TagBtn>#전체</TagBtn>
+            <TagBtn>#태그명</TagBtn>
+            <TagBtn>#태그명</TagBtn>
+          </div>
+          
           {
             data && data.map((v,i)=>{
               return <ListItem key={i} item={v} api={api}></ListItem>
             })
           }
-        </div>
+          </div>
+        </TabContainer>
     );
 };
 

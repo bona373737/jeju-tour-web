@@ -8,6 +8,8 @@ import styled from 'styled-components';
 const DetailContainer=styled.div`
     box-sizing: border-box;
     padding: 15px;
+    width: 80%;
+    margin: auto;
 `;
 
 const ListDetail = () => {
