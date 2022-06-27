@@ -37,24 +37,24 @@ const SearchContainer = styled.div`
             form {
                 box-sizing: border-box;
                 display: flex;
-                margin-top: 15%;
+                margin-top: 17%;
                 margin-left: 10%;
 
                 input {
                     font-size: 1.2rem;
-                    padding-left: 2vw;
+                    padding: 0 3%;
                     width: 80%;
-                    height: 4vh;
-                    border: 1px solid var(--subblue);
+                    height: 40px;
+                    border: 1px solid var(--blue);
                 }
 
                 button {
-                    width: 8vw;
-                    height: 4vh;
-                    background: var(--subblue);
+                    width: 40px;
+                    height: 40px;
+                    background: var(--blue);
                     
                     .search_button {
-                        height: 2.5vh;
+                        height: 28px;
                         vertical-align: middle;
                     }
                 }
@@ -62,16 +62,16 @@ const SearchContainer = styled.div`
 
             .close_button {
                 position: absolute;
-                top: 10%;
-                right: 5%;
-                height: 2.5vh;
+                top: 5%;
+                right: 3%;
+                height: 30px;
+                padding: 5px;
             }
 
             .hashtag_wrap {
-                margin: 5% 10% 0;
+                margin: 5% 10%;
                 display: flex;
                 flex-flow: row wrap;
-                justify-content: space-evenly;
             }
         }
     }
@@ -120,7 +120,7 @@ const Search = memo(({open, setIsOpen, close}) => {
         setIsOpen(false);
     }, [setIsOpen, navigate]);
     // 해시태그에 삽입될 키워드 배열
-    const TagKeyword = ['곶자왈', '신혼여행', '금오름', '머체왓숲길', '추자도', '섭지코지'];
+    const TagKeyword = ['곶자왈', '여름', '금오름', '머체왓숲길', '추자도', '섭지코지'];
     return (
         <SearchContainer>
             <div className={open ? "dimmed open" : "dimmed"}>
