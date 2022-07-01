@@ -40,10 +40,9 @@ const TabButtonStyle = styled.div`
                 top: 96%;
             }
 
-            .text {
+            span {
                 color: var(--gray);
-                padding-left: 0.5em;
-                font-size: inherit;
+                padding-left: 8px;
             }
 
             .travel_icon {
@@ -69,7 +68,7 @@ const TabButton = memo(() => {
                             src={TravelIcon}
                             alt="travelicon"
                         />
-                        <span className="text">여행지</span>
+                        <span className="font5">여행지</span>
                     </StyledTab>
                 </div>
 
@@ -81,7 +80,7 @@ const TabButton = memo(() => {
                             src={HotelIcon}
                             alt="hotelicon"
                         />
-                        <span className="text">숙소</span>
+                        <span className="font5">숙소</span>
                     </StyledTab>
                 </div>
 
@@ -93,7 +92,7 @@ const TabButton = memo(() => {
                             src={FoodIcon}
                             alt="foodicon"
                         />
-                        <span className="text">음식</span>
+                        <span className="font5">음식</span>
                     </StyledTab>
                 </div>
             </div>

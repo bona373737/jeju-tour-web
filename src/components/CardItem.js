@@ -43,8 +43,8 @@ const CardItem = memo(() => {
             <NavLink to="/magazine/:id">
                 <img src={Theme1} alt="theme1" />
                 <div className="carditem_text">
-                    <p className="subfont">제주의 걷기 좋은 길</p>
-                    <h1 className="menufont">곶자왈</h1>
+                    <p className="font3">제주의 걷기 좋은 길</p>
+                    <h1 className="font1">곶자왈</h1>
                 </div>
             </NavLink>
         </Content>
