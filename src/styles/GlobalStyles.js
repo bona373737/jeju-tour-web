@@ -24,45 +24,97 @@ const GlobalStyles = createGlobalStyle`
     button { border: 0; }
     
     :root {
+        // Point, Button, Icon
         --blue : #0058FF;
+
+        // Icon 
         --subblue: #7E84A3;
-        --sky : #E3EEFF; 
-        --subsky : #F4F7FC;
-        --gray : #666;
+        
+        // Tab Icon
+        --gray: #9E9E9D;
+        
+        // Tab Color
+        --sky : #E5EEFF;
+        
+        // Tag, Line 
         --subgray : #E0E0E0;
+
+        // Back Wall
+        --subsky : #F4F7FC;
+        
+        // 본문 Text
+        --textgray : #595959;
+
+        // 본문 Text
         --black : #000;
+
+        // White Text
         --white : #fff;
-        --red : red;
+
+        // Notification
+        --red : #F0142F;
     }
 
-    // 제일 큰 폰트. 잡지페이지 장소 이름 넣을 때 적용
+    // 36px 잡지페이지 장소 이름 넣을 때 적용
     .font1 {
         font-weight: 200;
         font-size: 3rem;
     }
 
+    // 24px 프로필 이름, 회원가입 제목, 로그인 제목 등
     .font2 {
-        font-weight: 600;
+        font-weight: 800;
         font-size: 2rem;
-        color: var(--black);
     }
 
-    // sub title: font4에 비해 강조된 느낌 
+    // 18px
     .font3 {
+        font-weight: 800;
+        font-size: 1.5rem;
+    }
+
+    // 18px
+    .font4 {
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+
+    // 18px 컨텐츠 설명글
+    .font4 {
+        font-weight: 400;
+        font-size: 1.5rem;
+        line-height: 0.75cm;
+    }
+
+    // 16px
+    .font5 {
         font-weight: 600;
         font-size: 1.3rem;
     }
 
-    // 본문 내용글에 적용
-    .font4 {
+    // 16px
+    .font6 {
+        font-weight: 400;
+        font-size: 1.3rem;
+    }
+
+    // 16px 내리뷰, 공지사항 설명글
+    .font7 {
         font-weight: 400;
         font-size: 1.3rem;
         line-height: 0.7cm;
     }
 
-    .font5 {
+    // 14px
+    .font8 {
+        font-weight: 600;
+        font-size: 1.15rem;
+    }
+
+    // 14px
+    .font9 {
         font-weight: 400;
-        font-size: 1.1em;
+        font-size: 1.15rem;
     }
 `;
 

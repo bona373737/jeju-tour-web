@@ -11,7 +11,7 @@ import MenuButton from "../assets/icon/menubutton.png";
 
 const HeaderContainer = styled.div`
     width: 100%;
-    height: 7vh;
+    height: 70px;
     box-sizing: border-box;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--white);
@@ -37,7 +37,7 @@ const HeaderContainer = styled.div`
             height: 100%;
 
             .logo {
-                height: 2.7vh;
+                height: 24px;
             }
         }
 
@@ -49,12 +49,12 @@ const HeaderContainer = styled.div`
             height: 100%;
 
             .search_button {
-                height: 2.5vh;
+                height: 22px;
             }
 
             .menu_button {
-                height: 2.2vh;
-                padding-left: 14px;
+                height: 22px;
+                padding-left: 24px;
             }
         }
     }

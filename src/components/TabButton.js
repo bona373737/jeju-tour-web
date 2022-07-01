@@ -14,8 +14,7 @@ const TabButtonStyle = styled.div`
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--white);
     width: 100%;
-    height: 7vh;
-    position: relative;
+    height: 70px;
     z-index: 9;
 
     .tab_area {
@@ -26,13 +25,12 @@ const TabButtonStyle = styled.div`
         height: 100%;
 
         .tab {
-            background-color: var(--white);
             width: 33.33333%;
             justify-content: center;
             align-items: center;
 
             .line {
-                background-color: #ddd;
+                background-color: var(--subgray);
                 width: 100%;
                 margin: 0 auto;
                 height: 0.4vh;
@@ -46,11 +44,23 @@ const TabButtonStyle = styled.div`
             }
 
             .travel_icon {
-                height: 2.5vh;
+                height: 24px;
             }
 
             .hotel_icon, .food_icon {
-                height: 2.3vh;
+                height: 22px;
+            }
+
+            .tabactive {
+                background-color: var(--sky);
+            }
+
+            .lineactive {
+                background-color: var(--blue);
+            }
+
+            .fontactive {
+                color: var(--blue);
             }
         }
     }
@@ -60,15 +70,15 @@ const TabButton = memo(() => {
     return (
         <TabButtonStyle>
             <div className="tab_area">
-                <div className="tab">
-                    <div className="line"></div>
+                <div className="tab tabactive">
+                    <div className="line lineactive"></div>
                     <StyledTab to="/tab/place">
                         <img
                             className="travel_icon"
-                            src={TravelIcon}
+                            src={TravelIconAct}
                             alt="travelicon"
                         />
-                        <span className="font5">여행지</span>
+                        <span className="font5 fontactive">여행지</span>
                     </StyledTab>
                 </div>
 
@@ -80,7 +90,7 @@ const TabButton = memo(() => {
                             src={HotelIcon}
                             alt="hotelicon"
                         />
-                        <span className="font5">숙소</span>
+                        <span className="font6">숙소</span>
                     </StyledTab>
                 </div>
 
@@ -92,7 +102,7 @@ const TabButton = memo(() => {
                             src={FoodIcon}
                             alt="foodicon"
                         />
-                        <span className="font5">음식</span>
+                        <span className="font6">음식</span>
                     </StyledTab>
                 </div>
             </div>

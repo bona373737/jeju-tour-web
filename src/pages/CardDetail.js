@@ -72,7 +72,6 @@ const CardDetailContent = styled.div`
         }
 
         .todetail {
-                font-size: 16px;
                 width: 100%;
                 height: 2.4em;
                 border: none;
@@ -111,8 +110,8 @@ const CardDetail = memo(() => {
                 </p>
                 <br />
                 <NavLink to="/tab/:api/:id">
-                    <button type="submit" id="signup" className="todetail">
-                        상세보기
+                    <button type="submit" id="signup" className="todetail font4">
+                        여행정보 확인하기
                     </button>
                 </NavLink>
                 {/* <p className="font3">유의사항</p>
