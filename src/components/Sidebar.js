@@ -129,7 +129,7 @@ const Sidebar = ({setShowSidebar}) => {
             <li onClick={movePage2} data-path='/mylike'>내 저장</li>
             <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
             <li onClick={movePage2} data-path='/myqna'>내 문의</li>
-            <li onClick={movePage} data-path=''>여행도구</li>
+            <li onClick={movePage} data-path='/tourkit'>여행도구</li>
             <li onClick={movePage} data-path='/sc'>고객센터</li>
             {
                 isLogin? (<li>로그아웃</li>):''
