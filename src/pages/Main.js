@@ -13,6 +13,7 @@ import MyReview from './MyReview';
 import MyQna from './MyQna';
 import ServiceCenter from './ServiceCenter';
 import KeywordSearch from './KeywordSearch';
+import TourKit from './TourKit';
 import Notice from './Notice';
 import Faq from './Faq';
 
@@ -39,6 +40,7 @@ const Main = () => {
                 <Route path='/mylike' element={<MyLike/>}/>
                 <Route path='/myreview' element={<MyReview/>}/>
                 <Route path='/myqna' element={<MyQna/>}/>
+                <Route path='/tourkit' element={<TourKit/>}/>
                 <Route path='/sc/*' element={<ServiceCenter/>}/>
                 {/* 검색 결과 페이지 */}
                 <Route path='/search' element={<KeywordSearch />}/>

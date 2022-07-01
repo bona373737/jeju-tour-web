@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+import ThumItem from '../components/ThumItem';
+import ListItem from '../components/ListItem';
+
+const MyLikeContainer = styled.div`
+    width: 80%;
+    margin: auto;
+
+    button{
+        background-color: tomato;
+    }
+    .thum_wrap{
+        //grid학습해서 css변경 하기
+        display: flex;
+        flex-wrap: wrap;
+    }
+`;
 
 const MyLike = () => {
+    //이미지로보기,리스트로보기 버튼 클릭 상태값
+    const [isClicked, setIsClicked] = useState(false);
+
     return (
-        <div>
-            내저장 페이지
-        </div>
+        <MyLikeContainer>
+            {
+                isClicked? 
+                <button onClick={()=>{setIsClicked(!isClicked)}}>이미지로보기</button>
+                :
+                <button onClick={()=>{setIsClicked(!isClicked)}}>리스트로보기</button>
+            }
+            {
+                isClicked?
+                <div className="thum_wrap">
+                    <ThumItem item=""></ThumItem>
+                    <ThumItem item=""></ThumItem>
+                    <ThumItem item=""></ThumItem>
+                    <ThumItem item=""></ThumItem>
+                </div>
+                :
+                <div>
+                    <ListItem item="" api=""></ListItem>
+                    <ListItem item="" api=""></ListItem>
+                </div>
+            }
+        </MyLikeContainer>
     );
 };
 
