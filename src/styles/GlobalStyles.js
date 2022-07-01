@@ -27,34 +27,42 @@ const GlobalStyles = createGlobalStyle`
         --blue : #0058FF;
         --subblue: #7E84A3;
         --sky : #E3EEFF; 
+        --subsky : #F4F7FC;
         --gray : #666;
+        --subgray : #E0E0E0;
         --black : #000;
-        --white: #fff;
+        --white : #fff;
+        --red : red;
     }
 
-    .headfont {
+    // 제일 큰 폰트. 잡지페이지 장소 이름 넣을 때 적용
+    .font1 {
+        font-weight: 200;
+        font-size: 3rem;
+    }
+
+    .font2 {
         font-weight: 600;
         font-size: 2rem;
         color: var(--black);
     }
 
-    .menufont {
-        font-weight: 200;
-        font-size: 3rem;
-        color: var(--black);
-    }
-
-    .subfont {
+    // sub title: font4에 비해 강조된 느낌 
+    .font3 {
         font-weight: 600;
         font-size: 1.3rem;
-        color: var(--black);
     }
 
-    .contentfont {
+    // 본문 내용글에 적용
+    .font4 {
         font-weight: 400;
         font-size: 1.3rem;
         line-height: 0.7cm;
-        color: var(--black);
+    }
+
+    .font5 {
+        font-weight: 400;
+        font-size: 1.1em;
     }
 `;
 
