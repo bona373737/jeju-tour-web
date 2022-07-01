@@ -3,7 +3,7 @@
  * @description path파라미터를 전달받아 axis통신 파라미터로 전달 
  *              관광지,숙소,음식 각 데이터를 불러와 화면에 리스트 출력
  */
-import React,{ useEffect } from 'react';
+import React,{ useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPlaceList } from '../slices/PlaceSlice';
@@ -41,14 +41,20 @@ const Tab = () => {
     }
   },[dispatch,api]);
 
+  //태그버튼이 클릭되면
+  const onTagClick =useCallback(()=>{
+    //파란색으로 css변경
+    //해당 태그명을 검색조건으로 하여 데이터 재요청
+  });
+
     return (
         <TabContainer>
           <TabButton></TabButton>
           <div className="content_wrap">
           <div>
-            <TagBtn>#전체</TagBtn>
-            <TagBtn>#태그명</TagBtn>
-            <TagBtn>#태그명</TagBtn>
+            <TagBtn onClickFun={onTagClick}>#전체</TagBtn>
+            <TagBtn onClickFun={onTagClick}>#태그명</TagBtn>
+            <TagBtn onClickFun={onTagClick}>#태그명</TagBtn>
           </div>
           
           {

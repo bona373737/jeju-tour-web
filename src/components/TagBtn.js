@@ -16,9 +16,9 @@ const TagBtnContainer=styled.button`
 `;
 
 
-const TagBtn = ({children}) => {
+const TagBtn = ({children,onClickFun}) => {
     return (
-        <TagBtnContainer>
+        <TagBtnContainer onClick={onClickFun}>
             {children}
         </TagBtnContainer>
     );
