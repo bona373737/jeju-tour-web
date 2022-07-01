@@ -13,7 +13,7 @@ import styled from 'styled-components';
 
 import TabButton from '../components/TabButton';
 import ListItem from '../components/ListItem';
-import TagBtn from '../components/TagBtn';
+import Hashtag from '../components/Hashtag';
 
 const TabContainer = styled.div`
   .content_wrap{
@@ -52,9 +52,9 @@ const Tab = () => {
           <TabButton></TabButton>
           <div className="content_wrap">
           <div>
-            <TagBtn onClickFun={onTagClick}>#전체</TagBtn>
-            <TagBtn onClickFun={onTagClick}>#태그명</TagBtn>
-            <TagBtn onClickFun={onTagClick}>#태그명</TagBtn>
+            <Hashtag to="" onClick="">태그명</Hashtag>
+            <Hashtag to="" onClick="">태그명</Hashtag>
+            <Hashtag to="" onClick="">태그명</Hashtag>
           </div>
           
           {
