@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
+const URL = 'http://localhost:3001/search';
+
 export const getKeywordSearch = createAsyncThunk('SearchSlice/getKeywordSearch', async (payload, { rejectWithValue }) => {
     let result = null;
 
     try {
-        result = await axios.get('http://localhost:3001/search', {
+        result = await axios.get(URL, {
             params: {
                 keyword: payload.keyword,
             }
