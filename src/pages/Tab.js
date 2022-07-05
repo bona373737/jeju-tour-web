@@ -19,12 +19,28 @@ const TabContainer = styled.div`
   .content_wrap{
     width: 80%;
     margin: auto;
+    margin-top: 20px;
+    .hashtag_wrap{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .list_wrap{
+
+    }
   }
 `;
 
 const Tab = () => {
   //path파라미터 값 가져오기
   const {api} = useParams();
+  let tagArr=['섬속의섬','마을관광','오름','실내관광지','수국'];
+  if(api === 'place'){
+    
+  }else if(api === 'accom'){
+
+  }else if(api ==='food'){
+
+  }
 
   //redux사용하여 여행지 리스트 가져오기
   const dispatch = useDispatch();
@@ -51,17 +67,18 @@ const Tab = () => {
         <TabContainer>
           <TabButton></TabButton>
           <div className="content_wrap">
-          <div>
-            <Hashtag to="" onClick="">태그명</Hashtag>
-            <Hashtag to="" onClick="">태그명</Hashtag>
-            <Hashtag to="" onClick="">태그명</Hashtag>
-          </div>
-          
-          {
-            data && data.map((v,i)=>{
-              return <ListItem key={i} item={v} api={api}></ListItem>
-            })
-          }
+            <div className='hashtag_wrap'>
+              {
+                tagArr.map((v,i)=> <Hashtag key={i} to="" onClick="">{v}</Hashtag>)
+              }
+            </div>
+            <div className="list_wrap">
+              {
+                data && data.map((v,i)=>{
+                  return <ListItem key={i} item={v} api={api}></ListItem>
+                })
+              }
+            </div>
           </div>
         </TabContainer>
     );
