@@ -1,10 +1,10 @@
 /**
- * @filename PlaceSlice.js
- * @description 관광지데이터를 불러오기
+ * @Filename: PlaceSlice.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 여행지 데이터를 불러오기
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 
 //백엔드 구축하고 나면 url변경하기
 const URL='http://localhost:3001/place';

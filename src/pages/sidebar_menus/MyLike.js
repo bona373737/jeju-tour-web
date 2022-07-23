@@ -1,8 +1,13 @@
+/** 
+ * @Filename: MyLike.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 사이드바의 내 저장 메뉴 페이지 
+ */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import ThumItem from '../components/ThumItem';
-import ListItem from '../components/ListItem';
+import ThumbItem from '../../components/items/ThumbItem';
+import ListItem from '../../components/items/ListItem';
 
 const MyLikeContainer = styled.div`
     width: 80%;
@@ -33,10 +38,10 @@ const MyLike = () => {
             {
                 isClicked?
                 <div className="thum_wrap">
-                    <ThumItem item=""></ThumItem>
-                    <ThumItem item=""></ThumItem>
-                    <ThumItem item=""></ThumItem>
-                    <ThumItem item=""></ThumItem>
+                    <ThumbItem item=""></ThumbItem>
+                    <ThumbItem item=""></ThumbItem>
+                    <ThumbItem item=""></ThumbItem>
+                    <ThumbItem item=""></ThumbItem>
                 </div>
                 :
                 <div>

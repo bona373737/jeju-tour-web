@@ -1,3 +1,8 @@
+/**
+ * @Filename: SubmitBtn.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 전송 버튼 스타일 컴포넌트
+ */
 import React from 'react';
 import styled from 'styled-components';
 

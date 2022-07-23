@@ -1,8 +1,13 @@
+/**
+ * @Filename: HashtagBtn.js
+ * @Author: 구나래(nrggrnngg@gmail.com)
+ * @Description: 해시태그 버튼 스타일 컴포넌트
+ */
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-const HashtagContainer = styled(NavLink)`
+const HashtagBtnContainer = styled(NavLink)`
     padding: 10px;
     margin-right: 3%;
     margin-bottom: 4%;
@@ -13,12 +18,12 @@ const HashtagContainer = styled(NavLink)`
     color: var(--blue);
     `;
 
-const Hashtag = ({to, onClick, children}) => {
+const HashtagBtn = ({to, onClick, children}) => {
     return (
-        <HashtagContainer to={to} onClick={onClick}>
+        <HashtagBtnContainer to={to} onClick={onClick}>
             {`#${children}`}
-        </HashtagContainer>
+        </HashtagBtnContainer>
     );
 };
 
-export default Hashtag;
+export default HashtagBtn;

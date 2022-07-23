@@ -1,3 +1,8 @@
+/** 
+ * @Filename: BadRequestException.js
+ * @Author: 이광호 (leekh4232@gmail.com)
+ * @Description: 400 에러 예외 처리
+ */
 class BadRequestException extends Error {
     constructor(msg = '잘못된 요청 입니다.', field = null) {
         super(msg);

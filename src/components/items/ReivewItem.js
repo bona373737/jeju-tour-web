@@ -1,10 +1,14 @@
+/** 
+ * @Filename: ReivewItem.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 내 리뷰 리스트 아이템 컴포넌트
+ */
 import React, { useState } from 'react';
 import Collapsible from 'react-collapsible';
 import styled from 'styled-components';
 
-import SubmitBtn from '../styles/SubmitBtn';
-import ReviewTrigger from './ReviewTrigger';
-
+import SubmitBtn from '../buttons/SubmitBtn';
+import ReviewTrigger from '../ReviewTrigger';
 
 const ReviewItemContainer = styled.li`
     box-sizing: border-box;

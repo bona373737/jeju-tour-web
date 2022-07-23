@@ -1,26 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
+/** 
+ * @Filename: Home.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: 홈 페이지
+ */
+import React from "react";
+import styled from "styled-components";
 
-import CardItem from '../components/CardItem';
-import TabButton from '../components/TabButton';
+import ThemeItem from "../components/items/ThemeItem";
+import TabArea from "../components/TabArea";
 
-const HomeContant = styled.div`
+const HomeContainer = styled.div`
     width: 100%;
     height: 100%;
-    background-color: #E3EEFF88;
+    background-color: #e3eeff88;
 `;
 
 const Home = () => {
     return (
-        <HomeContant>
-            <TabButton></TabButton>
-            {/* map사용하여 CardItem 반복으로 출력하기 */}
-           <CardItem></CardItem>
-           <CardItem></CardItem>
-           <CardItem></CardItem>
-           <CardItem></CardItem>
-        </HomeContant>
-
+        <HomeContainer>
+            <TabArea />
+            {/* map사용하여 ThemeItem 반복으로 출력하기 */}
+            <ThemeItem></ThemeItem>
+            <ThemeItem></ThemeItem>
+            <ThemeItem></ThemeItem>
+            <ThemeItem></ThemeItem>
+        </HomeContainer>
     );
 };
 

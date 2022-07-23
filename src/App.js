@@ -1,19 +1,22 @@
+/** 
+ * @Filename: App.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 컴포넌트 정의 프로그램
+ */
 import React from "react";
 
-import Header from "./components/Header";
-import Main from './pages/Main'
+import Header from "./components/header/Header";
+import Main from "./pages/Main";
 import Footer from "./components/Footer";
 
-
 function App() {
-  return (
-    <>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </>
-
-  );
+    return (
+        <>
+            <Header />
+            <Main />
+            <Footer />
+        </>
+    );
 }
 
 export default App;

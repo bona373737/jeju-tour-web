@@ -1,9 +1,8 @@
 /** 
- * @filename    : RegexHelper.js
- * @author      : 구나래 (nrggrnngg@gmail.com)
- * @description : 정규표현식 검사 수행
+ * @Filename: RegexHelper.js
+ * @Author: 이광호 (leekh4232@gmail.com)
+ * @Description: 정규표현식 검사 수행
  */
-
 import BadRequestException from '../exceptions/BadRequestException';
 
 class RegexHelper {

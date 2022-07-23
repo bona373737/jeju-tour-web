@@ -1,11 +1,11 @@
-import React from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-
 /**
- * SEO 처리 컴포넌트
- * @param props
- * @returns {JSX.Element}
+ * @Filename: Meta.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: SEO 처리 컴포넌트
  */
+import React from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+
 const Meta = (props) => {
     return (
         <HelmetProvider>
@@ -29,11 +29,8 @@ const Meta = (props) => {
     );
 };
 
-/**
- * props에 대한 기본값 설정
- * @type {{keywords: string, author: string, description: string, title: string, url: string}}
- */
- Meta.defaultProps = {
+// props에 대한 기본값 설정
+Meta.defaultProps = {
     title: "React Team Project",
     description: "React.js로 구현한 팀 프로젝트 모바일 웹 페이지 입니다.",
     keywords: "React, team, portfolio, demo, mobile, web",
