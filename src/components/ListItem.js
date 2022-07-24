@@ -16,13 +16,33 @@ const ListItemContainer = styled.div`
 `;
 
 const ListItem = ({item,api}) => {
+
+    // const rawData = item.sbst.data;
+    // rawData == 타입이 뭔지
+    // 16진수 헥사 바이트 base64
+    
+
+    // var string = new TextDecoder().decode(binaryData);
+    // console.log(string);
+
+    // blob.text();
+    // console.log(blob.text())
+
+    // const reader = new FileReader();
+    // const nana = reader.readAsText(blob);
+    // console.log(reader);
+
     return (
         <ListItemContainer>
             {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
-            <NavLink to={'/tab/'+api+'/'+item.id} state={{item:item}}>
-                <h1>{item?.title}</h1>
-                <h1>{item?.address}</h1>
-                <h1>{item?.phoneno}</h1>
+            <NavLink to={'/tab/'+api+'/'+item.placeno} state={{item:item}}>
+                <p>{item?.placeno}</p>
+                <p>{item?.sbst}</p>
+
+    
+                {/* <h1>{item?.title}</h1> */}
+                {/* <h1>{item?.address}</h1> */}
+                {/* <h1>{item?.phoneno}</h1> */}
             </NavLink>
         </ListItemContainer>
     );

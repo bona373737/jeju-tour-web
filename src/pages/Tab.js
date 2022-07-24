@@ -45,6 +45,7 @@ const Tab = () => {
   //redux사용하여 여행지 리스트 가져오기
   const dispatch = useDispatch();
   const {data, loading, error} = useSelector((state)=>state[api]);
+  // console.log(data?.item);
 
   //tab바뀔때마다 데이터 재전송
   useEffect(()=>{
@@ -74,7 +75,7 @@ const Tab = () => {
             </div>
             <div className="list_wrap">
               {
-                data && data.map((v,i)=>{
+                data && data.item.map((v,i)=>{
                   return <ListItem key={i} item={v} api={api}></ListItem>
                 })
               }

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import Arrow from "../assets/icon/arrow.png";
+// import Arrow from "../assets/icon/arrow.png";
 
 const SignupStyle = styled.div`
     width: 100%;
