@@ -1,26 +1,38 @@
+/** 
+ * @Filename: Main.js
+ * @Author: 구나래, 구본아, 이재이
+ * @Description: 웹 메인 페이지
+ */
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import styled from 'styled-components';
 
+/* 홈 페이지 */
 import Home from './Home';
-import Tab from './Tab';
-import ListDetail from './ListDetail';
-import CardDetail from './CardDetail';
+import TabPage from './TabPage';
+/* 추천 테마 상세페이지 */
+import ThemeDetail from './details/ThemeDetail';
+/* 여행지, 숙소, 음식 상세페이지 */
+import ListDetail from './details/ListDetail';
+/* 로그인, 회원가입 페이지 */
 import Login from './Login'
 import Signup from './Signup';
-import MyLike from './MyLike'
-import MyReview from './MyReview';
-import MyQNA from './MyQNA';
-import ServiceCenter from './ServiceCenter';
-import KeywordSearch from './KeywordSearch';
-import TourKit from './TourKit';
-import NoticeBoard from './NoticeBoard';
-import NoticeBoard1 from './NoticeBoard1';
-import BoardDetail from './BoardDetail';
-import BoardDetail1 from './BoardDetail1';
+/* 사이드바의 메뉴 페이지 */
+import MyLike from './sidebar_menus/MyLike'
+import MyReview from './sidebar_menus/MyReview';
+import MyQNA from './sidebar_menus/MyQNA';
+import TourKit from './sidebar_menus/TourKit';
+import ServiceCenter from './sidebar_menus/ServiceCenter';
+/* 검색 결과 페이지 */
+import SearchResult from './SearchResult';
+/* 공지사항, FAQ 게시판 전체페이지 */
+import BoardPage from './BoardPage';
+/* 공지사항, FAQ 게시판 상세페이지 */
+import BoardDetail from './details/BoardDetail';
+/* 1:1 문의 페이지 */
 import QNA from './QNA';
 
-//header높이 만큼 Main영역 상단에 padding값 적용
+// header 높이만큼 Main 영역 상단에 padding값 적용
 const MainContainer=styled.div`
     padding-top: 70px;  
 `;
@@ -29,14 +41,14 @@ const Main = () => {
     return (
         <MainContainer>
             <Routes>
-                {/*메인화면 */}
+                {/* 홈 페이지 */}
                 <Route path="/" exact element={<Home/>}/>
-                <Route path='/tab/:api' element={<Tab/>}/>
-                {/* 여행컨텐츠 상세페이지 */}
-                <Route path='/magazine/:id' element={<CardDetail/>}/>
-                {/* 관광지,숙박,음식 상세페이지 */}
+                <Route path='/tab/:api' element={<TabPage/>}/>
+                {/* 추천 테마 상세페이지 */}
+                <Route path='/theme/:id' element={<ThemeDetail/>}/>
+                {/* 여행지, 숙소, 음식 상세페이지 */}
                 <Route path='/tab/:api/:id' element={<ListDetail/>}/>
-                {/* 로그인,회원가입 페이지 */}
+                {/* 로그인, 회원가입 페이지 */}
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
                 {/* 사이드바의 메뉴 페이지 */}
@@ -44,15 +56,13 @@ const Main = () => {
                 <Route path='/myreview' element={<MyReview/>}/>
                 <Route path='/myqna' element={<MyQNA/>}/>
                 <Route path='/tourkit' element={<TourKit/>}/>
-                <Route path='/sc' element={<ServiceCenter/>}/>
+                <Route path='/service' element={<ServiceCenter/>}/>
                 {/* 검색 결과 페이지 */}
-                <Route path='/search' element={<KeywordSearch />}/>
-                {/* 공지사항,FAQ 전체페이지 */}
-                <Route path='/notice' element={<NoticeBoard/>}/>
-                <Route path='/faq' element={<NoticeBoard1/>}/>
-                {/* 공지사항,FAQ 상세페이지 */}
-                <Route path='/notice/1' element={<BoardDetail/>}/>
-                <Route path='/faq/1' element={<BoardDetail1/>}/>
+                <Route path='/search' element={<SearchResult/>}/>
+                {/* 공지사항, FAQ 게시판 전체페이지 */}
+                <Route path='/service/:api' element={<BoardPage/>}/>
+                {/* 공지사항, FAQ 게시판 상세페이지 */}
+                <Route path='/service/:api/:id' element={<BoardDetail/>}/>
                 {/* 1:1 문의 페이지 */}
                 <Route path='/qna' element={<QNA/>}/>
             </Routes>

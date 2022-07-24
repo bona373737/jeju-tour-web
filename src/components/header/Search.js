@@ -1,12 +1,17 @@
+/**
+ * @Filename: Search.js
+ * @Author: 구나래(nrggrnngg@gmail.com)
+ * @Description: 검색 팝업창 영역
+ */
 import React, { memo, useCallback } from "react";
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
-import { useQueryString } from '../hooks/useQueryString';
-import RegexHelper from '../libs/RegexHelper';
-import Hashtag from "./Hashtag";
-import CloseButton from '../assets/icon/close.png';
-import SearchButton from '../assets/icon/search_active.png';
+import { useQueryString } from '../../hooks/useQueryString';
+import RegexHelper from '../../libs/RegexHelper';
+import HashtagBtn from "../buttons/HashtagBtn";
+import CloseButton from '../../assets/icon/close.png';
+import SearchButton from '../../assets/icon/search_active.png';
 
 const SearchContainer = styled.div`
     width: 100%;
@@ -137,7 +142,7 @@ const Search = memo(({open, setIsOpen, close}) => {
                             {/* 추천검색어 --> 실제 데이터랑 연결해야함 */}
                             {TagKeyword.map((v, i) => {
                                 return (
-                                    <Hashtag
+                                    <HashtagBtn
                                         key={i}
                                         to={`/search?keyword=${encodeURIComponent(v)}`}
                                         onClick={close}

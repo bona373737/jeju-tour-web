@@ -1,3 +1,8 @@
+/** 
+ * @Filename: Sidebar.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 사이드바 영역
+ */
 import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled,{keyframes} from 'styled-components';
@@ -130,7 +135,7 @@ const Sidebar = ({setShowSidebar}) => {
             <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
             <li onClick={movePage2} data-path='/myqna'>내 문의</li>
             <li onClick={movePage} data-path='/tourkit'>여행도구</li>
-            <li onClick={movePage} data-path='/sc'>고객센터</li>
+            <li onClick={movePage} data-path='/service'>고객센터</li>
             {
                 isLogin? (<li>로그아웃</li>):''
             }

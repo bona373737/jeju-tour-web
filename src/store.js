@@ -1,18 +1,27 @@
+/** 
+ * @Filename: store.js
+ * @Author: 구나래(nrggrnngg@gmail.com), 구본아(bona373737@gmail.com)
+ * @Description: redux 상태값 저장소
+ */
 import { configureStore } from '@reduxjs/toolkit';
 
-import SearchSlice from './slices/SearchSlice';
 import PlaceSlice from './slices/PlaceSlice';
 import AccomSlice from './slices/AccomSlice';
 import FoodSlice from './slices/FoodSlice';
+import SearchSlice from './slices/SearchSlice';
+import NoticeSlice from './slices/NoticeSlice';
+import FAQSlice from './slices/FAQSlice';
 
 const store = configureStore({
     reducer:{
-        place:PlaceSlice,
-        accom:AccomSlice,
-        food:FoodSlice,
+        place: PlaceSlice,
+        accom: AccomSlice,
+        food: FoodSlice,
         search: SearchSlice,
+        notice: NoticeSlice,
+        faq: FAQSlice
     },
-    middleware: (getDefaultNormalizer)=>getDefaultNormalizer({serializableCheck:false}),
+    middleware: getDefaultNormalizer => getDefaultNormalizer({serializableCheck:false}),
     devTools:true
 });
 

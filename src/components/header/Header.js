@@ -1,3 +1,8 @@
+/** 
+ * @Filename: Header.js
+ * @Author: 구나래, 구본아, 이재이
+ * @Description: 고정 헤더 영역
+ */
 import React, { memo, useCallback, useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
@@ -5,9 +10,9 @@ import { NavLink } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 
-import Logo from "../assets/icon/logo.png";
-import SearchButton from "../assets/icon/search.png";
-import MenuButton from "../assets/icon/menubutton.png";
+import Logo from "../../assets/icon/logo.png";
+import SearchButton from "../../assets/icon/search.png";
+import MenuButton from "../../assets/icon/menubutton.png";
 
 const HeaderContainer = styled.div`
     width: 100%;
@@ -24,7 +29,7 @@ const HeaderContainer = styled.div`
         margin: 0 auto;
         width: 80%;
         height: 100%;
-     
+    
         h1 {
             text-indent: -9999em;
         }

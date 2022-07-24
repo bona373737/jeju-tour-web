@@ -1,16 +1,21 @@
+/**
+ * @Filename: ThemeDetail.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: 추천 테마 영역 클릭 시 보여질 상세페이지
+ */
 import React, { memo } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import Theme1 from "../assets/img/곶자왈.jpeg";
-import Pic1 from "../assets/img/머체왓숲길.jpeg";
-import Pic2 from "../assets/img/머체왓숲길(2).jpeg";
-import Pic3 from "../assets/img/머체왓숲길(3).jpeg";
+import Theme1 from "../../assets/img/곶자왈.jpeg";
+import Pic1 from "../../assets/img/머체왓숲길.jpeg";
+import Pic2 from "../../assets/img/머체왓숲길(2).jpeg";
+import Pic3 from "../../assets/img/머체왓숲길(3).jpeg";
 
-const CardDetailContent = styled.div`
+const ThemeDetailContainer = styled.div`
     width: 100%;
 
-    .carddetail_imgwrapper {
+    .themedetail_imgwrapper {
         position: relative;
         width: 100%;
         height: 30vh;
@@ -27,7 +32,7 @@ const CardDetailContent = styled.div`
         }
     }
 
-    .carddetail_title {
+    .themedetail_title {
         width: 80%;
         height: 18vh;
         margin: 0 auto;
@@ -46,7 +51,7 @@ const CardDetailContent = styled.div`
         }
     }
 
-    .carddetail_content {
+    .themedetail_content {
         width: 80%;
         margin: 0 auto;
         padding-top: 6%;
@@ -82,18 +87,18 @@ const CardDetailContent = styled.div`
     }
 `;
 
-const CardDetail = memo(() => {
+const ThemeDetail = memo(() => {
     return (
-        <CardDetailContent>
-            <div className="carddetail_imgwrapper">
+        <ThemeDetailContainer>
+            <div className="themedetail_imgwrapper">
                 <img src={Theme1} alt="theme1" />
-                <div className="carddetail_title">
+                <div className="themedetail_title">
                     <p className="font3">제주의 걷기 좋은 길</p>
                     <h1 className="font1">곶자왈</h1>
                 </div>
             </div>
 
-            <div className="carddetail_content">
+            <div className="themedetail_content">
                 <p className="font4">
                 천천히 바람이 살랑살랑 불고 나무의 향기가 뿜어져 나오는 곶자왈을 걸어보자. 도시의 콘크리트가 아닌 나무들과 돌이 숨 쉬는 제주의 곶자왈을 피부로 느껴보자. 3시간은 걸리는 머체왓숲길부터 1시간도 안 걸리는 서광동리 곶자왈 생태탐방로까지 제주 곶자왈의 매력에 빠져보자.
                 </p>
@@ -122,8 +127,8 @@ const CardDetail = memo(() => {
             </div>
 
             
-        </CardDetailContent>
+        </ThemeDetailContainer>
     );
 });
 
-export default CardDetail;
+export default ThemeDetail;

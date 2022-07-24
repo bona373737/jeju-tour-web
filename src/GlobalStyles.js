@@ -1,7 +1,7 @@
 /**
- * @filename GlobalStyles.js
- * @description 전역으로 적용할 style정의, 색상,폰트값 변수정의
- *
+ * @Filename: GlobalStyles.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: 전역으로 적용할 Global Style 정의 (색상,폰트,변수)
  */
 import { createGlobalStyle } from 'styled-components';
 
@@ -55,7 +55,7 @@ const GlobalStyles = createGlobalStyle`
         --red : #F0142F;
     }
 
-    // 36px 잡지페이지 장소 이름 넣을 때 적용
+    // 36px 추천 테마 페이지 장소 이름 넣을 때 적용
     .font1 {
         font-weight: 200;
         font-size: 3rem;
@@ -98,7 +98,7 @@ const GlobalStyles = createGlobalStyle`
         font-size: 1.3rem;
     }
 
-    // 16px 내리뷰, 공지사항 설명글
+    // 16px 내 리뷰, 공지사항 설명글
     .font7 {
         font-weight: 400;
         font-size: 1.3rem;

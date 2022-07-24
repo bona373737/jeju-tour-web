@@ -1,14 +1,19 @@
+/**
+ * @Filename: SearchResult.js
+ * @Author: 구나래(nrggrnngg@gmail.com)
+ * @Description: 검색 완료 후 결과 페이지
+ */
 import React, { memo, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useQueryString } from '../hooks/useQueryString';
 import { useSelector, useDispatch } from 'react-redux';
-import { getKeywordSearch } from '../slices/SearchSlice';
+import { getSearchResult } from '../slices/SearchSlice';
 // import Spinner from '../components/Spinner';
 // import ErrorView from '../components/ErrorView';
 // import ListItem from '../components/ListItem';
 
-const ResultContainer = styled.div`
+const SearchResultContainer = styled.div`
     width: 100%;
 
     .search_result {
@@ -34,7 +39,7 @@ const ResultContainer = styled.div`
     }
 `;
 
-const KeywordSearch = memo(() => {
+const SearchResult = memo(() => {
     // QueryString의 검색어 받아오기
     const {keyword} = useQueryString();
     // 리덕스를 통한 검색 결과 상태 조회
@@ -42,7 +47,7 @@ const KeywordSearch = memo(() => {
     // const { data, loading, error } = useSelector((state) => state.search);
     // 검색어가 전달되었을 경우
     useEffect(() => {
-        dispatch(getKeywordSearch({
+        dispatch(getSearchResult({
             keyword: keyword,
         }))
     },[keyword, dispatch]);
@@ -53,7 +58,7 @@ const KeywordSearch = memo(() => {
             {error ? (
                 <ErrorView error={error} />
             ) : data && ( */}
-                <ResultContainer>
+                <SearchResultContainer>
                     <div className='search_result'>
                         <div className='contentfont'>
                             <span className='keyword'>"곶자왈"</span>
@@ -66,10 +71,10 @@ const KeywordSearch = memo(() => {
                     <ListItem />
                     <ListItem />
                     <ListItem /> */}
-                </ResultContainer>
+                </SearchResultContainer>
             {/* )} */}
         </>
     );
 });
 
-export default KeywordSearch;
+export default SearchResult;

@@ -1,8 +1,13 @@
+/**
+ * @Filename: Login.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: 회원 로그인 페이지
+ */
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const LoginStyle = styled.div`
+const LoginContainer = styled.div`
     width: 100%;
     padding-top: 20%;
 
@@ -85,7 +90,7 @@ const LoginStyle = styled.div`
 
 const Login = () => {
     return (
-        <LoginStyle>
+        <LoginContainer>
             <div className="login_content">
                 <h3 className="headfont">로그인</h3>
                 <form>
@@ -147,7 +152,7 @@ const Login = () => {
                     </button>
                 </NavLink>
             </div>
-        </LoginStyle>
+        </LoginContainer>
     );
 };
 

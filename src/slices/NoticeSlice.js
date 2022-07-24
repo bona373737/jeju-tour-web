@@ -1,24 +1,20 @@
 /**
- * @Filename: SearchSlice.js
+ * @Filename: NoticeSlice.js
  * @Author: 구나래(nrggrnngg@gmail.com)
- * @Description: 검색어 데이터 처리
+ * @Description: 공지사항 데이터 처리
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 //백엔드 구축하고 나면 url변경하기
-const URL = 'http://localhost:3001/search';
+const URL = 'http://localhost:3001/notice';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
-export const getSearchResult = createAsyncThunk('SearchSlice/getSearchResult', async (payload, { rejectWithValue }) => {
+export const getNoticeList = createAsyncThunk('NoticeSlice/getNoticeList', async (payload, { rejectWithValue }) => {
     let result = null;
 
     try {
-        result = await axios.get(URL, {
-            params: {
-                keyword: payload.keyword,
-            }
-        });
+        result = await axios.get(URL);
     } catch(err) {
         result = rejectWithValue(err.response);
     }
@@ -26,8 +22,8 @@ export const getSearchResult = createAsyncThunk('SearchSlice/getSearchResult', a
     return result;
 });
 
-const SearchSlice = createSlice({
-    name: 'search',
+const NoticeSlice = createSlice({
+    name: 'notice',
     initialState: {
         data: null,         
         loading: false,     
@@ -36,17 +32,17 @@ const SearchSlice = createSlice({
     reducers: {},
     extraReducers: {
         /** 다중행 데이터 조회를 위한 액션 함수 */
-        [getSearchResult.pending]: (state, { payload }) => {
+        [getNoticeList.pending]: (state, { payload }) => {
             return {...state, loading: true }
         },
-        [getSearchResult.fulfilled]: (state, { payload }) => {
+        [getNoticeList.fulfilled]: (state, { payload }) => {
             return {
                 data: payload?.data,
                 loading: false,
                 error: null
             }
         },
-        [getSearchResult.rejected]: (state, { payload }) => {
+        [getNoticeList.rejected]: (state, { payload }) => {
             return {
                 data: null,
                 loading: false,
@@ -59,4 +55,4 @@ const SearchSlice = createSlice({
     }
 });
 
-export default SearchSlice.reducer;
+export default NoticeSlice.reducer;

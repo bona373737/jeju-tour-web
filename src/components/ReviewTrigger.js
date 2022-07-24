@@ -1,3 +1,8 @@
+/** 
+ * @Filename: ReviewTrigger.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 내 리뷰 리스트 아이템 내의 작성 정보 컴포넌트
+ */
 import React from 'react';
 import styled from 'styled-components';
 

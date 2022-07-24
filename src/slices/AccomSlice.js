@@ -1,11 +1,10 @@
 /**
- * @filename AccomSlice.js
- * @description 숙소데이터를 불러오기
-
+ * @Filename: AccomSlice.js
+ * @Author: 구본아(bona373737@gmail.com)
+ * @Description: 숙소 데이터를 불러오기
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 
 //백엔드 구축하고 나면 url변경하기
 const URL="http://localhost:3001/accom";

@@ -1,10 +1,15 @@
+/**
+ * @Filename: Signup.js
+ * @Author: 이재이(loveleej87@gmail.com)
+ * @Description: 회원 가입 페이지
+ */
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 // import Arrow from "../assets/icon/arrow.png";
 
-const SignupStyle = styled.div`
+const SignupContainer = styled.div`
     width: 100%;
     padding-top: 20%;
     padding-bottom: 20%;
@@ -131,7 +136,7 @@ const Signup = () => {
     for (let i = 1; i < 13; i++) month.push(i);
 
     return (
-        <SignupStyle>
+        <SignupContainer>
             <div className="signup_content">
                 <h3 className="headfont">회원가입</h3>
 
@@ -295,7 +300,7 @@ const Signup = () => {
                     </NavLink>
                 </form>
             </div>
-        </SignupStyle>
+        </SignupContainer>
     );
 };
 

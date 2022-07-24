@@ -1,5 +1,10 @@
+/** 
+ * @Filename: TabArea.js
+ * @Author: 구나래, 구본아, 이재이
+ * @Description: 헤더 영역 아래 여행지, 숙소, 음식 탭 버튼 영역
+ */
 import React, { memo } from "react";
-import StyledTab from "../styles/StyledTab";
+import TabBtn from "./buttons/TabBtn";
 import styled from "styled-components";
 
 // import TravelIcon from "../assets/icon/pin.png";
@@ -9,7 +14,7 @@ import TravelIconAct from "../assets/icon/pin_active.png";
 // import HotelIconAct from "../assets/icon/hotel_active.png";
 // import FoodIconAct from "../assets/icon/food_active.png";
 
-const TabButtonStyle = styled.div`
+const TabAreaContainer = styled.div`
     box-sizing: border-box;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
     background-color: var(--white);
@@ -66,48 +71,48 @@ const TabButtonStyle = styled.div`
     }
 `;
 
-const TabButton = memo(() => {
+const TabArea = memo(() => {
     return (
-        <TabButtonStyle>
+        <TabAreaContainer>
             <div className="tab_area">
                 <div className="tab tabactive">
                     <div className="line lineactive"></div>
-                    <StyledTab to="/tab/place">
+                    <TabBtn to="/tab/place">
                         <img
                             className="travel_icon"
                             src={TravelIconAct}
                             alt="travelicon"
                         />
                         <span className="font5 fontactive">여행지</span>
-                    </StyledTab>
+                    </TabBtn>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
-                    <StyledTab to="/tab/accom">
+                    <TabBtn to="/tab/accom">
                         <img
                             className="hotel_icon"
                             src={HotelIcon}
                             alt="hotelicon"
                         />
                         <span className="font6">숙소</span>
-                    </StyledTab>
+                    </TabBtn>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
-                    <StyledTab to="/tab/food">
+                    <TabBtn to="/tab/food">
                         <img
                             className="food_icon"
                             src={FoodIcon}
                             alt="foodicon"
                         />
                         <span className="font6">음식</span>
-                    </StyledTab>
+                    </TabBtn>
                 </div>
             </div>
-        </TabButtonStyle>
+        </TabAreaContainer>
     );
 });
 
-export default TabButton;
+export default TabArea;
