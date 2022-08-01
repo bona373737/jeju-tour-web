@@ -2,6 +2,8 @@
  * @Filename: ThumbItem.js
  * @Author: 구본아(bona373737@gmail.com)
  * @Description: 여행지, 숙소, 음식 데이터 썸네일 리스트 아이템 컴포넌트
+ *               likes테이블에서 현재 로그인한 사용자(member_no)가 스크랩한 
+ *               여행지,숙소,음식점(places,accoms,foods 테이블)정보 조회 페이지 
  */
 import React from 'react';
 import styled from 'styled-components';

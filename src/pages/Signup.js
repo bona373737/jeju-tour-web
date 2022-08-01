@@ -1,11 +1,16 @@
 /**
  * @Filename: Signup.js
- * @Author: 이재이(loveleej87@gmail.com)
+ * @Author: 웹퍼블작업_이재이(loveleej87@gmail.com)
+ *          js기능구현_구본아(bona373737@gmail.com)
  * @Description: 회원 가입 페이지
+ *               axios-hooks모듈 사용
  */
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import RegexHelper from '../libs/RegexHelper';
+import useAxios from "axios-hooks";
+
+// import bcrypt from 'bcrypt';
 
 // import Arrow from "../assets/icon/arrow.png";
 
@@ -135,37 +140,122 @@ const Signup = () => {
     const month = [];
     for (let i = 1; i < 13; i++) month.push(i);
 
+    /**사용자 입력값 변수선언 */
+    let userid = null;
+    let password = null;
+    let passwordCheck = null;
+    let username = null;
+    let birthday = null;
+    let email = null;
+
+    /**input입력칸 onBlur 이벤트 */
+    const onBlur = useCallback((e)=>{
+
+        try {
+            RegexHelper.value(e.target.userid,'아이디를 입력해 주세요');
+            RegexHelper.engNum(e.target.userid,'아이디는 영어,숫자만 가능합니다.');
+            userid = e.target.userid;
+
+            RegexHelper.value(e.target.password,'비밀번호를 입력해 주세요');
+            password = e.target.password;
+            
+            RegexHelper.value(e.target.passwordCheck,'비밀번호 확인을 입력해 주세요');
+            passwordCheck = e.target.passwordCheck;
+
+            RegexHelper.value(e.target.username,'성함를 입력해 주세요');
+            username = e.target.username;
+
+            if(e.target.birthday){
+                RegexHelper.value(e.target.birthday,'생년월일을 입력해 주세요');
+                birthday = e.target.birthday;
+            }
+
+            RegexHelper.value(e.target.email, '이메일을 입력해주세요.');
+            RegexHelper.email(e.target.email,'이메일 형식이 잘못되었습니다.');
+            email = e.target.email;
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+        
+    },[]);
+
+    /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
+    const [{ data, loading, error }, refetch] = useAxios({
+          url: 'http://localhost:3001/members',
+          method: 'PUT'
+        },
+        { manual: true })
+
+    /**submit이벤트 : 전체입력값 유효성검사 재실행, 입력값 post전송 */
+    const onSubmit=async(e)=>{
+        e.preventDefault();
+
+        try {
+            RegexHelper.value(e.target.userid,'아이디를 입력해 주세요')
+            RegexHelper.engNum(e.target.userid,'아이디는 영어,숫자만 가능합니다.')
+            RegexHelper.value(e.target.password,'비밀번호를 입력해 주세요')            
+            RegexHelper.value(e.target.passwordCheck,'비밀번호 확인을 입력해 주세요')
+            RegexHelper.value(e.target.username,'성함를 입력해 주세요')
+            if(e.target.birthday){
+                RegexHelper.value(e.target.birthday,'생년월일을 입력해 주세요')
+                birthday = e.target.birthday;
+            }
+            RegexHelper.value(e.target.email, '이메일을 입력해주세요.')
+            RegexHelper.email(e.target.email,'이메일 형식이 잘못되었습니다.')
+
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+
+        /**비밀번호 암호화_bcrypt모듈 사용 */
+
+
+        try {
+            await refetch()
+        } catch (error) {
+            
+        }
+
+    };
+
+    
+    
+
     return (
         <SignupContainer>
             <div className="signup_content">
                 <h3 className="headfont">회원가입</h3>
 
-                <form>
+                <form onSubmit={onSubmit}>
                     {/* 아이디 */}
                     <div>
-                    <div className="message">
-                        <label htmlFor="user_id">아이디</label>&nbsp;<p>*</p>
-                    </div>
-                    <input
-                        id="user_id"
-                        name="user_id"
-                        type="text"
-                        className="input_text"
-                    ></input>
-                    <span id="err_id" className="err_msg">
-                        아이디를 입력하세요.
-                    </span>
-                    <br />
+                        <div className="message">
+                            <label htmlFor="userid">아이디</label>&nbsp;<p>*</p>
+                        </div>
+                        <input
+                            id="userid"
+                            name="userid"
+                            type="text"
+                            className="input_text"
+                            onBlur={onBlur}
+                        ></input>
+                        <span id="err_id" className="err_msg">
+                            아이디를 입력하세요.
+                        </span>
+                        <br />
                     </div>
 
                     {/* 비밀번호 */}
                     <div>
                     <div className="message">
-                        <label htmlFor="user_pw">비밀번호</label>&nbsp;<p>*</p>
+                        <label htmlFor="passord">비밀번호</label>&nbsp;<p>*</p>
                     </div>
                     <input
-                        id="user_pw"
-                        name="user_pw"
+                        id="passord"
+                        name="passord"
                         type="password"
                         className="input_text"
                         placeholder="영문+숫자 조합 8~16자리"
@@ -178,30 +268,30 @@ const Signup = () => {
 
                     {/* 비밀번호 확인 */}
                     <div>
-                    <div className="message">
-                        <label htmlFor="user_pw_check">비밀번호 확인</label>
-                        &nbsp;<p>*</p>
-                    </div>
-                    <input
-                        id="user_pw_check"
-                        name="user_pw_check"
-                        type="password"
-                        className="input_text"
-                    ></input>
-                    <span id="err_pw_check" className="err_msg">
-                        비밀번호가 일치하지 않습니다.
-                    </span>
-                    <br />
+                        <div className="message">
+                            <label htmlFor="passordCheck">비밀번호 확인</label>
+                            &nbsp;<p>*</p>
+                        </div>
+                        <input
+                            id="passordCheck"
+                            name="passordCheck"
+                            type="password"
+                            className="input_text"
+                        ></input>
+                        <span id="err_pw_check" className="err_msg">
+                            비밀번호가 일치하지 않습니다.
+                        </span>
+                        <br />
                     </div>
 
                     {/* 이름 */}
                     <div>
                     <div className="message">
-                        <label htmlFor="user_name">이름</label>&nbsp;<p>*</p>
+                        <label htmlFor="username">이름</label>&nbsp;<p>*</p>
                     </div>
                     <input
-                        id="user_name"
-                        name="user_name"
+                        id="username"
+                        name="username"
                         type="text"
                         className="input_text"
                     ></input>
@@ -293,11 +383,9 @@ const Signup = () => {
                     </span>
                     <br />
 
-                    <NavLink to="/">
-                        <button type="submit" id="signup" className="signup">
-                            회원가입
-                        </button>
-                    </NavLink>
+                    <button type="submit" id="signup" className="signup">
+                        회원가입
+                    </button>
                 </form>
             </div>
         </SignupContainer>

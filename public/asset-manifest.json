@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/jeju/static/js/main.2ecaed0f.js",
+    "static/media/img004.jpeg": "/jeju/static/media/img004.5a8e81a7b3c1a0afa5ef.jpeg",
+    "static/media/img005.jpeg": "/jeju/static/media/img005.fa974eb445dfdaededee.jpeg",
+    "static/media/img003.jpeg": "/jeju/static/media/img003.cbe1a41e70b38d3122c0.jpeg",
+    "static/media/img001.jpeg": "/jeju/static/media/img001.db1d1b15f9d1a55eafe8.jpeg",
+    "static/media/search_active.png": "/jeju/static/media/search_active.09ef52fb93b5e19b1a05.png",
+    "static/media/pin_active.png": "/jeju/static/media/pin_active.342f2ecf107aae65e544.png",
+    "static/media/pin.png": "/jeju/static/media/pin.0a25fc440ac864baebc9.png",
+    "static/media/food.png": "/jeju/static/media/food.54ffc1a62f9afd5386c8.png",
+    "index.html": "/jeju/index.html",
+    "main.2ecaed0f.js.map": "/jeju/static/js/main.2ecaed0f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.2ecaed0f.js"
+  ]
+}
