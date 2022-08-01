@@ -7,7 +7,7 @@ import React, { memo } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import Theme1 from "../../assets/img/곶자왈.jpeg";
+import Theme1 from "../../assets/img/img_gotjawal.jpeg";
 
 const ThemeItemContainer = styled.div`
     width: 100%;

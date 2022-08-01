@@ -7,10 +7,10 @@ import React, { memo } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import Theme1 from "../../assets/img/곶자왈.jpeg";
-import Pic1 from "../../assets/img/머체왓숲길.jpeg";
-import Pic2 from "../../assets/img/머체왓숲길(2).jpeg";
-import Pic3 from "../../assets/img/머체왓숲길(3).jpeg";
+import Theme1 from "../../assets/img/img_gotjawal.jpeg";
+import Pic1 from "../../assets/img/img_meochewatsupgil_000.jpeg";
+import Pic2 from "../../assets/img/img_meochewatsupgil_001.jpeg";
+import Pic3 from "../../assets/img/img_meochewatsupgil_002.jpeg";
 
 const ThemeDetailContainer = styled.div`
     width: 100%;
