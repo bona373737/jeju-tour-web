@@ -1,11 +1,14 @@
 /**
  * @Filename: Login.js
- * @Author: 이재이(loveleej87@gmail.com)
+ * @Author: 웹퍼블작업_이재이(loveleej87@gmail.com)
+ *          js기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 회원 로그인 페이지
  */
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
+import RegexHelper from '../libs/RegexHelper.js';
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -89,13 +92,47 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
+    /** 로그인 요청 보내기 */
+    const loginUser = useCallback(async (e) => {
+        e.preventDefault();
+        
+        // input 아이디, 비밀번호 요소 취득
+        const current = e.target;
+        const id = current.userid;
+        const pw = current.password;
+
+        // 입력값에 대한 유효성 검사
+        try { 
+            RegexHelper.value(id, '아이디를 입력하세요.');
+            RegexHelper.value(pw, '비밀번호를 입력하세요.');
+        } catch(e) {
+            alert(e.message);
+            current.focus();
+            return;
+        }
+
+        // Ajax 요청 보내기
+        // --> 백엔드가 전달한 결과값이 response.data에 저장
+        try {
+            const response = await axios.post('/session/login', {
+                userid: id.value,
+                password: pw.value
+            })
+        } catch(err) {
+            const errMsg = `[${err.response.status}]${err.response.statusText}`;
+            console.error(errMsg);
+            alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
+        }
+    }, []);
+
     return (
         <LoginContainer>
             <div className="login_content">
                 <h3 className="headfont">로그인</h3>
-                <form>
+                <form method="post" action="/session/login" id="before-login">
                     <input
                         type="text"
+                        name="userid"
                         className="input_text"
                         placeholder="아이디"
                     ></input>
@@ -103,6 +140,7 @@ const Login = () => {
                     <br />
                     <input
                         type="password"
+                        name="password"
                         className="input_text"
                         placeholder="비밀번호"
                     ></input>
@@ -113,6 +151,7 @@ const Login = () => {
                         name="login"
                         value="login"
                         className="login"
+                        onSubmit={loginUser}
                     >
                         로그인
                     </button>
