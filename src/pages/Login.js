@@ -92,7 +92,7 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
-    /** 로그인 요청 보내기 */
+    /** 로그인 정보 세션으로 전송하기 */
     const loginUser = useCallback(async (e) => {
         e.preventDefault();
         
@@ -110,6 +110,8 @@ const Login = () => {
             current.focus();
             return;
         }
+
+        // 비밀번호 암호화_bcrypt모듈 사용
 
         // Ajax 요청 보내기
         // --> 백엔드가 전달한 결과값이 response.data에 저장
