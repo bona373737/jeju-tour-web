@@ -11,8 +11,25 @@ import styled from 'styled-components';
 
 const ListItemContainer = styled.div`
     box-sizing: border-box;
+    width: 100%;
     padding: 15px 0;
-    line-height: 25px;
+    line-height: 20px;
+
+    a{
+        height: 100px;
+        display: flex;
+
+        .img_wrap{
+            width: 30%;
+            background-color: var(--blue);
+
+        }
+        .text_wrap{
+            width: 70%;
+
+        }
+
+    }
 `;
 
 const ListItem = ({item,api}) => {
@@ -36,13 +53,16 @@ const ListItem = ({item,api}) => {
         <ListItemContainer>
             {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
             <NavLink to={'/tab/'+api+'/'+item.placeno} state={{item:item}}>
-                <p>{item?.placeno}</p>
-                <p>{item?.sbst}</p>
-
-    
-                {/* <h1>{item?.title}</h1> */}
-                {/* <h1>{item?.address}</h1> */}
-                {/* <h1>{item?.phoneno}</h1> */}
+                <div className='img_wrap'>
+                    <img src=''/>
+                </div>
+                <div className='text_wrap'>
+                    <p>{item?.placeno}</p>
+                    <p>{item?.title}</p>
+                    <p>{item?.address}</p>
+                    <p>{item?.phoneno}</p>
+                    <p>{item?.introduction}</p>
+                </div>
             </NavLink>
         </ListItemContainer>
     );
