@@ -11,6 +11,7 @@ import FoodSlice from './slices/FoodSlice';
 import SearchSlice from './slices/SearchSlice';
 import NoticeSlice from './slices/NoticeSlice';
 import FAQSlice from './slices/FAQSlice';
+import MyLikeSlice from './slices/MyLikeSlice';
 
 const store = configureStore({
     reducer:{
@@ -19,7 +20,8 @@ const store = configureStore({
         food: FoodSlice,
         search: SearchSlice,
         notice: NoticeSlice,
-        faq: FAQSlice
+        faq: FAQSlice,
+        myLike : MyLikeSlice
     },
     middleware: getDefaultNormalizer => getDefaultNormalizer({serializableCheck:false}),
     devTools:true

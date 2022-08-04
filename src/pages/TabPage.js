@@ -13,6 +13,7 @@ import { getAccomList } from "../slices/AccomSlice";
 import { getFoodList } from "../slices/FoodSlice";
 import styled from "styled-components";
 
+import Spinner from '../components/Spinner';
 import TabArea from "../components/TabArea";
 import ListItem from "../components/items/ListItem";
 import HashtagBtn from "../components/buttons/HashtagBtn";
@@ -24,7 +25,17 @@ const TabPageContainer = styled.div`
         margin-top: 20px;
         .hashtag_wrap {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            
+            a{
+                flex: 0 0 auto;
+            }
         }
         .list_wrap {
         }
@@ -43,6 +54,7 @@ const TabPage = () => {
     //redux사용하여 여행지 리스트 가져오기
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state[api]);
+    console.log(data);
 
     //tab바뀔때마다 데이터 재전송
     useEffect(() => {
@@ -64,6 +76,9 @@ const TabPage = () => {
     return (
         <TabPageContainer>
             <TabArea/>
+
+            <Spinner visible={loading} />
+            
             <div className="content_wrap">
                 <div className="hashtag_wrap">
                     {tagArr.map((v, i) => (
@@ -74,7 +89,7 @@ const TabPage = () => {
                 </div>
                 <div className="list_wrap">
                     {data &&
-                        data.map((v, i) => {
+                        data.item.map((v, i) => {
                             return <ListItem key={i} item={v} api={api}></ListItem>;
                         })}
                 </div>
