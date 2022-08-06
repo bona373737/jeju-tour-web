@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import regexHelper from '../libs/RegexHelper.js';
 import axios from 'axios';
 
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -95,7 +95,7 @@ const LoginContainer = styled.div`
 
 const Login = () => {
     /** 로그인 정보 세션으로 전송하기 */
-    const loginUser = useCallback((e) => {
+    const loginUser = useCallback(async(e) => {
         e.preventDefault();
         
         // 입력한 아이디, 비밀번호 추출하기
@@ -112,7 +112,7 @@ const Login = () => {
             return;
         }
 
-        // 비밀번호 암호화_bcrypt모듈 사용
+        // 비밀번호 암호화_bcrypt모듈 사용 --> 모듈 다시 찾기...
 
         try {
             // Ajax post 요청 보내기
