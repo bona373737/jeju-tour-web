@@ -6,9 +6,11 @@
  */
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { NavLink, useNavigate } from "react-router-dom";
-import RegexHelper from '../libs/RegexHelper.js';
+import { NavLink } from "react-router-dom";
+import regexHelper from '../libs/RegexHelper.js';
 import axios from 'axios';
+
+import bcrypt from 'bcryptjs';
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -93,43 +95,38 @@ const LoginContainer = styled.div`
 
 const Login = () => {
     /** 로그인 정보 세션으로 전송하기 */
-    const navigate = useNavigate();
-    const loginUser = useCallback(async (e) => {
+    const loginUser = useCallback((e) => {
         e.preventDefault();
         
-        // input 아이디, 비밀번호 요소 취득
-        const current = e.target;
-        const id = current.userid;
-        const pw = current.password;
+        // 입력한 아이디, 비밀번호 추출하기
+        const userid = e.target.userid.value;
+        let password = e.target.password.value;
 
         // 입력값에 대한 유효성 검사
         try { 
-            RegexHelper.value(id, '아이디를 입력하세요.');
-            RegexHelper.value(pw, '비밀번호를 입력하세요.');
-        } catch(e) {
-            alert(e.message);
-            current.focus();
+            regexHelper.value(userid, '아이디를 입력하세요.');
+            regexHelper.value(password, '비밀번호를 입력하세요.');
+        } catch(err) {
+            alert(err.message);
+            e.target.focus();
             return;
         }
 
         // 비밀번호 암호화_bcrypt모듈 사용
-        
 
-        // Ajax 요청 보내기
-        // --> 백엔드가 전달한 결과값이 response.data에 저장
         try {
+            // Ajax post 요청 보내기
+            // --> 백엔드가 전달한 결과값이 response.data에 저장
             const response = await axios.post('http://itpaper.co.kr:9910/session/login', {
-                userid: id.value,
-                password: pw.value
+                userid: userid,
+                password: password
             });
         } catch(err) {
             const errMsg = `[${err.response.status}]${err.response.statusText}`;
             console.error(errMsg);
             alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
         }
-        // 이동할 url 주소를 입력
-        navigate(`/`);
-    }, [navigate]);
+    }, []);
 
     return (
         <LoginContainer>
