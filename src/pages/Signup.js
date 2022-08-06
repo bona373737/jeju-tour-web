@@ -306,7 +306,7 @@ const Signup = () => {
                         <label htmlFor="birth_year" className="message">생년월일</label>
                         <div className="birth_area">
                             <input id="birth_year" name="birth_year" type="text" placeholder="년(4자)" className="user_birth" maxLength={4} onBlur={onBlur} />
-                            <select id="birth_month" name="birth_month" className="birth_month" placeholder="월" onBlur={onBlur}>
+                            <select id="birth_month" name="birth_month" className="user_mm" placeholder="월" onBlur={onBlur}>
                                 <option value="">월</option>
                                 {month.map((v, i) => {
                                     return (

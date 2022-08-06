@@ -9,7 +9,7 @@ const UserInfoContainer = styled.div`
 
 const UserInfo =()=>{
 
-    const onSubmit=useCallback((e)=>{
+    const onSubmit=useCallback(async(e)=>{
         e.preventDefault();
 
         const profile_img = e.target.profile_img.value;
@@ -18,14 +18,20 @@ const UserInfo =()=>{
         const email = e.target.email.value;
 
         const formData = new FormData("userinfo_form");
-        // formData.append("profile_img", profile_img.length && profile_img[0].uploadedFile);
-        // formData.append("username", username );
-        // formData.append("birthday", birthday);
-        // formData.append("email",email );
+        formData.append("profile_img", profile_img.length && profile_img[0].uploadedFile);
+        formData.append("username", username );
+        formData.append("birthday", birthday);
+        formData.append("email",email );
 
-        // async(()=>{
-        //     let json = await axios.put( 'http://localhost:3001/members',formData,)
-        // })
+         let json = await axios.put( 'http://localhost:3001/members',formData,{
+            'method': 'PUT',
+
+            headers:{
+                'Content-Type': 'multipart/form-data',
+            }
+         });
+
+     
 
     },[]);
 
