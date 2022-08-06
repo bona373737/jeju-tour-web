@@ -109,18 +109,18 @@ const Search = memo(({open, setIsOpen, close}) => {
     const navigate = useNavigate();
     const onSearchSubmit = useCallback(e => {
         e.preventDefault();
-        // 이벤트가 발생한 폼 객체
-        const current = e.target;
+        // 입력한 검색어 추출하기
+        const keyword = e.target.keyword.value;
         // 입력값에 대한 유효성 검사
         try { 
-            RegexHelper.value(current.keyword, '검색어를 입력하세요.');
-        } catch(e) {
-            alert(e.message);
-            current.focus();
+            RegexHelper.value(keyword, '검색어를 입력하세요.');
+        } catch(err) {
+            alert(err.message);
+            e.target.focus();
             return;
         }
         // 이동할 url 주소를 입력
-        navigate(`/search?keyword=${current.keyword.value}`);
+        navigate(`/search?keyword=${keyword}`);
         // 검색창 닫기
         setIsOpen(false);
     }, [setIsOpen, navigate]);
