@@ -202,7 +202,7 @@ const Signup = () => {
 
     /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
     const [{ data, loading, error }, refetch] = useAxios({
-          url: 'http://localhost:3001/members',
+          url: 'http://itpaper.co.kr:9910/members',
           method: 'POST'
         },
         { manual: true })
@@ -259,7 +259,7 @@ const Signup = () => {
             await refetch({data:input_data})
             // json = response.data;
         } catch (error) {
-            console.log(e);
+            console.log(error);
             // window.(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
         }
 
@@ -321,7 +321,7 @@ const Signup = () => {
                             </select>
                             <input id="birth_day" name="birth_day" type="text" placeholder="일" className="user_birth" maxLength={2} onBlur={onBlur}/>
                         </div>
-                       <span id="err_birth" className="err_msg"> 생년월일을 입력하세요. </span>
+                        <span id="err_birth" className="err_msg"> 생년월일을 입력하세요. </span>
                         <br />
                     </div>
 
@@ -331,6 +331,7 @@ const Signup = () => {
                         <div className="input_box">
                             <input id="input_email" name="input_email" type="text"  onBlur={onBlur} className="user_email" maxLength={20}/>
                             <select id="input_domain" name="input_domain" type="text" className="user_email_sel">
+                                {/* 메일 주소 직접 입력란 추가해야함 */}
                                 <option value="@gmail.com">@gmail.com</option>
                                 <option value="@naver.com">@naver.com</option>
                                 <option value="@daum.com">@daum.com</option>
