@@ -80,7 +80,7 @@ const SidebarContainer = styled.div`
 
 const Sidebar = ({setShowSidebar}) => {
     //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
-    const [isLogin, setIsLogin] = useState(true);
+    const [isLogin, setIsLogin] = useState(false);
     
     //클릭시 페이지이동과 함께 sidebar닫아주는 함수
     const navigate = useNavigate();

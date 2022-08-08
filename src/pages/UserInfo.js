@@ -23,7 +23,7 @@ const UserInfo =()=>{
         formData.append("birthday", birthday);
         formData.append("email",email );
 
-         let json = await axios.put( 'http://localhost:3001/members',formData,{
+         let json = await axios.put('http://localhost:3001/members',formData,{
             'method': 'PUT',
 
             headers:{
