@@ -18,6 +18,7 @@ import ListDetail from './details/ListDetail';
 import Login from './Login'
 import Signup from './Signup';
 /* 사이드바의 메뉴 페이지 */
+import UserInfo from './UserInfo';
 import MyLike from './sidebar_menus/MyLike'
 import MyReview from './sidebar_menus/MyReview';
 import MyQNA from './sidebar_menus/MyQNA';
@@ -31,6 +32,9 @@ import BoardPage from './BoardPage';
 import BoardDetail from './details/BoardDetail';
 /* 1:1 문의 페이지 */
 import QNA from './QNA';
+
+/*파일업로드 테스트_관리자페이지 여행지 정보 추가 */
+import TourInfoAdd from './admin/TourInfoAdd';
 
 // header 높이만큼 Main 영역 상단에 padding값 적용
 const MainContainer=styled.div`
@@ -52,6 +56,8 @@ const Main = () => {
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
                 {/* 사이드바의 메뉴 페이지 */}
+                <Route path='/userinfo' element={<TourInfoAdd/>}/>
+                <Route path='/userinfo' element={<UserInfo/>}/>
                 <Route path='/mylike' element={<MyLike/>}/>
                 <Route path='/myreview' element={<MyReview/>}/>
                 <Route path='/myqna' element={<MyQNA/>}/>

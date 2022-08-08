@@ -13,7 +13,9 @@ const URL='http://localhost:3001/place';
 export const getPlaceList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{
     let result = null;
     try{
-        result = await axios.get(URL);
+        result = await axios.get(URL,{
+            withCredentials: true
+        });
     }
     catch(error){
         result = rejectWithValue(error.response);

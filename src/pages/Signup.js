@@ -4,14 +4,14 @@
  *          js기능구현_구본아(bona373737@gmail.com)
  * @Description: 회원 가입 페이지
  *               axios-hooks모듈 사용
+ *               비밀번호 암호화_crypto-js사용_양방향암호화하여 전송
  */
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import RegexHelper from '../libs/RegexHelper';
 import useAxios from "axios-hooks";
 
-import bcrypt from 'bcryptjs';
-
+import crypto from 'crypto-js';
 // import Arrow from "../assets/icon/arrow.png";
 
 const SignupContainer = styled.div`
@@ -144,6 +144,7 @@ const Signup = () => {
     const month = [];
     for (let i = 1; i < 13; i++) month.push(i);
 
+    //사용자 입력값 담을 변수정의
     let userid = null
     let password = null;
     let passwordCheck = null;
@@ -211,7 +212,6 @@ const Signup = () => {
         e.preventDefault();
 
         const current = e.target;
-        
         userid = current.userid.value;
         password = current.password.value;
         passwordCheck = current.passwordCheck.value;
@@ -237,9 +237,12 @@ const Signup = () => {
             throw error;
         }
 
-        /**비밀번호 암호화_bcryptjs모듈 사용 */
-        const salt = await bcrypt.genSalt(10);
-        password = await bcrypt.hash(password, salt);
+        /**비밀번호 암호화_crypto-js모듈 사용 */
+        // AES알고리즘 사용 암호화
+        const secretKey =  'secret key'; //config.env파일 저장된 값 불러온는 방식으로 수정필요
+        password = crypto.AES.encrypt(password, secretKey).toString();
+        passwordCheck = crypto.AES.encrypt(passwordCheck, secretKey).toString();
+        
 
         /**유효성검사 완료 후 입력값 변수로 저장 */
         const input_data={
