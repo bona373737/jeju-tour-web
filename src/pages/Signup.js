@@ -202,7 +202,7 @@ const Signup = () => {
 
     /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
     const [{ data, loading, error }, refetch] = useAxios({
-          url: 'http://itpaper.co.kr:9910/members',
+          url: '/members',
           method: 'POST'
         },
         { manual: true })
