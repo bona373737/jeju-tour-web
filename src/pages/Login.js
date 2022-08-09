@@ -144,7 +144,7 @@ const Login = () => {
         } catch(err) {
             const errMsg = `[${err.response.status}]${err.response.statusText}`;
             console.error(errMsg);
-            alert('이메일이나 비밀번호가 올바르지 않습니다.');
+            alert('아이디나 비밀번호가 올바르지 않습니다.');
         }
     };
 
