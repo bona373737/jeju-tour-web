@@ -3,14 +3,15 @@
  * @Author: 웹퍼블작업_이재이(loveleej87@gmail.com)
  *          js기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 회원 로그인 페이지
+ *               비밀번호 암호화_crypto-js사용_양방향암호화하여 전송
  */
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import regexHelper from '../libs/RegexHelper.js';
-import axios from 'axios';
+import useAxios from "axios-hooks";
 
-// import bcrypt from 'bcryptjs';
+import crypto from 'crypto-js';
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -94,13 +95,25 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
+    // 사용자 입력값 담을 변수 정의
+    let userid = null;
+    let password = null;
+
+    /** 입력값 post전송함수 정의 axios-hooks 모듈사용 */
+    const [{ data, loading, error }, refetch] = useAxios({
+        url: 'http://itpaper.co.kr:9910/session/login',
+        method: 'POST'
+    },
+    { manual: true })
+
     /** 로그인 정보 세션으로 전송하기 */
-    const loginUser = useCallback(async(e) => {
+    const loginUser = async(e) => {
         e.preventDefault();
         
         // 입력한 아이디, 비밀번호 추출하기
-        const userid = e.target.userid.value;
-        let password = e.target.password.value;
+        const current = e.target;
+        userid = current.userid.value;
+        password = current.password.value;
 
         // 입력값에 대한 유효성 검사
         try { 
@@ -112,71 +125,46 @@ const Login = () => {
             return;
         }
 
-        // 비밀번호 암호화_bcrypt모듈 사용 --> 모듈 다시 찾기...
+        /** 비밀번호 암호화_crypto-js모듈 사용 */
+        // AES알고리즘 사용 --> 사용자 입력값 암호화
+        const secretKey =  'secret key'; //config.env파일로 불러오게 수정 필요
+        password = crypto.AES.encrypt(password, secretKey).toString();
+
+        /** 유효성 검사 및 암호화 완료된 데이터 저장 */
+        const input_data = {
+            userid: userid,
+            password: password,
+        };
+
+        let json = null;
 
         try {
-            // Ajax post 요청 보내기
-            // --> 백엔드가 전달한 결과값이 response.data에 저장
-            const response = await axios.post('http://itpaper.co.kr:9910/session/login', {
-                userid: userid,
-                password: password
-            });
+            await refetch({data: input_data});
+            // json = response.data;
         } catch(err) {
             const errMsg = `[${err.response.status}]${err.response.statusText}`;
             console.error(errMsg);
             alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.');
         }
-    }, []);
+    };
 
     return (
         <LoginContainer>
             <div className="login_content">
                 <h3 className="headfont">로그인</h3>
-                <form method="post" action="http://itpaper.co.kr:9910/session/login" id="before-login">
-                    <input
-                        type="text"
-                        name="userid"
-                        className="input_text"
-                        placeholder="아이디"
-                    ></input>
+                <form onSubmit={loginUser}>
+                    <input type="text" name="userid" className="input_text" placeholder="아이디"></input>
                     <span>아이디를 입력하세요.</span>
                     <br />
-                    <input
-                        type="password"
-                        name="password"
-                        className="input_text"
-                        placeholder="비밀번호"
-                    ></input>
+                    <input type="password" name="password" className="input_text" placeholder="비밀번호"></input>
                     <span>비밀번호를 입력하세요.</span>
                     <br />
-                    <button
-                        type="submit"
-                        name="login"
-                        value="login"
-                        className="login"
-                        onSubmit={loginUser}
-                    >
-                        로그인
-                    </button>
+                    <button type="submit" name="login" value="login" className="login">로그인</button>
                 </form>
 
                 <div className="find_button_area">
-                    <button
-                        type="button"
-                        name="find_id"
-                        value="find_id"
-                        className="find_button"
-                    >
-                        아이디 찾기
-                    </button>
-                    <button
-                        type="button"
-                        name="find_pw"
-                        value="find_pw"
-                        className="find_button"
-                    >
-                        비밀번호 찾기
-                    </button>
+                    <button type="button" name="find_id" value="find_id" className="find_button">아이디 찾기</button>
+                    <button type="button" name="find_pw" value="find_pw" className="find_button">비밀번호 찾기</button>
                 </div>
                 <br />
                 <br />
@@ -185,13 +173,7 @@ const Login = () => {
                 <h3 className="headfont">아직 계정이 없으신가요?</h3>
 
                 <NavLink to="/signup">
-                    <button 
-                        type="button"
-                        id="signup"
-                        className="signup"
-                    >
-                        회원가입
-                    </button>
+                    <button type="button" id="signup" className="signup">회원가입</button>
                 </NavLink>
             </div>
         </LoginContainer>
