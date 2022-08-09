@@ -13,7 +13,12 @@ import GlobalStyles from "./GlobalStyles";
 import Meta from "./Meta";
 import App from "./App";
 
+//배포시 axios base url설정 코드 삭제하기
+import axios from 'axios';
+axios.defaults.baseURL = 'http://localhost:3001';
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
     <React.StrictMode>
         <Provider store={store}>
