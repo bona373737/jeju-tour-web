@@ -16,6 +16,8 @@ import App from "./App";
 //배포시 axios base url설정 코드 삭제하기
 import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:3001';
+// withCredentials 전역 설정
+axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

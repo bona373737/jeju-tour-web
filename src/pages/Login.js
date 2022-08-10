@@ -8,7 +8,7 @@
 
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import regexHelper from '../libs/RegexHelper.js';
 import useAxios from "axios-hooks";
 
@@ -96,19 +96,21 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
+    /** 저장 완료 후 목록으로 되돌아가기 위한 페이지 강제 이동 함수 생성 */
+    const navigate = useNavigate();
+
+    /** 백엔드에 데이터 저장을 위한 Ajax 요청 객체 생성 - 메뉴얼 전송 모드 */
+    const [{ data, loading, error }, refetch] = useAxios({
+        url: '/login',
+        method: 'POST'
+    },
+    { manual: true });
+
     // 사용자 입력값 담을 변수 정의
     let userid = null;
     let password = null;
 
-    /** 입력값 post전송함수 정의 axios-hooks 모듈사용 */
-    const [{ data, loading, error }, refetch] = useAxios({
-        url: '/session/login',
-        method: 'POST',
-        withCredentials:true
-    },
-    { manual: true })
-
-    /** 로그인 정보 세션으로 전송하기 */
+    /**<Form>의 submit 버튼이 눌러졌을 때 호출될 이벤트 핸들러 */
     const loginUser = async(e) => {
         e.preventDefault();
         
@@ -129,7 +131,7 @@ const Login = () => {
 
         /** 비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 --> 사용자 입력값 암호화
-        const secretKey =  'secret key'; //config.env파일로 불러오게 수정 필요
+        const secretKey = 'secret key'; //config.env파일로 불러오게 수정 필요
         password = crypto.AES.encrypt(password, secretKey).toString();
 
         /** 유효성 검사 및 암호화 완료된 데이터 저장 */
@@ -138,16 +140,27 @@ const Login = () => {
             password: password,
         };
 
+        // 백엔드 응답 결과(response.data)를 저장하기 위한 변수
         let json = null;
 
         try {
-            await refetch({data: input_data});
-            // json = response.data;
+            const response = await refetch({data: input_data});
+            json = response.data;
         } catch(err) {
             const errMsg = `[${err.response.status}]${err.response.statusText}`;
             console.error(errMsg);
             alert('아이디나 비밀번호가 올바르지 않습니다.');
         }
+
+        // 정상적으로 저장되어 응답을 받았다면?
+        if (json !== null) {
+            window.alert('로그인 완료되었습니다.');
+            // 첫 페이지로 강제 이동
+            navigate('/');
+        }
+
+        // 로그인 완료된 회원정보 콘솔에 테스트 표시
+        console.log(json);
     };
 
     return (
