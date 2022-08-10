@@ -102,10 +102,11 @@ const Login = () => {
 
     /** 입력값 post전송함수 정의 axios-hooks 모듈사용 */
     const [{ data, loading, error }, refetch] = useAxios({
-        url: 'http://itpaper.co.kr:9910/session/login',
+        url: 'http://itpaper.co.kr:9910/login',
         method: 'POST'
     },
-    { manual: true })
+    { manual: true },
+    { withCredentials: true });
 
     /** 로그인 정보 세션으로 전송하기 */
     const loginUser = async(e) => {
@@ -128,7 +129,7 @@ const Login = () => {
 
         /** 비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 --> 사용자 입력값 암호화
-        const secretKey =  'secret key'; //config.env파일로 불러오게 수정 필요
+        const secretKey = 'secret key'; //config.env파일로 불러오게 수정 필요
         password = crypto.AES.encrypt(password, secretKey).toString();
 
         /** 유효성 검사 및 암호화 완료된 데이터 저장 */
