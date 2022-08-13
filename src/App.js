@@ -9,7 +9,7 @@ import Header from "./components/header/Header";
 import Main from "./pages/Main";
 import Footer from "./components/Footer";
 
-function App() {
+const App = () => {
     return (
         <>
             <Header />
@@ -17,6 +17,6 @@ function App() {
             <Footer />
         </>
     );
-}
+};
 
 export default App;
