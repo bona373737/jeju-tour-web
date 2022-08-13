@@ -101,7 +101,7 @@ const Login = () => {
 
     /** 백엔드에 데이터 저장을 위한 Ajax 요청 객체 생성 - 메뉴얼 전송 모드 */
     const [{ data, loading, error }, refetch] = useAxios({
-        url: '/login',
+        url: "/session/login",
         method: 'POST'
     },
     { manual: true });

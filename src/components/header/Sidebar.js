@@ -1,11 +1,13 @@
 /** 
  * @Filename: Sidebar.js
- * @Author: 구본아(bona373737@gmail.com)
+ * @Author: 웹퍼블작업 및 전체기능구현_구본아(bona373737@gmail.com)
+ *          로그아웃기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
 import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled,{keyframes} from 'styled-components';
+import axios from 'axios';
 
 const fadeIn = keyframes`
     from{
@@ -80,7 +82,7 @@ const SidebarContainer = styled.div`
 
 const Sidebar = ({setShowSidebar}) => {
     //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     
     //클릭시 페이지이동과 함께 sidebar닫아주는 함수
     const navigate = useNavigate();
@@ -88,7 +90,8 @@ const Sidebar = ({setShowSidebar}) => {
         navigate(e.target.dataset.path);
         setShowSidebar(false);
     },[])
-    //클릭시 페이지이동과 함께 sidebar닫아주는 함수 +비회원접속제한
+
+    //클릭시 페이지이동과 함께 sidebar닫아주는 함수 + 비회원접속제한
     const movePage2=useCallback((e)=>{
         if(isLogin===true){
             navigate(e.target.dataset.path);
@@ -106,6 +109,26 @@ const Sidebar = ({setShowSidebar}) => {
 
         })
     },[])
+
+    /** logout 버튼이 눌러졌을 때 호출될 이벤트 핸들러 */
+    const logoutUser = (e) => {
+        e.preventDefault();
+
+        // 즉시실행 비동기 처리 함수
+        (async () => {
+            try {
+                // 로그아웃 Ajax 요청 보내기
+                const response = await axios.delete("/session/login");
+                // 로그아웃 성공 시 isLogin false로 변경 
+                setIsLogin(false);
+            } catch (err) {
+                const errMsg = `[${err.response.status}]${err.response.statusText}`;
+                console.error(errMsg);
+                alert('로그아웃에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+            }
+        })();
+        
+    };
 
     return (
         <SidebarContainer>
@@ -137,7 +160,10 @@ const Sidebar = ({setShowSidebar}) => {
             <li onClick={movePage} data-path='/tourkit'>여행도구</li>
             <li onClick={movePage} data-path='/service'>고객센터</li>
             {
-                isLogin? (<li>로그아웃</li>):''
+                isLogin ? (
+                <li>
+                    <button type="button" name="logout" className="logout" onClick={logoutUser}>로그아웃</button>
+                </li>) : ''
             }
             </ul>
             </div>
