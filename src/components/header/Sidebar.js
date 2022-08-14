@@ -1,13 +1,17 @@
 /** 
  * @Filename: Sidebar.js
- * @Author: 구본아(bona373737@gmail.com)
+ * @Author: 웹퍼블작업 및 전체기능구현_구본아(bona373737@gmail.com)
+ *          로그아웃기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled,{keyframes} from 'styled-components';
 import { useSelector, useDispatch } from "react-redux";
 import { getUserInfo } from '../../slices/UserInfoSlice';
+import { deleteLogin } from '../../slices/MemberSlice';
+
+import Spinner from '../Spinner';
 
 const fadeIn = keyframes`
     from{
@@ -93,17 +97,30 @@ const Sidebar = ({setShowSidebar}) => {
     //     dispatch(getUserInfo());
     // },[dispatch])
 
+    // 로그인 상태값 변수
+    const isLogin = item.isLogin;
+    // 리덕스 로그인 세션 상태 관리
+    const { loading } = useSelector((state) => state.member);
+
 
     //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
-    const [isLogin, setIsLogin] = useState(false);
+    // const [isLogin, setIsLogin] = useState(false);
     
-    //클릭시 페이지이동과 함께 sidebar닫아주는 함수
+    /** logout 버튼 클릭 이벤트 */
+    const logout = useCallback(e => {
+        e.preventDefault();
+        // 리덕스를 통해 로그아웃 요청
+        dispatch(deleteLogin());
+    }, [dispatch]);
+
+    /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 */
     const navigate = useNavigate();
     const movePage=useCallback((e)=>{
         navigate(e.target.dataset.path);
         setShowSidebar(false);
-    },[])
-    //클릭시 페이지이동과 함께 sidebar닫아주는 함수 +비회원접속제한
+    }, [navigate, setShowSidebar]);
+
+    /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 + 비회원접속제한 */
     const movePage2=useCallback((e)=>{
         if(isLogin===true){
             navigate(e.target.dataset.path);
@@ -113,46 +130,57 @@ const Sidebar = ({setShowSidebar}) => {
             navigate("/login");
             setShowSidebar(false);
         }
-    },[])
+    }, [isLogin, navigate, setShowSidebar]);
 
+    // sidebar가 unmount될때 fadeout애니메이션 적용??
+    // useEffect(()=>{
+    //     return(()=>{
+
+    //     })
+    // }, [])
 
     return (
-        <SidebarContainer>
-            
-            <div className="sidebar_content">
-            <div className="back"></div>
-            {
-                //로그인여부에 따라 조건부 렌더링
-                isLogin? ( 
-                    <div className="user_inform" data-path="/userinfo" onClick={movePage}>
-                        <div className='profile_img'>
-                            <img src="" alt="img" />
+        <>
+            <Spinner visible={loading}/>
+
+            <SidebarContainer>
+                <div className="sidebar_content">
+                <div className="back"></div>
+                {
+                    //로그인여부에 따라 조건부 렌더링
+                    isLogin? ( 
+                        <div className="user_inform" data-path="/userinfo" onClick={movePage}>
+                            <div className='profile_img'>
+                                <img src="" alt="img" />
+                            </div>
+                            <div className="profile_text">
+                                <h1>Hello</h1>
+                                <h1>Bona!(변수)</h1>
+                            </div>
                         </div>
-                        <div className="profile_text">
-                            <h1>Hello</h1>
-                            <h1>Bona!(변수)</h1>
-                        </div>
-                    </div>
-                    ):(
-                        <div className='login' data-path='/login' onClick={movePage}>
-                        로그인/회원가입
-                        </div>
-                    )
-            }
-            {/* menu 링크 */}
-            <ul className='menu'>
-            <li onClick={movePage2} data-path='/mylike'>내 저장</li>
-            <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
-            <li onClick={movePage2} data-path='/myqna'>내 문의</li>
-            <li onClick={movePage} data-path='/tourkit'>여행도구</li>
-            <li onClick={movePage} data-path='/service'>고객센터</li>
-            {
-                isLogin? (<li>로그아웃</li>):''
-            }
-            </ul>
-            </div>
-        </SidebarContainer>
-        
+                        ):(
+                            <div className='login' data-path='/login' onClick={movePage}>
+                            로그인/회원가입
+                            </div>
+                        )
+                }
+                {/* menu 링크 */}
+                <ul className='menu'>
+                <li onClick={movePage2} data-path='/mylike'>내 저장</li>
+                <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
+                <li onClick={movePage2} data-path='/myqna'>내 문의</li>
+                <li onClick={movePage} data-path='/tourkit'>여행도구</li>
+                <li onClick={movePage} data-path='/service'>고객센터</li>
+                {
+                    isLogin ? (
+                    <li>
+                        <button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button>
+                    </li>) : ''
+                }
+                </ul>
+                </div>
+            </SidebarContainer>
+        </>
     );
 }; 
 

@@ -51,12 +51,12 @@ const BoardPage = () => {
             {api === 'notice' ? (
                 <div className='content'>
                     <h1>공지사항</h1>
-                    {data && data.map((v, i) => <BoardItem key={i} item={v} api={api}/>)}
+                    {data && data.item.map((v, i) => <BoardItem key={v.notice_no} item={v} api={api}/>)}
                 </div>
             ) : (
                 <div className='content'>
                     <h1>자주 묻는 질문</h1>
-                    {data && data.map((v, i) => <BoardItem key={i} item={v} api={api}/>)}
+                    {data && data.item.map((v, i) => <BoardItem key={v.notice_no} item={v} api={api}/>)}
                     <NavLink to='/qna'>
                         <button type='button'>1:1 문의하기</button>
                     </NavLink>
