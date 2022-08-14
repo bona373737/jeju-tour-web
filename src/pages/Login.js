@@ -11,6 +11,8 @@ import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 import regexHelper from '../libs/RegexHelper.js';
 import useAxios from "axios-hooks";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfo } from '../slices/UserInfoSlice';
 
 import crypto from 'crypto-js';
 
@@ -98,6 +100,7 @@ const LoginContainer = styled.div`
 const Login = () => {
     /** 저장 완료 후 목록으로 되돌아가기 위한 페이지 강제 이동 함수 생성 */
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     /** 백엔드에 데이터 저장을 위한 Ajax 요청 객체 생성 - 메뉴얼 전송 모드 */
     const [{ data, loading, error }, refetch] = useAxios({
@@ -157,6 +160,9 @@ const Login = () => {
             window.alert('로그인 완료되었습니다.');
             // 첫 페이지로 강제 이동
             navigate('/');
+            dispatch(getUserInfo());
+            
+
         }
 
         // 로그인 완료된 회원정보 콘솔에 테스트 표시

@@ -6,6 +6,8 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled,{keyframes} from 'styled-components';
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfo } from '../../slices/UserInfoSlice';
 
 const fadeIn = keyframes`
     from{
@@ -79,6 +81,19 @@ const SidebarContainer = styled.div`
 `;
 
 const Sidebar = ({setShowSidebar}) => {
+    //현재 로그인된 사용자의 회원정보 
+    const dispatch = useDispatch();
+  
+    const userinfo = useSelector((state) => state.userinfo);
+    console.log(userinfo);
+
+    console.log(dispatch(getUserInfo()));
+    
+    // useEffect(()=>{
+    //     dispatch(getUserInfo());
+    // },[dispatch])
+
+
     //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
     const [isLogin, setIsLogin] = useState(false);
     
@@ -100,15 +115,10 @@ const Sidebar = ({setShowSidebar}) => {
         }
     },[])
 
-    //sidebar가 unmount될때 fadeout애니메이션 적용??
-    useEffect(()=>{
-        return(()=>{
-
-        })
-    },[])
 
     return (
         <SidebarContainer>
+            
             <div className="sidebar_content">
             <div className="back"></div>
             {
