@@ -5,15 +5,14 @@
  * @Description: 회원 로그인 페이지
  *               비밀번호 암호화_crypto-js사용_양방향암호화하여 전송
  */
+
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
-import crypto from 'crypto-js';
-import { useSelector, useDispatch } from 'react-redux';
-import { postLogin } from '../slices/MemberSlice';
+import regexHelper from '../libs/RegexHelper.js';
+import useAxios from "axios-hooks";
 
-import regexHelper from '../libs/RegexHelper';
-import Spinner from '../components/Spinner';
+import crypto from 'crypto-js';
 
 const LoginContainer = styled.div`
     width: 100%;
@@ -97,20 +96,28 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
-    // 리덕스 로그인 세션 상태 관리
-    const dispatch = useDispatch();
-    const { data, loading } = useSelector((state) => state.member);
-    // 페이지 강제 이동 함수 생성
+    /** 저장 완료 후 목록으로 되돌아가기 위한 페이지 강제 이동 함수 생성 */
     const navigate = useNavigate();
 
-    /** form submit 이벤트 */
-    const loginSubmit = useCallback(e => {
-        e.preventDefault();
+    /** 백엔드에 데이터 저장을 위한 Ajax 요청 객체 생성 - 메뉴얼 전송 모드 */
+    const [{ data, loading, error }, refetch] = useAxios({
+        url: '/login',
+        method: 'POST'
+    },
+    { manual: true });
 
+    // 사용자 입력값 담을 변수 정의
+    let userid = null;
+    let password = null;
+
+    /**<Form>의 submit 버튼이 눌러졌을 때 호출될 이벤트 핸들러 */
+    const loginUser = async(e) => {
+        e.preventDefault();
+        
         // 입력한 아이디, 비밀번호 추출하기
         const current = e.target;
-        const userid = current.userid.value;
-        let password = current.password.value;
+        userid = current.userid.value;
+        password = current.password.value;
 
         // 입력값에 대한 유효성 검사
         try { 
@@ -127,58 +134,64 @@ const Login = () => {
         const secretKey = 'secret key'; //config.env파일로 불러오게 수정 필요
         password = crypto.AES.encrypt(password, secretKey).toString();
 
-        // 리덕스를 통해 로그인 전송
-        dispatch(postLogin({
+        /** 유효성 검사 및 암호화 완료된 데이터 저장 */
+        const input_data = {
             userid: userid,
             password: password,
-        })).then(() => {
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-            if (data && data.rt === 500) {
-                const errMsg = `[${data.rt}] ${data.rtmsg}`;
-                window.alert(errMsg);
-            } else {
-                window.alert('로그인 완료되었습니다.');
-                // 첫 페이지로 강제 이동
-                navigate('/');
-            }
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-        });
+        };
 
-    }, [dispatch, navigate, data]);
+        // 백엔드 응답 결과(response.data)를 저장하기 위한 변수
+        let json = null;
+
+        try {
+            const response = await refetch({data: input_data});
+            json = response.data;
+        } catch(err) {
+            const errMsg = `[${err.response.status}]${err.response.statusText}`;
+            console.error(errMsg);
+            alert('아이디나 비밀번호가 올바르지 않습니다.');
+        }
+
+        // 정상적으로 저장되어 응답을 받았다면?
+        if (json !== null) {
+            window.alert('로그인 완료되었습니다.');
+            // 첫 페이지로 강제 이동
+            navigate('/');
+        }
+
+        // 로그인 완료된 회원정보 콘솔에 테스트 표시
+        console.log(json);
+    };
 
     return (
-        <>
-            <Spinner visible={loading}/>
-            
-            <LoginContainer>
-                <div className="login_content">
-                    <h3 className="headfont">로그인</h3>
-                    <form onSubmit={loginSubmit}>
-                        <input type="text" name="userid" className="input_text" placeholder="아이디"></input>
-                        <span>아이디를 입력하세요.</span>
-                        <br />
-                        <input type="password" name="password" className="input_text" placeholder="비밀번호"></input>
-                        <span>비밀번호를 입력하세요.</span>
-                        <br />
-                        <button type="submit" name="login" value="login" className="login">로그인</button>
-                    </form>
+        <LoginContainer>
+            <div className="login_content">
+                <h3 className="headfont">로그인</h3>
+                <form onSubmit={loginUser}>
+                    <input type="text" name="userid" className="input_text" placeholder="아이디"></input>
+                    <span>아이디를 입력하세요.</span>
+                    <br />
+                    <input type="password" name="password" className="input_text" placeholder="비밀번호"></input>
+                    <span>비밀번호를 입력하세요.</span>
+                    <br />
+                    <button type="submit" name="login" value="login" className="login">로그인</button>
+                </form>
 
-                    <div className="find_button_area">
-                        <button type="button" name="find_id" value="find_id" className="find_button">아이디 찾기</button>
-                        <button type="button" name="find_pw" value="find_pw" className="find_button">비밀번호 찾기</button>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <h3 className="headfont">아직 계정이 없으신가요?</h3>
-
-                    <NavLink to="/signup">
-                        <button type="button" id="signup" className="signup">회원가입</button>
-                    </NavLink>
+                <div className="find_button_area">
+                    <button type="button" name="find_id" value="find_id" className="find_button">아이디 찾기</button>
+                    <button type="button" name="find_pw" value="find_pw" className="find_button">비밀번호 찾기</button>
                 </div>
-            </LoginContainer>
-        </>
+                <br />
+                <br />
+                <br />
+                <br />
+                <h3 className="headfont">아직 계정이 없으신가요?</h3>
+
+                <NavLink to="/signup">
+                    <button type="button" id="signup" className="signup">회원가입</button>
+                </NavLink>
+            </div>
+        </LoginContainer>
     );
 };
 

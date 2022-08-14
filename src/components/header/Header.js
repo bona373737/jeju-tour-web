@@ -12,7 +12,6 @@ import { getIsLogin } from '../../slices/MemberSlice';
 import Sidebar from "./Sidebar";
 import Search from "./Search";
 import Spinner from "../Spinner";
-import ErrorView from "../ErrorView";
 
 import Logo from "../../assets/icon/logo.png";
 import SearchButton from "../../assets/icon/search.png";
@@ -72,13 +71,13 @@ const HeaderContainer = styled.div`
 const Header = memo(() => {
     // 리덕스 로그인 세션 상태 관리
     const dispatch = useDispatch();
-    const { data, loading, error } = useSelector((state) => state.member);
+    const { data, loading } = useSelector((state) => state.member);
     // sidebar 열림/닫힘 상태값
     const [showSidebar, setShowSidebar] = useState(false);
     // search popup 열림/닫힘 상태값
     const [isOpen, setIsOpen] = useState(false);
 
-    // 로그인 세션 상태 확인
+    // 화면에 마운트됨과 동시에 로그인 세션 상태 확인
     useEffect(() => {
         dispatch(getIsLogin());
     }, [dispatch]);
@@ -106,42 +105,38 @@ const Header = memo(() => {
         <>
             <Spinner visible={loading}/>
 
-            {error ? (
-                <ErrorView error={error} />
-            ) : (
-                <HeaderContainer>
-                    <div className="content_wrap">
-                        <NavLink to="/">
-                            <div className="logo_area">
-                                <img className="logo" src={Logo} alt="logo" />
-                                <h1>tray</h1>
-                            </div>
-                        </NavLink>
-                        <div className="icons_area">
-                            <img
-                                className="search_button"
-                                src={SearchButton}
-                                alt="search"
-                                onClick={openSearch}
-                            />
-                            <h1>검색</h1>
-
-                            <Search open={isOpen} setIsOpen={setIsOpen} close={closeSearch} />
-
-                            <img
-                                className="menu_button"
-                                src={MenuButton}
-                                alt="menu"
-                                onClick={toggleSidebar}
-                            />
-                            <h1>☰</h1>
+            <HeaderContainer>
+                <div className="content_wrap">
+                    <NavLink to="/">
+                        <div className="logo_area">
+                            <img className="logo" src={Logo} alt="logo" />
+                            <h1>tray</h1>
                         </div>
+                    </NavLink>
+                    <div className="icons_area">
+                        <img
+                            className="search_button"
+                            src={SearchButton}
+                            alt="search"
+                            onClick={openSearch}
+                        />
+                        <h1>검색</h1>
+
+                        <Search open={isOpen} setIsOpen={setIsOpen} close={closeSearch} />
+
+                        <img
+                            className="menu_button"
+                            src={MenuButton}
+                            alt="menu"
+                            onClick={toggleSidebar}
+                        />
+                        <h1>☰</h1>
                     </div>
-                    {showSidebar ? (
-                        data && <Sidebar setShowSidebar={setShowSidebar} item={data.item} />
-                    ) : ""}
-                </HeaderContainer>
-            )}
+                </div>
+                {showSidebar ? (
+                    data && <Sidebar setShowSidebar={setShowSidebar} item={data.item} />
+                ) : ""}
+            </HeaderContainer>
         </>
     );
 });

@@ -4,14 +4,13 @@
  *          로그아웃기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteLogin } from '../../slices/MemberSlice';
 
 import Spinner from '../Spinner';
-import ErrorView from '../ErrorView';
 
 const fadeIn = keyframes`
     from{
@@ -89,7 +88,7 @@ const Sidebar = ({setShowSidebar, item}) => {
     const isLogin = item.isLogin;
     // 리덕스 로그인 세션 상태 관리
     const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.member);
+    const { loading } = useSelector((state) => state.member);
     
     /** logout 버튼 클릭 이벤트 */
     const logout = useCallback(e => {
@@ -128,47 +127,43 @@ const Sidebar = ({setShowSidebar, item}) => {
         <>
             <Spinner visible={loading}/>
 
-            {error ? (
-                <ErrorView error={error} />
-            ) : (
-                <SidebarContainer>
-                    <div className="sidebar_content">
-                    <div className="back"></div>
-                    {
-                        //로그인여부에 따라 조건부 렌더링
-                        isLogin? ( 
-                            <div className="user_inform" data-path="/userinfo" onClick={movePage}>
-                                <div className='profile_img'>
-                                    <img src="" alt="img" />
-                                </div>
-                                <div className="profile_text">
-                                    <h1>Hello</h1>
-                                    <h1>Bona!(변수)</h1>
-                                </div>
+            <SidebarContainer>
+                <div className="sidebar_content">
+                <div className="back"></div>
+                {
+                    //로그인여부에 따라 조건부 렌더링
+                    isLogin? ( 
+                        <div className="user_inform" data-path="/userinfo" onClick={movePage}>
+                            <div className='profile_img'>
+                                <img src="" alt="img" />
                             </div>
-                            ):(
-                                <div className='login' data-path='/login' onClick={movePage}>
-                                로그인/회원가입
-                                </div>
-                            )
-                    }
-                    {/* menu 링크 */}
-                    <ul className='menu'>
-                    <li onClick={movePage2} data-path='/mylike'>내 저장</li>
-                    <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
-                    <li onClick={movePage2} data-path='/myqna'>내 문의</li>
-                    <li onClick={movePage} data-path='/tourkit'>여행도구</li>
-                    <li onClick={movePage} data-path='/service'>고객센터</li>
-                    {
-                        isLogin ? (
-                        <li>
-                            <button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button>
-                        </li>) : ''
-                    }
-                    </ul>
-                    </div>
-                </SidebarContainer>
-            )}
+                            <div className="profile_text">
+                                <h1>Hello</h1>
+                                <h1>Bona!(변수)</h1>
+                            </div>
+                        </div>
+                        ):(
+                            <div className='login' data-path='/login' onClick={movePage}>
+                            로그인/회원가입
+                            </div>
+                        )
+                }
+                {/* menu 링크 */}
+                <ul className='menu'>
+                <li onClick={movePage2} data-path='/mylike'>내 저장</li>
+                <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
+                <li onClick={movePage2} data-path='/myqna'>내 문의</li>
+                <li onClick={movePage} data-path='/tourkit'>여행도구</li>
+                <li onClick={movePage} data-path='/service'>고객센터</li>
+                {
+                    isLogin ? (
+                    <li>
+                        <button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button>
+                    </li>) : ''
+                }
+                </ul>
+                </div>
+            </SidebarContainer>
         </>
     );
 }; 
