@@ -4,7 +4,7 @@
  *          로그인/아웃 기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';

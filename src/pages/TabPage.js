@@ -54,7 +54,7 @@ const TabPage = () => {
     //redux사용하여 여행지 리스트 가져오기
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state[api]);
-    console.log(data);
+    // console.log(data);
 
     //tab바뀔때마다 데이터 재전송
     useEffect(() => {
