@@ -134,44 +134,18 @@ const Login = () => {
         dispatch(postLogin({
             userid: userid,
             password: password,
-        })).then(() => {
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-            if (data && data.rt === 500) {
-                const errMsg = `[${data.rt}] ${data.rtmsg}`;
-                window.alert(errMsg);
-            } else {
+        })) 
+        .unwrap()
+        .then(() => {
                 window.alert('로그인 완료되었습니다.');
-                // 첫 페이지로 강제 이동
                 navigate('/');
-            }
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-        });
+        })
+        .catch(error =>{
+            const errMsg = `[${error.data.rt}] ${error.data.rtmsg}`;
+            window.alert(errMsg);
+        })
 
-        // 백엔드 응답 결과(response.data)를 저장하기 위한 변수
-        let json = null;
-
-        try {
-            const response = refetch({data: input_data});
-            json = response.data;
-        } catch(err) {
-            const errMsg = `[${err.response.status}]${err.response.statusText}`;
-            console.error(errMsg);
-            alert('아이디나 비밀번호가 올바르지 않습니다.');
-        }
-
-        // 정상적으로 저장되어 응답을 받았다면?
-        if (json !== null) {
-            window.alert('로그인 완료되었습니다.');
-            // 첫 페이지로 강제 이동
-            navigate('/');
-            dispatch(getUserInfo());
-            
-
-        }
-
-        // 로그인 완료된 회원정보 콘솔에 테스트 표시
-        console.log(json);
-    }, [dispatch, navigate, data]);
+    }, []);
 
     return (
         <>
