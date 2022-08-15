@@ -1,14 +1,14 @@
 /** 
  * @Filename: Sidebar.js
  * @Author: 웹퍼블작업 및 전체기능구현_구본아(bona373737@gmail.com)
- *          로그아웃기능구현_구나래(nrggrnngg@gmail.com)
+ *          로그인/아웃 기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteLogin } from '../../slices/MemberSlice';
+import { getIsLogin, deleteLogin } from '../../slices/MemberSlice';
 
 import Spinner from '../Spinner';
 
@@ -83,38 +83,54 @@ const SidebarContainer = styled.div`
     }//sidebar_content end
 `;
 
-const Sidebar = ({setShowSidebar, item}) => {
-    // 로그인 상태값 변수
-    const isLogin = item.isLogin;
+const Sidebar = ({setShowSidebar}) => {
+    // 페이지 강제 이동 함수 생성
+    const navigate = useNavigate();
     // 리덕스 로그인 세션 상태 관리
     const dispatch = useDispatch();
-    const { loading } = useSelector((state) => state.member);
+    const { data, loading } = useSelector((state) => state.member);
     
+    /** 사이드바 마운트 시 로그인 여부 검사 */
+    useEffect(() => {
+        dispatch(getIsLogin());
+    }, [dispatch]);
+
     /** logout 버튼 클릭 이벤트 */
     const logout = useCallback(e => {
         e.preventDefault();
         // 리덕스를 통해 로그아웃 요청
-        dispatch(deleteLogin());
-    }, [dispatch]);
+        dispatch(deleteLogin())
+        .unwrap()
+        .then(() => {
+            // 로그아웃 성공 시
+            navigate('/');
+            setShowSidebar(false);
+        })
+        .catch(() => {
+            // 로그아웃 실패 시
+            alert('로그아웃에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        });
+    }, [dispatch, navigate, setShowSidebar]);
 
     /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 */
-    const navigate = useNavigate();
-    const movePage=useCallback((e)=>{
+    const movePage=useCallback(e => {
+        e.preventDefault();
         navigate(e.target.dataset.path);
         setShowSidebar(false);
     }, [navigate, setShowSidebar]);
 
     /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 + 비회원접속제한 */
-    const movePage2=useCallback((e)=>{
-        if(isLogin===true){
+    const movePage2=useCallback(e => {
+        e.preventDefault();
+        if(data) { // 로그인 상태
             navigate(e.target.dataset.path);
             setShowSidebar(false);
-        }else{
-            alert("로그인하세요")
+        } else { // 로그아웃 상태
+            alert("로그인을 해주세요.");
             navigate("/login");
             setShowSidebar(false);
         }
-    }, [isLogin, navigate, setShowSidebar]);
+    }, [data, navigate, setShowSidebar]);
 
     // sidebar가 unmount될때 fadeout애니메이션 적용??
     // useEffect(()=>{
@@ -131,21 +147,19 @@ const Sidebar = ({setShowSidebar, item}) => {
                 <div className="sidebar_content">
                 <div className="back"></div>
                 {
-                    //로그인여부에 따라 조건부 렌더링
-                    isLogin? ( 
+                    // 로그인 여부에 따라 조건부 렌더링
+                    data ? ( 
                         <div className="user_inform" data-path="/userinfo" onClick={movePage}>
                             <div className='profile_img'>
                                 <img src="" alt="img" />
                             </div>
                             <div className="profile_text">
-                                <h1>Hello</h1>
-                                <h1>Bona!(변수)</h1>
+                                <h1 className="font2">Hello,</h1>
+                                <h1 className="font2">{data.item.userid}!</h1>
                             </div>
                         </div>
-                        ):(
-                            <div className='login' data-path='/login' onClick={movePage}>
-                            로그인/회원가입
-                            </div>
+                        ) : (
+                        <div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>
                         )
                 }
                 {/* menu 링크 */}
@@ -156,7 +170,8 @@ const Sidebar = ({setShowSidebar, item}) => {
                 <li onClick={movePage} data-path='/tourkit'>여행도구</li>
                 <li onClick={movePage} data-path='/service'>고객센터</li>
                 {
-                    isLogin ? (
+                    // 로그인 여부에 따라 조건부 렌더링
+                    data ? (
                     <li>
                         <button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button>
                     </li>) : ''

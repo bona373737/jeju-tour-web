@@ -5,7 +5,7 @@
  * @Description: 회원 로그인 페이지
  *               비밀번호 암호화_crypto-js사용_양방향암호화하여 전송
  */
-import React, { useCallback } from "react";
+import React, { useCallback, useRef } from "react";
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
 import crypto from 'crypto-js';
@@ -17,10 +17,9 @@ import Spinner from '../components/Spinner';
 
 const LoginContainer = styled.div`
     width: 100%;
-    padding-top: 20%;
 
     h3 {
-        padding-bottom: 12%;
+        padding: 15% 0;
         display: flex;
         justify-content: center;
     }
@@ -55,11 +54,12 @@ const LoginContainer = styled.div`
                 background-color: var(--blue);
             }
 
-            span {
+            .err_msg {
                 color: red;
                 display: flex;
                 font-size: 14px;
                 padding: 4% 0 4% 0;
+                margin-bottom: 2%;
             }
         }
 
@@ -71,11 +71,12 @@ const LoginContainer = styled.div`
 
     .find_button_area {
         display: flex;
+        flex-flow: row wrap;
         justify-content: space-between;
 
         .find_button {
             font-size: 16px;
-            margin-top: 5%;
+            margin: 5% 0;
             width: 47%;
             height: 2.4em;
             border: none;
@@ -97,54 +98,62 @@ const LoginContainer = styled.div`
 `;
 
 const Login = () => {
-    // 리덕스 로그인 세션 상태 관리
-    const dispatch = useDispatch();
-    const { data, loading } = useSelector((state) => state.member);
     // 페이지 강제 이동 함수 생성
     const navigate = useNavigate();
+    // 리덕스 로그인 세션 상태 관리
+    const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.member);
+
+    /** input 입력칸 onBlur 이벤트 */
+    const onBlur = useCallback(e => {
+        // 입력값에 대한 유효성 검사
+        try {
+            switch(e.target.name) {
+                case 'userid':
+                    regexHelper.value(e.target.value, '아이디를 입력해주세요.');
+                    regexHelper.engNum(e.target.value,'아이디는 영어, 숫자만 입력 가능합니다.');
+                break;
+                case 'password':
+                    regexHelper.value(e.target.value, '비밀번호를 입력해주세요');
+                break;
+                default:
+                break;
+            }
+        } catch (err) {
+            console.log(err);
+            throw err;
+        }
+    }, []);
 
     /** form submit 이벤트 */
     const loginSubmit = useCallback(e => {
         e.preventDefault();
 
-        // 입력한 아이디, 비밀번호 추출하기
+        // 입력값 가져오기
         const current = e.target;
         const userid = current.userid.value;
         let password = current.password.value;
-
-        // 입력값에 대한 유효성 검사
-        try { 
-            regexHelper.value(userid, '아이디를 입력하세요.');
-            regexHelper.value(password, '비밀번호를 입력하세요.');
-        } catch(err) {
-            alert(err.message);
-            e.target.focus();
-            return;
-        }
 
         /** 비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 --> 사용자 입력값 암호화
         const secretKey = 'secret key'; //config.env파일로 불러오게 수정 필요
         password = crypto.AES.encrypt(password, secretKey).toString();
 
-        // 리덕스를 통해 로그인 전송
+        // 리덕스를 통해 로그인 요청
         dispatch(postLogin({
             userid: userid,
             password: password,
-        })).then(() => {
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-            if (data && data.rt === 500) {
-                const errMsg = `[${data.rt}] ${data.rtmsg}`;
-                window.alert(errMsg);
-            } else {
-                window.alert('로그인 완료되었습니다.');
-                // 첫 페이지로 강제 이동
-                navigate('/');
-            }
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
+        }))
+        .unwrap()
+        .then(() => {
+            // 로그인 성공 시
+            navigate('/');
+        })
+        .catch(err => {
+            // 로그인 실패 시
+            alert(err.data.rtmsg);
         });
-
-    }, [dispatch, navigate, data]);
+    }, [dispatch, navigate]);
 
     return (
         <>
@@ -152,14 +161,14 @@ const Login = () => {
             
             <LoginContainer>
                 <div className="login_content">
-                    <h3 className="headfont">로그인</h3>
+                    <h3 className="font2">로그인</h3>
                     <form onSubmit={loginSubmit}>
-                        <input type="text" name="userid" className="input_text" placeholder="아이디"></input>
-                        <span>아이디를 입력하세요.</span>
-                        <br />
-                        <input type="password" name="password" className="input_text" placeholder="비밀번호"></input>
-                        <span>비밀번호를 입력하세요.</span>
-                        <br />
+                        <input type="text" name="userid" onBlur={onBlur} className="input_text" placeholder="아이디"></input>
+                        <span id="err_id" className="err_msg">아이디를 입력하세요.</span>
+
+                        <input type="password" name="password" onBlur={onBlur} className="input_text" placeholder="비밀번호"></input>
+                        <span id="err_pw" className="err_msg">비밀번호를 입력하세요.</span>
+
                         <button type="submit" name="login" value="login" className="login">로그인</button>
                     </form>
 
@@ -167,11 +176,8 @@ const Login = () => {
                         <button type="button" name="find_id" value="find_id" className="find_button">아이디 찾기</button>
                         <button type="button" name="find_pw" value="find_pw" className="find_button">비밀번호 찾기</button>
                     </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <h3 className="headfont">아직 계정이 없으신가요?</h3>
+
+                    <h3 className="font2">아직 계정이 없으신가요?</h3>
 
                     <NavLink to="/signup">
                         <button type="button" id="signup" className="signup">회원가입</button>
