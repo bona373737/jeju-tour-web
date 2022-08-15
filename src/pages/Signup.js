@@ -145,7 +145,7 @@ const Signup = () => {
     for (let i = 1; i < 13; i++) month.push(i);
 
     //사용자 입력값 담을 변수정의
-    let userid = null
+    let userid = null;
     let password = null;
     let passwordCheck = null;
     let username = null;
@@ -153,62 +153,60 @@ const Signup = () => {
     let email = null;
 
     /**input입력칸 onBlur 이벤트 */
-    const onBlur = useCallback((e)=>{
-
+    const onBlur = useCallback(e => {
         try {            
             switch (e.target.id) {
                 case 'userid':
-                    RegexHelper.value(e.target.value,'아이디를 입력해 주세요');
+                    RegexHelper.value(e.target.value,'아이디를 입력해주세요');
                     RegexHelper.engNum(e.target.value,'아이디는 영어,숫자만 가능합니다.');
-                    break;
+                break;
                 case 'password':
-                    RegexHelper.value(e.target.value,'비밀번호를 입력해 주세요');
-                    break;
-                    case 'passwordCheck':
-                    RegexHelper.value(e.target.value,'비밀번호 확인을 입력해 주세요');
-                    break;
+                    RegexHelper.value(e.target.value,'비밀번호를 입력해주세요');
+                break;
+                case 'passwordCheck':
+                    RegexHelper.value(e.target.value,'비밀번호 확인을 입력해주세요');
+                break;
                 case 'username':
-                    RegexHelper.value(e.target.value,'성함를 입력해 주세요');
-                    break;
+                    RegexHelper.value(e.target.value,'성함를 입력해주세요');
+                break;
                 case 'birth_year':
                     if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생년도를 입력해 주세요');
+                        RegexHelper.value(e.target.value,'출생년도를 입력해주세요');
                     }
-                    break;
+                break;
                 case 'birth_month':
                     if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 월을 선택해 주세요');
+                        RegexHelper.value(e.target.value,'출생 월을 선택해주세요');
                     }
-                    break;
+                break;
                 case 'birth_day':
                     if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 일자를 입력해 주세요');
+                        RegexHelper.value(e.target.value,'출생 일자를 입력해주세요');
                     }
-                    break;
+                break;
                 case 'email':
                     RegexHelper.value(e.target.value, '이메일을 입력해주세요.');
-                    RegexHelper.engNum(e.target.value, '이메일은 영어,숫자만 가능합니다.')
-                    break;
+                    RegexHelper.engNum(e.target.value, '이메일은 영어,숫자만 가능합니다.');
+                break;
                 default:
-                    break;
+                break;
             }
                     
         } catch (error) {
             console.log(error);
             throw error;
         }
-        
     },[]);
 
     /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
     const [{ data, loading, error }, refetch] = useAxios({
-          url: '/members',
-          method: 'POST'
-        },
-        { manual: true })
+        url: '/members',
+        method: 'POST'
+    },
+    { manual: true });
 
     /**submit이벤트 : 전체입력값 유효성검사 재실행, 입력값 post전송 */
-    const onSubmit=async(e)=>{
+    const onSubmit = async(e) => {
         e.preventDefault();
 
         const current = e.target;
@@ -217,20 +215,20 @@ const Signup = () => {
         passwordCheck = current.passwordCheck.value;
         username = current.username.value;
         birthday = current.birth_year.value+'-'+current.birth_month.value+'-'+current.birth_day.value;
-        email = current.input_email.value+current.input_domain.value
+        email = current.input_email.value+current.input_domain.value;
         
         /**유효성검사*/
         try {
-            RegexHelper.value(userid,'아이디를 입력해 주세요')
-            RegexHelper.engNum(userid,'아이디는 영어,숫자만 가능합니다.')
-            RegexHelper.value(password,'비밀번호를 입력해 주세요')            
-            RegexHelper.value(passwordCheck,'비밀번호 확인을 입력해 주세요')
-            RegexHelper.value(username,'성함를 입력해 주세요')
-            if(birthday){
-                RegexHelper.value(birthday,'생년월일을 입력해 주세요')
-            }
-            RegexHelper.value(email, '이메일을 입력해주세요.')
-            RegexHelper.email(email,'이메일 형식이 잘못되었습니다.')
+            RegexHelper.value(userid,'아이디를 입력해주세요');
+            RegexHelper.engNum(userid,'아이디는 영어,숫자만 가능합니다.');
+            RegexHelper.value(password,'비밀번호를 입력해주세요');          
+            RegexHelper.value(passwordCheck,'비밀번호 확인을 입력해주세요');
+            RegexHelper.value(username,'성함를 입력해주세요');
+            if (birthday) {
+                RegexHelper.value(birthday,'생년월일을 입력해주세요');
+            };
+            RegexHelper.value(email, '이메일을 입력해주세요.');
+            RegexHelper.email(email,'이메일 형식이 잘못되었습니다.');
 
         } catch (error) {
             console.log(error);
@@ -256,7 +254,7 @@ const Signup = () => {
 
         let json = null;
         try {
-            await refetch({data:input_data})
+            await refetch({data:input_data});
             // json = response.data;
         } catch (error) {
             console.log(error);
@@ -264,7 +262,6 @@ const Signup = () => {
         }
 
     };
-
 
     return (
         <SignupContainer>
