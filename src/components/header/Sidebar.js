@@ -6,8 +6,9 @@
  */
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import styled,{keyframes} from 'styled-components';
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfo } from '../../slices/UserInfoSlice';
 import { deleteLogin } from '../../slices/MemberSlice';
 
 import Spinner from '../Spinner';
@@ -83,12 +84,27 @@ const SidebarContainer = styled.div`
     }//sidebar_content end
 `;
 
-const Sidebar = ({setShowSidebar, item}) => {
+const Sidebar = ({setShowSidebar}) => {
+    //현재 로그인된 사용자의 회원정보 
+    const dispatch = useDispatch();
+  
+    const userinfo = useSelector((state) => state.userinfo);
+    console.log(userinfo);
+
+    console.log(dispatch(getUserInfo()));
+    
+    // useEffect(()=>{
+    //     dispatch(getUserInfo());
+    // },[dispatch])
+
     // 로그인 상태값 변수
     const isLogin = item.isLogin;
     // 리덕스 로그인 세션 상태 관리
-    const dispatch = useDispatch();
     const { loading } = useSelector((state) => state.member);
+
+
+    //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
+    // const [isLogin, setIsLogin] = useState(false);
     
     /** logout 버튼 클릭 이벤트 */
     const logout = useCallback(e => {

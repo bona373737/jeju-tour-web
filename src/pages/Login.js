@@ -8,8 +8,11 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom";
+import useAxios from "axios-hooks";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserInfo } from '../slices/UserInfoSlice';
+
 import crypto from 'crypto-js';
-import { useSelector, useDispatch } from 'react-redux';
 import { postLogin } from '../slices/MemberSlice';
 
 import regexHelper from '../libs/RegexHelper';
@@ -131,20 +134,18 @@ const Login = () => {
         dispatch(postLogin({
             userid: userid,
             password: password,
-        })).then(() => {
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-            if (data && data.rt === 500) {
-                const errMsg = `[${data.rt}] ${data.rtmsg}`;
-                window.alert(errMsg);
-            } else {
+        })) 
+        .unwrap()
+        .then(() => {
                 window.alert('로그인 완료되었습니다.');
-                // 첫 페이지로 강제 이동
                 navigate('/');
-            }
-            // !!!! 에러가 잡히지 않고, 계속해서 로그인 완료로만 넘어가는 오류있음 !!!! 
-        });
+        })
+        .catch(error =>{
+            const errMsg = `[${error.data.rt}] ${error.data.rtmsg}`;
+            window.alert(errMsg);
+        })
 
-    }, [dispatch, navigate, data]);
+    }, []);
 
     return (
         <>
