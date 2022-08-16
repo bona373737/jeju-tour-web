@@ -136,8 +136,9 @@ const Login = () => {
 
         /** 비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 --> 사용자 입력값 암호화
-        const secretKey = 'secret key'; //config.env파일로 불러오게 수정 필요
+        const secretKey = process.env.REACT_APP_CRYPTO_KEY;
         password = crypto.AES.encrypt(password, secretKey).toString();
+    
 
         // 리덕스를 통해 로그인 요청
         dispatch(postLogin({
