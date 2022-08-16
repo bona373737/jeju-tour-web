@@ -237,7 +237,7 @@ const Signup = () => {
 
         /**비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 암호화
-        const secretKey =  'secret key'; //config.env파일 저장된 값 불러온는 방식으로 수정필요
+        const secretKey = 'helloworld123'; // config.env 파일로 프론트에서 수정이 가능한가...?
         password = crypto.AES.encrypt(password, secretKey).toString();
         passwordCheck = crypto.AES.encrypt(passwordCheck, secretKey).toString();
         
