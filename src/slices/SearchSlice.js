@@ -7,7 +7,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { pending, fulfilled, rejected } from "../Util";
 import axios from 'axios';
 
-const URL = '/search';
+const URL = '/search/';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
 export const getSearchResult = createAsyncThunk('SearchSlice/getSearchResult', async (payload, { rejectWithValue }) => {

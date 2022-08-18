@@ -35,9 +35,9 @@ const BoardItem = ({item, api}) => {
             {api === 'notice' ? (
                 <>
                     {/* notice_no은 notice 아이디값(PK) */}
-                    <NavLink to={`/service/notice/${item.notice_no}`} state={{item: item, api: api}} className ="left">
+                    <NavLink to={`/service/notice/${item.notice_no}`} className ="left">
                         <p className='title'>{item.title}</p>
-                        <span>{item.reg_date}</span>
+                        <span>{item.reg_date.substring(0,10)}</span>
                     </NavLink>
                     <img className="arrow" src ={Arrow} alt="arrow"/>
                 </>
@@ -45,9 +45,9 @@ const BoardItem = ({item, api}) => {
             ) : (
                 <>
                     {/* faq_no은 faq 아이디값(PK) */}
-                    <NavLink to={`/service/faq/${item.faq_no}`} state={{item: item, api: api}} className ="left">
+                    <NavLink to={`/service/faq/${item.faq_no}`} className ="left">
                         <p className='title'>{item.title}</p>
-                        <span>{item.reg_date}</span>
+                        <span>{item.reg_date.substring(0,10)}</span>
                     </NavLink>
                     <img className="arrow" src ={Arrow} alt="arrow"/>
                 </>
