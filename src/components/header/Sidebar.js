@@ -154,7 +154,7 @@ const Sidebar = ({setShowSidebar}) => {
                                 {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
                                 {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
                                 <img src={data.item.profile_img} alt="img" />
-                                {console.log(data)}
+                                {/* {console.log(data)} */}
                             </div>
                             <div className="profile_text">
                                 <h1 className="font2">Hello,</h1>
