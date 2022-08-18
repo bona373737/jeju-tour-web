@@ -31,9 +31,9 @@ const Meta = (props) => {
 
 // props에 대한 기본값 설정
 Meta.defaultProps = {
-    title: "React Team Project",
-    description: "React.js로 구현한 팀 프로젝트 모바일 웹 페이지 입니다.",
-    keywords: "React, team, portfolio, demo, mobile, web",
+    title: "Jeju Tour Web - Team Project",
+    description: "React.js로 구현한 제주 여행 모바일 웹 페이지 입니다.",
+    keywords: "React, team, portfolio, demo, mobile, web, jeju, tour, travel",
     author: "Jaei, Bona, Narae",
     // image: '기본이미지변수적용',
     url: window.location.href,
