@@ -7,7 +7,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { pending, fulfilled, rejected } from "../Util";
 import axios from 'axios';
 
-const URL = '/session/login';
+const URL = '/session/login/';
 
 /** 회원 로그인 여부 검사를 위한 비동기 함수 */
 export const getIsLogin = createAsyncThunk('MemberSlice/getIsLogin', async (payload, { rejectWithValue }) => {

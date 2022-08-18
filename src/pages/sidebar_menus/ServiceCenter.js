@@ -3,7 +3,7 @@
  * @Author: 구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바의 고객센터 메뉴 페이지 
  */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -46,7 +46,7 @@ const ServiceContainer = styled.div`
     }
 `;
 
-const ServiceCenter = () => { 
+const ServiceCenter = () => {
     return (
         <ServiceContainer>
             <div className='content'>
@@ -64,7 +64,7 @@ const ServiceCenter = () => {
                     <ul>
                         {/* 1 = faq_no, faq 아이디값(PK) */}
                         {/* 여기 링크 연결 안 됨! 상세 페이지로 어떻게 연결할지 미해결 */}
-                        <NavLink to='/service/faq/1'>
+                        <NavLink to='/service/faq/2'>
                             <li>Q. 계정을 잊어버렸어요.</li>
                         </NavLink>
                     </ul>
