@@ -31,21 +31,19 @@ const ReviewItemContainer = styled.li`
     }
 `;
 
-const ReivewItem = (item) => {
+const ReivewItem = ({item}) => {
     const [editBtn, setEditBtn] = useState(false);
-    console.log(item);
-
+    
     return (
         <ReviewItemContainer>
-            <Collapsible trigger={<ReviewTrigger/>}>
+            <Collapsible trigger={<ReviewTrigger item={item}/>}>
                 {
                     editBtn? 
-                    <textarea name="" id="" cols="30" rows="10" defaultValue={"Lorem ipsum dolor sit amet consectetur adipisicing elit."}>
-
+                    <textarea name="" id="" cols="30" rows="10" defaultValue="">
                     </textarea>
                     :
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        {item.content}
                     </p>
                 }
                 <div className='btn_wrap'>
@@ -61,5 +59,6 @@ const ReivewItem = (item) => {
         </ReviewItemContainer>
     );
 };
+
 
 export default ReivewItem;

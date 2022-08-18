@@ -27,14 +27,13 @@ const MyReview = () => {
         <MyReviewContainer>
             <h1>내 리뷰</h1>
             <ul>
-                {
-                    data?.item.map((v,i)=>{
-                        console.log(v);
-                        // <ReivewItem item={v}></ReivewItem>
+                { data && (  
+                    data.item.map((v,i)=>{
+                        return (
+                            <ReivewItem key={i} item={v}></ReivewItem>
+                        )
                     })
-                }
-                <ReivewItem></ReivewItem>
-                <ReivewItem></ReivewItem>
+                )}
             </ul>
         </MyReviewContainer>
     );
