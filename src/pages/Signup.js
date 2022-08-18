@@ -9,9 +9,10 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import RegexHelper from '../libs/RegexHelper';
-import useAxios from "axios-hooks";
+import { useNavigate } from 'react-router-dom';
 
 import crypto from 'crypto-js';
+import axios from "axios";
 // import Arrow from "../assets/icon/arrow.png";
 
 const SignupContainer = styled.div`
@@ -140,6 +141,8 @@ const SignupContainer = styled.div`
 `;
 
 const Signup = () => {
+    const navigate = useNavigate();
+
     /** 월 입력폼 반복 돌려 구현하기 */
     const month = [];
     for (let i = 1; i < 13; i++) month.push(i);
@@ -198,13 +201,6 @@ const Signup = () => {
         }
     },[]);
 
-    /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
-    const [{ data, loading, error }, refetch] = useAxios({
-        url: '/members',
-        method: 'POST'
-    },
-    { manual: true });
-
     /**submit이벤트 : 전체입력값 유효성검사 재실행, 입력값 post전송 */
     const onSubmit = async(e) => {
         e.preventDefault();
@@ -237,11 +233,10 @@ const Signup = () => {
 
         /**비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 암호화
-        const secretKey =  'secret key'; //config.env파일 저장된 값 불러온는 방식으로 수정필요
+        const secretKey = process.env.REACT_APP_CRYPTO_KEY;
         password = crypto.AES.encrypt(password, secretKey).toString();
         passwordCheck = crypto.AES.encrypt(passwordCheck, secretKey).toString();
         
-
         /**유효성검사 완료 후 입력값 변수로 저장 */
         const input_data={
             userid : userid,
@@ -254,13 +249,14 @@ const Signup = () => {
 
         let json = null;
         try {
-            await refetch({data:input_data});
-            // json = response.data;
+            json = await axios.post("/members",input_data)
         } catch (error) {
             console.log(error);
-            // window.(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
+            window.alert(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
         }
-
+        window.alert(json.data.item + "님 회원가입 완료")
+        console.log(json);
+        navigate("/");
     };
 
     return (
