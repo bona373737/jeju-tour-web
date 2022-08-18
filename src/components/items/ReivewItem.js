@@ -31,8 +31,9 @@ const ReviewItemContainer = styled.li`
     }
 `;
 
-const ReivewItem = () => {
+const ReivewItem = (item) => {
     const [editBtn, setEditBtn] = useState(false);
+    console.log(item);
 
     return (
         <ReviewItemContainer>
