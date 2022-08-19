@@ -11,6 +11,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import useAxios from 'axios-hooks';
 import ReviewItem from '../../components/items/ReviewItem';
+import Heart from '../../components/Heart';
 
 
 const DetailContainer=styled.div`
@@ -42,12 +43,13 @@ const ListDetail = () => {
     const [{data,loading,error},refetch] = useAxios({
         url:`/reviews/${ref_type}/${ref_id}`,
         method:'GET'
-    });
+    },{useCache:false});
     // console.log(data.item);
 
     return (
         <DetailContainer>
-
+            {/* 좋아요버튼 : 로그인 상태인 경우에만 렌더링 */}
+            <Heart ref_id={ref_id} ref_type={ref_type}></Heart>
             <h1>{item.title}</h1>
             <h1>{item.introduction}</h1>
             <h1>{item.address}</h1>

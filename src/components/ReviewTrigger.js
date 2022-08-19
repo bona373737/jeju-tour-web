@@ -43,8 +43,7 @@ const ReviewTrigger = ({item}) => {
                         {item.title}
                     </div>
                 </ReviewTriggerContainer>
-                )
-            
+        )      
     );
 };
 
