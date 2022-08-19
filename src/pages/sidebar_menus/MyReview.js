@@ -5,7 +5,7 @@
  */
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ReivewItem from "../../components/items/ReivewItem";
+import ReviewItem from "../../components/items/ReviewItem";
 import { useSelector, useDispatch } from "react-redux";
 import { getMyReviewList } from "../../slices/MyReviewSlice";
 
@@ -27,14 +27,13 @@ const MyReview = () => {
         <MyReviewContainer>
             <h1>내 리뷰</h1>
             <ul>
-                {
-                    data?.item.map((v,i)=>{
-                        console.log(v);
-                        // <ReivewItem item={v}></ReivewItem>
+                { data && (  
+                    data.item.map((v,i)=>{
+                        return (
+                            <ReviewItem key={i} item={v}></ReviewItem>
+                        )
                     })
-                }
-                <ReivewItem></ReivewItem>
-                <ReivewItem></ReivewItem>
+                )}
             </ul>
         </MyReviewContainer>
     );
