@@ -31,20 +31,21 @@ const ReviewItemContainer = styled.li`
     }
 `;
 
-const ReivewItem = ({item}) => {
+const ReviewItem = ({item}) => {
     const [editBtn, setEditBtn] = useState(false);
     
     return (
-        <ReviewItemContainer>
+        item &&(
+            <ReviewItemContainer>
             <Collapsible trigger={<ReviewTrigger item={item}/>}>
-                {
-                    editBtn? 
-                    <textarea name="" id="" cols="30" rows="10" defaultValue="">
-                    </textarea>
-                    :
-                    <p>
-                        {item.content}
-                    </p>
+            {
+                editBtn? 
+                <textarea name="" id="" cols="30" rows="10" defaultValue={item.content}>
+                </textarea>
+                :
+                <p>
+                    {item.content}
+                </p>
                 }
                 <div className='btn_wrap'>
                     {
@@ -56,9 +57,9 @@ const ReivewItem = ({item}) => {
                     <SubmitBtn children="삭제"></SubmitBtn>
                 </div>
             </Collapsible>
-        </ReviewItemContainer>
+            </ReviewItemContainer>
+        )
     );
-};
-
-
-export default ReivewItem;
+};//component end
+                
+export default ReviewItem;

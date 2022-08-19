@@ -5,7 +5,7 @@
  *               클릭된 리스트를 식별할 수 있도록
  *               props로 클릭된 리스트의 id를 ListDetail.js에 전달한다.
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -32,7 +32,7 @@ const ListItemContainer = styled.div`
     }
 `;
 
-const ListItem = ({item,api}) => {
+const ListItem = ({item,api}) => {   
 
     // const rawData = item.sbst.data;
     // rawData == 타입이 뭔지
@@ -52,12 +52,12 @@ const ListItem = ({item,api}) => {
     return (
         <ListItemContainer>
             {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
-            <NavLink to={'/tab/'+api+'/'+item.placeno} state={{item:item}}>
+            <NavLink to={'/tab/'+api+'/'+item.place_no} state={{item:item}}>
                 <div className='img_wrap'>
                     <img src=''/>
                 </div>
                 <div className='text_wrap'>
-                    <p>{item?.placeno}</p>
+                    <p>{item?.place_no}</p>
                     <p>{item?.title}</p>
                     <p>{item?.address}</p>
                     <p>{item?.phoneno}</p>

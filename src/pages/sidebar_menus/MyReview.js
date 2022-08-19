@@ -5,7 +5,7 @@
  */
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ReivewItem from "../../components/items/ReivewItem";
+import ReviewItem from "../../components/items/ReviewItem";
 import { useSelector, useDispatch } from "react-redux";
 import { getMyReviewList } from "../../slices/MyReviewSlice";
 
@@ -30,7 +30,7 @@ const MyReview = () => {
                 { data && (  
                     data.item.map((v,i)=>{
                         return (
-                            <ReivewItem key={i} item={v}></ReivewItem>
+                            <ReviewItem key={i} item={v}></ReviewItem>
                         )
                     })
                 )}
