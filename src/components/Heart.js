@@ -9,14 +9,17 @@
 import axios from 'axios';
 
  const HeartContainer = styled.div`
-    .likeIcon{
+    .like_icon{
         width: 50px;
         cursor: pointer;
         //gray색상(좋아요X 상태)
         filter: invert(99%) sepia(2%) saturate(2923%) hue-rotate(203deg) brightness(115%) contrast(76%);
+    }
+    .like_icon_active{
+        width: 50px;
+        cursor: pointer;
         //red색상(좋아요O 상태)
-        /* filter:invert(11%) sepia(99%) saturate(6586%) hue-rotate(350deg) brightness(100%) contrast(88%) */
-
+        filter:invert(11%) sepia(99%) saturate(6586%) hue-rotate(350deg) brightness(100%) contrast(88%);
     }
  `;
 
@@ -39,7 +42,9 @@ import axios from 'axios';
     // console.log(data);
     //좋아요상태 초기값은 좋아요 여부확인 get요청 결과값으로 셋팅
     const initIsLiked = data?.item.isLiked? true : false;
+    const initLikedCss = data?.item.isLiked? "like_icon_active" : "like_icon";
     const [isLiked, setIsLiked] = useState(initIsLiked);
+    const [likedCss, setLikedCss] =useState(initLikedCss);
     
     //좋아요 버트 클릭이벤트
     const onClick = useCallback(()=>{
@@ -53,7 +58,7 @@ import axios from 'axios';
                 return;
             }
             //+ 아이콘색상 회색으로 변경
-            
+            setLikedCss("like_icon")
             //좋아요 삭제요청 성공시 isLiked값 false로 변경
             setIsLiked(false)
 
@@ -70,7 +75,7 @@ import axios from 'axios';
                 return;
             }
             //+ 아이콘색상 빨강으로 변경
-
+            setLikedCss("like_icon_active")
             //좋아요 추가요청 성공시 isLiked값 ture로 변경
             setIsLiked(true)
 
@@ -79,7 +84,7 @@ import axios from 'axios';
 
      return (
          <HeartContainer>
-            <img src={likeIcon} className="likeIcon" onClick={onClick}></img>
+            <img src={likeIcon} className={likedCss} onClick={onClick}></img>
          </HeartContainer>
      );
  };
