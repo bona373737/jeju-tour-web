@@ -5,18 +5,25 @@
  *               path 파라미터를 전달받아 axios 통신 파라미터로 전달
  *               여행지, 숙소, 음식 각 데이터를 불러와 화면에 리스트로 출력
  */
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+//Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getPlaceList } from "../slices/PlaceSlice";
 import { getAccomList } from "../slices/AccomSlice";
 import { getFoodList } from "../slices/FoodSlice";
-import styled from "styled-components";
+import { getIsLogin } from '../slices/MemberSlice';
+
 
 import Spinner from '../components/Spinner';
 import TabArea from "../components/TabArea";
 import ListItem from "../components/items/ListItem";
 import HashtagBtn from "../components/buttons/HashtagBtn";
+import Heart from "../components/Heart";
+import { getMyLikeList } from "../slices/MyLikeSlice";
+
 
 const TabPageContainer = styled.div`
     .content_wrap {
@@ -37,7 +44,10 @@ const TabPageContainer = styled.div`
                 flex: 0 0 auto;
             }
         }
-        .list_wrap {
+        .list_wrap{
+            .item_wrap{
+                display: flex;
+            }
         }
     }
 `;
@@ -51,11 +61,22 @@ const TabPage = () => {
     } else if (api === "food") {
     }
 
-    //redux사용하여 여행지 리스트 가져오기
     const dispatch = useDispatch();
-    const { data, loading, error } = useSelector((state) => state[api]);
-    // console.log(data);
+    //redux_여행지 목록데이터
+    const { data, loading, error } = useSelector((state) => state[api]);  
+    //redux_회원정보
+    const { data:loginData} = useSelector((state) => state.member);    
 
+    //페이지 마운트 될때 로그인상태 확인--> 로그인여부에 따라 "좋아요"버튼 조건부 렌더링
+    useEffect(() => {
+        dispatch(getIsLogin());
+        // if(loginData){
+        //     dispatch(getPlaceList());
+        //     dispatch(getAccomList());
+        //     dispatch(getFoodList());
+        // }
+    }, []);
+    
     //tab바뀔때마다 데이터 재전송
     useEffect(() => {
         if (api === "place") {
@@ -65,6 +86,7 @@ const TabPage = () => {
         } else if (api === "food") {
             dispatch(getFoodList());
         }
+        // console.log(data);
     }, [dispatch, api]);
 
     //태그버튼이 클릭되면
@@ -90,7 +112,15 @@ const TabPage = () => {
                 <div className="list_wrap">
                     {data &&
                         data.item.map((v, i) => {
-                            return <ListItem key={i} item={v} api={api}></ListItem>;
+                            return (
+                                <div key={i} className="item_wrap">
+                                    <ListItem item={v} api={api}></ListItem>
+                                    {loginData&&(
+                                        <Heart item={v}></Heart>
+                                        )
+                                    }
+                                </div>
+                            ) 
                         })}
                 </div>
             </div>
