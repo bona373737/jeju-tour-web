@@ -14,7 +14,13 @@ export const getNoticeList = createAsyncThunk('NoticeSlice/getNoticeList', async
     let result = null;
 
     try {
-        result = await axios.get(URL);
+        result = await axios.get(URL, {
+            params: {
+                query: payload?.query,
+                page: payload?.page,
+                rows: payload?.rows
+            }
+        });
     } catch(err) {
         result = rejectWithValue(err.response);
     }
