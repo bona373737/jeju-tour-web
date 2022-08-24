@@ -13,15 +13,15 @@ import GlobalStyles from "./GlobalStyles";
 import Meta from "./Meta";
 import App from "./App";
 
-// 배포시 axios base url 설정 코드 삭제하기
 import axios from 'axios';
+// 배포시 axios base url 설정 코드 삭제하기
 // axios.defaults.baseURL = 'http://localhost:3001';
 // withCredentials 전역 설정
 axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    // <React.StrictMode>
+    // <React.StrictMode> 2번씩 실행되는 것을 방지 --> 배포 시 삭제
         <Provider store={store}>
             <GlobalStyles />
             <Meta />
@@ -29,5 +29,5 @@ root.render(
                 <App />
             </BrowserRouter>
         </Provider>
-    // </React.StrictMode>
+    // </React.StrictMode> 2번씩 실행되는 것을 방지 --> 배포 시 삭제
 );

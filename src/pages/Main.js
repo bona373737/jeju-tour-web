@@ -33,8 +33,11 @@ import BoardDetail from './details/BoardDetail';
 /* 1:1 문의 페이지 */
 import QNA from './QNA';
 
-/*파일업로드 테스트_관리자페이지 여행지 정보 추가 */
+/* 파일업로드 테스트_관리자페이지 여행지 정보 추가 */
 import TourInfoAdd from './admin/TourInfoAdd';
+/* 공지사항, FAQ 게시판_관리자페이지 게시글 등록 */
+import NoticeAdd from './admin/NoticeAdd';
+import FAQAdd from './admin/FAQAdd';
 
 // header 높이만큼 Main 영역 상단에 padding값 적용
 const MainContainer=styled.div`
@@ -66,6 +69,8 @@ const Main = () => {
                 {/* 검색 결과 페이지 */}
                 <Route path='/search' element={<SearchResult/>}/>
                 {/* 공지사항, FAQ 게시판 전체페이지 */}
+                {/* <Route path='/notice' element={<NoticeAdd/>}/> */}
+                {/* <Route path='/faq' element={<FAQAdd/>}/> */}
                 <Route path='/service/:api' element={<BoardPage/>}/>
                 {/* 공지사항, FAQ 게시판 상세페이지 */}
                 <Route path='/service/:api/:id' element={<BoardDetail/>}/>
