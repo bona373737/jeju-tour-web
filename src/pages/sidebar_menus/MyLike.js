@@ -5,8 +5,9 @@
  */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import { useSelector,useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import {getMyLikeList} from '../../slices/MyLikeSlice';
+import Heart2 from '../../components/Heart2';
 
 import ThumbItem from '../../components/items/ThumbItem';
 import ListItem from '../../components/items/ListItem';
@@ -24,29 +25,28 @@ const MyLikeContainer = styled.div`
         display: flex;
         flex-wrap: wrap;
     }
+    .item_wrap{
+        display: flex;
+    }
 `;
 
 const MyLike = () => {
     //이미지로보기,리스트로보기 버튼 클릭 상태값
     const [isClicked, setIsClicked] = useState(false);
-    //로그인한 사용자의 member_no
-    const member_no = 2
 
     //리덕스초기화
-    // const dispatch = useDispatch();
-    // const { data, loading, error } = useSelector((state) => state.MyLike);
-    // console.log(data);
+    const dispatch = useDispatch();
+    const { data, loading, error } = useSelector((state) => state.myLike);
 
     //화면 렌더링될때 내저장 리스트 불러오기
-    // useEffect(()=>{
-    //     dispatch(getMyLikeList(member_no));
-    // },[])
-
+    useEffect(()=>{
+        dispatch(getMyLikeList());
+    },[])
 
 
     return (
         <MyLikeContainer>
-            {/* <Spinner visible={loading}/> */}
+            <Spinner visible={loading}/>
             {
                 isClicked? 
                 <button onClick={()=>{setIsClicked(!isClicked)}}>리스트로보기</button>
@@ -56,18 +56,24 @@ const MyLike = () => {
             {
                 isClicked?
                 <div className="thum_wrap">
-                    <ThumbItem item=""></ThumbItem>
-                    <ThumbItem item=""></ThumbItem>
-                    <ThumbItem item=""></ThumbItem>
-                    <ThumbItem item=""></ThumbItem>
+                    {data&&
+                        data.item.map((v,i)=>{
+                            return <ThumbItem key={i} item={v}></ThumbItem> 
+                        })
+                    }
                 </div>
                 :
                 <div>
-                    {
-
+                    {data&&
+                        data.item.map((v,i)=>{
+                            return (
+                                <div className='item_wrap' key={i}>
+                                    <ListItem item={v}></ListItem>
+                                    <Heart2 item={v}></Heart2>
+                                </div>
+                            )
+                        })
                     }
-                    <ListItem item="" api=""></ListItem>
-                    <ListItem item="" api=""></ListItem>
                 </div>
             }
         </MyLikeContainer>
