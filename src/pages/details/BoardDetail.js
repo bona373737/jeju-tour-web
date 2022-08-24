@@ -3,31 +3,37 @@
  * @Author: 구나래(nrggrnngg@gmail.com)
  * @Description: 공지사항, FAQ 게시판 상세페이지
  */
-import React, { useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import styled from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { getNoticeItem } from '../../slices/NoticeSlice';
 import { getFAQItem } from '../../slices/FAQSlice';
-import styled from 'styled-components';
 
 const BoardDetailContainer = styled.div`
     width: 80%;
     margin: 0 auto;
+    padding-top: 5%;
+    padding-bottom: 20%;
 
-    h1 {
-        padding: 30px 0;
-        border-bottom: 1px solid var(--subblue);
+    .title {
+        margin-top: 30px;
+        padding-bottom: 5px;
+        line-height: 1.5;
     }
 
-    div {
-        padding-top: 15px;
-        line-height: 2;
+    .date {
+        color: var(--textgray);
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--subgray);
     }
 
-    button {
-        margin-top: 50px;
-        padding: 15px;
+    .content {
         width: 100%;
+        padding: 30px 0 50px 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 `;
 
@@ -37,17 +43,27 @@ const BoardDetail = () => {
     // path 파라미터 값 가져오기
     const { api, id } = useParams();
     // redux 관련 초기화
-    const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state[api]);
+    // data.item 상태값
+    const [ origin, setOrigin ] = useState({
+        title: '',
+        content: '',
+        reg_date: '',
+        edit_date: ''
+    });
 
     /** api/ id가 변경될 때마다 실행되는 hook */
     useEffect(() => {
-        api === 'notice' ?
-        dispatch(getNoticeItem({ notice_no: id })) :
-        dispatch(getFAQItem({ faq_no: id }));
-    }, [api, dispatch, id]);
+        const idx = data.item.findIndex(e => e[`${api}_no`] === parseInt(id));
+        setOrigin({
+            title: data.item[idx].title,
+            content: data.item[idx].content,
+            reg_date: data.item[idx].reg_date,
+            edit_date: data.item[idx].edit_date
+        });
+    }, [api, data, id]);
 
-    /** 목록 버튼 클릭 이벤트 처리 --> 에러 발생 !!! */
+    /** 목록 버튼 클릭 이벤트 처리 */
     const backToList = useCallback(e => {
         e.preventDefault();
         navigate(`/service/${api}`);
@@ -56,13 +72,14 @@ const BoardDetail = () => {
     return (
         data && (
             <BoardDetailContainer>
-                <h1>
-                    <p>{data.item.title}</p>
-                    <span>{data.item.reg_date}</span> ~
-                    <span>{data.item.edit_date}</span>
-                </h1>
-                <div>{data.item.content}</div>
-                <button type='button' onClick={backToList}>목록</button>
+                <h1 className="title font5">{origin.title}</h1>
+                <p className="date font8">
+                    {origin.edit_date ?
+                    origin.edit_date.substring(0,10) :
+                    origin.reg_date.substring(0,10)}
+                </p>
+                <div className="content font7">{origin.content}</div>
+                <button type='button' className='btn_act' onClick={backToList}>목록</button>
             </BoardDetailContainer>
         )
     );
