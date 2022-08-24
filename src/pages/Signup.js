@@ -20,12 +20,6 @@ const SignupContainer = styled.div`
     padding-top: 20%;
     padding-bottom: 20%;
 
-    h3 {
-        padding-bottom: 12%;
-        display: flex;
-        justify-content: center;
-    }
-
     .signup_content {
         width: 80%;
         display: flex;
@@ -34,35 +28,24 @@ const SignupContainer = styled.div`
         flex-wrap: wrap;
         align-content: center;
 
+        h3 {
+            padding-bottom: 12%;
+            display: flex;
+            justify-content: center;
+        }
+
         form {
             width: 100%;
 
             .message {
-                /* display: flex; */
+                display: block;
                 padding-bottom: 2%;
+                font-size: 14px;
 
                 span{
                     font-size: 14px;
                     color: red;
-
                 }
-            }
-
-            label {
-                font-size: 14px;
-            }
-
-            /* select 기본 스타일 제거 */
-            select {
-                appearance: none;
-                -moz-appearance: none; /* Firefox */
-                -webkit-appearance: none; /* Safari and Chrome */
-                color: var(--gray)
-            }
-
-            /* select IE 기본 스타일 제거 */
-            select::-ms-expand {
-                display: none; /* IE 10, 11 */
             }
 
             .err_msg {
@@ -76,8 +59,6 @@ const SignupContainer = styled.div`
                 width: 90%;
                 height: 16px;
                 padding: 5%;
-                border: solid 1px #eee;
-                border-radius: 1mm;
             }
 
             .birth_area {
@@ -86,19 +67,15 @@ const SignupContainer = styled.div`
                 justify-content: space-between;
 
                 .user_birth {
-                    width: 20%;
+                    width: 22%;
                     height: 16px;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
 
                 .user_mm {
                     width: 30%;
                     height: auto;
                     padding: 4%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
             }
 
@@ -111,30 +88,16 @@ const SignupContainer = styled.div`
                 }
 
                 .user_email {
-                    width: 40%;
+                    width: 38%;
                     height: 16px;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
 
                 .user_email_sel {
-                    width: 45%;
+                    width: 49%;
                     height: auto;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
-            }
-
-            .signup {
-                font-size: 16px;
-                width: 100%;
-                height: 2.4em;
-                border: none;
-                border-radius: 1mm;
-                color: var(--white);
-                background-color: var(--blue);
             }
         }
     }
@@ -262,7 +225,7 @@ const Signup = () => {
     return (
         <SignupContainer>
             <div className="signup_content">
-                <h3 className="headfont">회원가입</h3>
+                <h3 className="font2">회원가입</h3>
 
                 <form onSubmit={onSubmit}>
                     {/* 아이디 */}
@@ -334,8 +297,8 @@ const Signup = () => {
                     <span id="err_email" className="err_msg"> 이메일 주소를 입력하세요.</span>
                     <br />
 
-                    <button type="submit" id="signup" className="signup">
-                        회원가입
+                    <button type="submit" id="signup" className="btn_act">
+                        가입하기
                     </button>
                 </form>
             </div>
