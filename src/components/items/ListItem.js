@@ -8,6 +8,7 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Heart from '../Heart';
 
 const ListItemContainer = styled.div`
     box-sizing: border-box;
@@ -32,32 +33,21 @@ const ListItemContainer = styled.div`
     }
 `;
 
-const ListItem = ({item,api}) => {   
-
-    // const rawData = item.sbst.data;
-    // rawData == 타입이 뭔지
-    // 16진수 헥사 바이트 base64
+const ListItem = ({item,api}) => { 
+    let id;
+    if(item){
+        id = item?.place_no? item.place_no : (item.accom_no? item.accom_no : item.food_no);
+    }
     
-
-    // var string = new TextDecoder().decode(binaryData);
-    // console.log(string);
-
-    // blob.text();
-    // console.log(blob.text())
-
-    // const reader = new FileReader();
-    // const nana = reader.readAsText(blob);
-    // console.log(reader);
-
     return (
+        item&&
         <ListItemContainer>
-            {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
-            <NavLink to={'/tab/'+api+'/'+item.place_no} state={{item:item}}>
+            <NavLink to={'/tab/'+api+'/'+id} state={{item:item}}>
                 <div className='img_wrap'>
                     <img src=''/>
                 </div>
                 <div className='text_wrap'>
-                    <p>{item?.place_no}</p>
+                    <p>{id}</p>
                     <p>{item?.title}</p>
                     <p>{item?.address}</p>
                     <p>{item?.phoneno}</p>

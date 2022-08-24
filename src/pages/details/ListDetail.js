@@ -49,7 +49,7 @@ const ListDetail = () => {
     return (
         <DetailContainer>
             {/* 좋아요버튼 : 로그인 상태인 경우에만 렌더링 */}
-            <Heart ref_id={ref_id} ref_type={ref_type}></Heart>
+            {/* <Heart ref_id={ref_id} ref_type={ref_type}></Heart> */}
             <h1>{item.title}</h1>
             <h1>{item.introduction}</h1>
             <h1>{item.address}</h1>
