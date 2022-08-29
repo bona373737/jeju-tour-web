@@ -15,7 +15,11 @@ import App from "./App";
 
 import axios from 'axios';
 // 배포시 axios base url 설정 코드 삭제하기
+<<<<<<< HEAD
 axios.defaults.baseURL = 'http://localhost:3001';
+=======
+// axios.defaults.baseURL = 'http://localhost:3001';
+>>>>>>> 6febd9ac7fdfcce546f72e4004de8c8ec7c63a26
 // withCredentials 전역 설정
 axios.defaults.withCredentials = true;
 
