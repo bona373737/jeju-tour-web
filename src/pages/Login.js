@@ -17,6 +17,8 @@ import Spinner from '../components/Spinner';
 
 const LoginContainer = styled.div`
     width: 100%;
+    padding-top: 5%;
+    padding-bottom: 20%;
 
     h3 {
         padding: 15% 0;
@@ -39,19 +41,10 @@ const LoginContainer = styled.div`
                 width: 90%;
                 height: 16px;
                 padding: 5%;
-                border: solid 1px #eee;
-                border-radius: 1mm;
             }
 
             .login {
-                font-size: 16px;
                 margin-top: 10%;
-                width: 100%;
-                height: 2.4em;
-                border: none;
-                border-radius: 1mm;
-                color: var(--white);
-                background-color: var(--blue);
             }
 
             .err_msg {
@@ -69,31 +62,15 @@ const LoginContainer = styled.div`
         }
     }
 
-    .find_button_area {
+    .find_btn_area {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
 
-        .find_button {
-            font-size: 16px;
+        .find_btn {
             margin: 5% 0;
-            width: 47%;
-            height: 2.4em;
-            border: none;
-            border-radius: 1mm;
-            color: var(--gray);
-            background-color: #eee;
+            width: 48%;
         }
-    }
-
-    .signup {
-        font-size: 16px;
-        width: 100%;
-        height: 2.4em;
-        border: none;
-        border-radius: 1mm;
-        color: var(--white);
-        background-color: var(--blue);
     }
 `;
 
@@ -170,18 +147,18 @@ const Login = () => {
                         <input type="password" name="password" onBlur={onBlur} className="input_text" placeholder="비밀번호"></input>
                         <span id="err_pw" className="err_msg">비밀번호를 입력하세요.</span>
 
-                        <button type="submit" name="login" value="login" className="login">로그인</button>
+                        <button type="submit" name="login" className="btn_act">로그인</button>
                     </form>
 
-                    <div className="find_button_area">
-                        <button type="button" name="find_id" value="find_id" className="find_button">아이디 찾기</button>
-                        <button type="button" name="find_pw" value="find_pw" className="find_button">비밀번호 찾기</button>
+                    <div className="find_btn_area">
+                        <button type="button" name="find_id" className="find_btn btn_dis">아이디 찾기</button>
+                        <button type="button" name="find_pw" className="find_btn btn_dis">비밀번호 재발급</button>
                     </div>
 
                     <h3 className="font2">아직 계정이 없으신가요?</h3>
 
                     <NavLink to="/signup">
-                        <button type="button" id="signup" className="signup">회원가입</button>
+                        <button type="button" name="signup" className="btn_act">회원가입</button>
                     </NavLink>
                 </div>
             </LoginContainer>
