@@ -46,20 +46,27 @@ const SearchContainer = styled.div`
                 margin-left: 10%;
 
                 input {
-                    font-size: 1.2rem;
                     padding: 0 3%;
                     width: 80%;
                     height: 40px;
+                    border-radius: 4px 0 0 4px;
                     border: 1px solid var(--blue);
+
+                    &:focus {
+                        outline: none;
+                        border: 2px solid var(--blue);
+                    }
                 }
 
                 button {
                     width: 40px;
                     height: 40px;
+                    border-radius: 0 4px 4px 0;
+                    border: 1px solid var(--blue);
                     background: var(--blue);
                     
                     .search_button {
-                        height: 28px;
+                        height: 25px;
                         vertical-align: middle;
                     }
                 }
