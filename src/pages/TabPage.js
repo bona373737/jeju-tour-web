@@ -70,11 +70,11 @@ const TabPage = () => {
     //페이지 마운트 될때 로그인상태 확인--> 로그인여부에 따라 "좋아요"버튼 조건부 렌더링
     useEffect(() => {
         dispatch(getIsLogin());
-        // if(loginData){
-        //     dispatch(getPlaceList());
-        //     dispatch(getAccomList());
-        //     dispatch(getFoodList());
-        // }
+        if(loginData){
+            dispatch(getPlaceList());
+            dispatch(getAccomList());
+            dispatch(getFoodList());
+        }
     }, []);
     
     //tab바뀔때마다 데이터 재전송

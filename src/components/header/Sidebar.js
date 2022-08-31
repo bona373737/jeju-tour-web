@@ -62,7 +62,7 @@ const SidebarContainer = styled.div`
                 height: 70px;
                 border-radius: 50%;
                 img{
-                    
+                    width: 100%;
                 }
             }
             .profile_text{
@@ -138,6 +138,7 @@ const Sidebar = ({setShowSidebar}) => {
 
     //     })
     // }, [])
+    console.log(data);
 
     return (
         <>
@@ -153,8 +154,13 @@ const Sidebar = ({setShowSidebar}) => {
                             <div className='profile_img'>
                                 {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
                                 {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
-                                <img src={data.item.profile_img} alt="img" />
-                                {/* {console.log(data)} */}
+                                {/* <img src={`http://localhost:3001/upload/profile_img${data.item.profile_thumb}`} alt="img" /> */}
+                                {
+                                    data.item.profile_img?
+                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`} alt="img" />
+                                    :
+                                    "기본이미지추가"
+                                }
                             </div>
                             <div className="profile_text">
                                 <h1 className="font2">Hello,</h1>
