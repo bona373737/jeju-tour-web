@@ -12,7 +12,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getNoticeList } from '../slices/NoticeSlice';
 import { getFAQList } from '../slices/FAQSlice';
 
+import Spinner from '../components/Spinner';
+import ErrorView from '../components/ErrorView';
 import BoardItem from '../components/items/BoardItem';
+import Arrow from '../assets/icon/arrow.png'; 
 import SearchButton from '../assets/icon/search_active.png';
 
 // 전체 컨테이너 스타일
@@ -28,18 +31,51 @@ const BoardPageContainer = styled.div`
         h1 {
             padding: 20%;
             text-align: center;
-            border-bottom: 1px solid var(--subgray);
         }
 
-        /* form {
-            box-sizing: border-box;
+        form {
             display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--subgray);
+
+            .select_box {
+                flex: 0 1 0;
+                display: flex;
+                align-content: space-between;
+                align-items: center;
+                border-radius: 4px 0 0 4px;
+                border: 1px solid var(--blue);
+                border-right: 0px;
+
+                &:active {
+                    outline: none;
+                    border: 2px solid var(--blue);
+                }
+                
+                select {
+                    border: 0;
+                    padding: 10px 10px 10px 15px;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .arrow {
+                    width: 12px;
+                    height: 12px;
+                    padding-right: 5px;
+                }
+            }
 
             input {
+                flex: 2 1 0;
                 padding: 0 3%;
-                width: 80%;
                 height: 40px;
-                border-radius: 4px 0 0 4px;
+                box-sizing: border-box;
+                border-radius: 0;
                 border: 1px solid var(--blue);
 
                 &:focus {
@@ -60,7 +96,7 @@ const BoardPageContainer = styled.div`
                     vertical-align: middle;
                 }
             }
-        } */
+        }
 
         .qna {
             margin-top: 50px;
@@ -72,31 +108,44 @@ const BoardPageContainer = styled.div`
 const Pagenation = styled.ul`
     list-style: none;
     padding: 0;
-    margin: 20px 0;
+    margin: 40px 0 20px 0;
     display: flex;
     justify-content: center;
 
     a {
         color: #000;
-        padding: 8px 12px;
+        padding: 8px 13px;
         text-decoration: none;
         margin: 0 5px;
 
-        &.current-page {
-            background-color: #116688;
-            color: #fff;
-            border-radius: 5px; 
+        .arrow {
+            width: 12px;
+            height: 12px;
+
+            &.left {
+                transform: rotate(90deg);
+            }
+
+            &.right {
+                transform: rotate(-90deg);
+            }
+        }
+
+        &.current_page {
+            color: var(--white);
+            background-color: var(--blue);
+            border-radius: 4px; 
         }
 
         &.disabled {
-            color: #ccc;
+            color: var(--textgray);
             /* 커서가 금지(정지) 모양으로 바뀜 */
             cursor: not-allowed;
         }
 
-        &:hover:not(.current-page) {
-            background-color: #ddd;
-            border-radius: 5px; 
+        &:hover:not(.current_page) {
+            border-radius: 4px; 
+            background-color: var(--subgray);
         }
     }
 `;
@@ -109,90 +158,123 @@ const BoardPage = () => {
     const { data, loading, error } = useSelector((state) => state[api]);
     // 페이지 강제 이동 함수 생성
     const navigate = useNavigate();
-    /**
-     *  --- 추가 구현 사항 ---
-     *  검색 카테고리 (제목/내용) -> 검색어 query -> 검색어 전송 -> 페이지네이션
-     *  --> *** 백엔드 수정사항 발생 ***
-     *  --> 카테고리 (제목/내용) 필터링 필요함!!
-     *  // 검색어 input 참조변수
-        const inputRef = useRef();
-        // 카테고리 dropdown 참조변수
-        const dropdownRef = useRef();
-        // QueryString 문자열 얻기
-        const { query, column, page } = useQueryString({
-            query: '',
-            column: '',
-            page: 1
-        });
-     */
+    // QueryString 문자열 얻기
+    const { type, query, page, rows } = useQueryString({
+        type: 'T',
+        query: '',
+        page: 1,
+        rows: 6
+    });
+    // 검색타입 dropdown 참조변수
+    const typeDropdownRef = useRef();
+    // 검색어 input 참조변수
+    const queryInputRef = useRef();
 
     /** api 및 QueryString이 변경될 때마다 실행되는 hook */ 
     useEffect(() => {
         api === 'notice' ?
         dispatch(getNoticeList({
-            // query: query,
-            // column: column,
-            // page: page
+            type: type,
+            query: query,
+            page: page,
+            rows: rows
         })) :
         dispatch(getFAQList({
-            // query: query,
-            // column: column,
-            // page: page
+            type: type,
+            query: query,
+            page: page,
+            rows: rows
         }));
-        // dropdownRef.current.value = column;
-        // inputRef.current.value = query;
-    }, [dispatch, api]);
+        typeDropdownRef.current.value = type;
+        queryInputRef.current.value = query;
+    }, [api, dispatch, page, query, rows, type]);
 
     /** 검색 이벤트 */
-    // const onSearchSubmit = useCallback(e => {
-    //     e.preventDefault();
-    //     const dropdown = dropdownRef.current;
-    //     const input = inputRef.current;
-    //     navigate(`/?query=${input.value}&column=${dropdown.value}`);
-    // },[navigate]);
+    const onSearchSubmit = useCallback(e => {
+        e.preventDefault();
+        const dropdown = typeDropdownRef.current;
+        const input = queryInputRef.current;
+        navigate(`/service/${api}/?type=${dropdown.value}&query=${input.value}`);
+    },[api, navigate]);
 
     return (
-        <BoardPageContainer>
+        <>
+            <Spinner visible={loading} />
+
+            <BoardPageContainer>
             <div className='content'>
                 <h1 className="font2">{api === 'notice' ? '공지사항' : '자주 묻는 질문'}</h1>
-                {/* <form onSubmit={onSearchSubmit}>
-                    <select name='column' onChange={onSearchSubmit} ref={dropdownRef}>
-                        <option value='title'>제목</option>
-                        <option value='content'>내용</option>
-                    </select>
-                    <input type='text' name='query' placeholder="검색어를 입력하세요." ref={inputRef}/>
+
+                <form onSubmit={onSearchSubmit}>
+                    <div className='select_box'>
+                        <select name='type' ref={typeDropdownRef}>
+                            <option value='T'>제목</option>
+                            <option value='C'>내용</option>
+                        </select>
+                        <img className="arrow" src={Arrow} alt="arrow"/>
+                    </div>
+                    <input type='text' name='query' placeholder="검색어를 입력하세요." ref={queryInputRef}/>
                     <button type='submit'>
                         <img className="search_button" src={SearchButton} alt="search" />
                     </button>
-                </form> */}
-                {data && data.item.map((v, i) => <BoardItem key={v[`${api}_no`]} item={v} api={api}/>)}
-                {/* <Pagenation>
-                    {data.pagenation.prevGroupLastPage > 0 ? (
-                        <li><NavLink to={`/?query=${query}&rows=10&page=${data.pagenation.prevGroupLastPage}`}>&laquo;</NavLink></li>
-                    ) : (
-                        <li><NavLink to='#' className='disabled'>&laquo;</NavLink></li>
-                    )}
+                </form>
 
-                    {(() => {
-                        const li = [];
-                        const start = data.pagenation.groupStart;
-                        const end = data.pagenation.groupEnd + 1;
-                        for (let i=start; i<end; i++) {
-                            if (i === data.pagenation.nowPage) {
-                                li.push(<li key={i}><NavLink to='#' className='current-page'>{i}</NavLink></li>);
-                            } else {
-                                li.push(<li key={i}><NavLink to={`/?query=${query}&rows=10&page=${i}`}>{i}</NavLink></li>);
-                            }
-                        }
-                        return li;
-                    })()}
+                {error ? (
+                    <ErrorView error={error} />
+                ) : data && (
+                    <>
+                        {data.item.length > 0 ? (
+                            data.item.map((v, i) => <BoardItem key={v[`${api}_no`]} item={v} api={api}/>)
+                        ) : (
+                            <div className='none'>{console.log(error)}</div>
+                        )}
+                        <Pagenation>
+                            {data.pagenation.prevGroupLastPage > 0 ? (
+                                <li>
+                                    <NavLink to={`/service/${api}/?type=${type}&query=${query}&page=${data.pagenation.prevGroupLastPage}&rows=${rows}`}>
+                                        <img className="arrow left" src={Arrow} alt="arrow"/>
+                                    </NavLink>
+                                </li>
+                            ) : (
+                                <li>
+                                    <NavLink to='#' className='disabled'>
+                                        <img className="arrow left" src={Arrow} alt="arrow"/>
+                                    </NavLink>
+                                </li>
+                            )}
 
-                    {data.pagenation.nextGroupFirstPage > 0 ? (
-                        <li><NavLink to={`/?query=${query}&rows=10&page=${data.pagenation.nextGroupFirstPage}`}>&raquo;</NavLink></li>
-                    ) : (
-                        <li><NavLink to={`/?query=${query}&rows=10&page=${data.pagenation.groupEnd}`} className='disabled'>&raquo;</NavLink></li>
-                    )}
-                </Pagenation> */}
+                            {(() => {
+                                const li = [];
+                                const start = data.pagenation.groupStart;
+                                const end = data.pagenation.groupEnd + 1;
+                                for (let i=start; i<end; i++) {
+                                    if (i === data.pagenation.nowPage) {
+                                        li.push(<li key={i}><NavLink to='#' className='current_page'>{i}</NavLink></li>);
+                                    } else {
+                                        li.push(<li key={i}><NavLink to={`/service/${api}/?type=${type}&query=${query}&page=${i}&rows=${rows}`}>{i}</NavLink></li>);
+                                    }
+                                    console.log(`nowPage=${i}`);
+                                }
+                                return li;
+                            })()}
+
+                            {data.pagenation.nextGroupFirstPage > 0 ? (
+                                <li>
+                                    <NavLink to={`/service/${api}/?type=${type}&?query=${query}&page=${data.pagenation.nextGroupFirstPage}&rows=${rows}`}>
+                                        <img className="arrow right" src={Arrow} alt="arrow"/>
+                                    </NavLink>
+                                </li>
+                            ) : (
+                                <li>
+                                    <NavLink to={`/service/${api}/?type=${type}&?query=${query}&page=${data.pagenation.groupEnd}&rows=${rows}`} className='disabled'>
+                                        <img className="arrow right" src={Arrow} alt="arrow"/>   
+                                    </NavLink>
+                                </li>
+                            )}
+                        </Pagenation> 
+                    </>
+                )}
+
                 {api === 'faq' && (
                     <NavLink to='/qna'>
                         <button type='button' className='qna btn_act'>1:1 문의하기</button>
@@ -200,6 +282,7 @@ const BoardPage = () => {
                 )}
             </div>
         </BoardPageContainer>
+        </>
     );
 };
 
