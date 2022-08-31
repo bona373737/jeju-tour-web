@@ -23,6 +23,9 @@ const ListItemContainer = styled.div`
         .img_wrap{
             width: 30%;
             background-color: var(--blue);
+            img{
+                width: 100%;
+            }
 
         }
         .text_wrap{
@@ -44,14 +47,14 @@ const ListItem = ({item,api}) => {
         <ListItemContainer>
             <NavLink to={'/tab/'+api+'/'+id} state={{item:item}}>
                 <div className='img_wrap'>
-                    <img src=''/>
+                    <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
                 <div className='text_wrap'>
                     <p>{id}</p>
-                    <p>{item?.title}</p>
-                    <p>{item?.address}</p>
-                    <p>{item?.phoneno}</p>
-                    <p>{item?.introduction}</p>
+                    <p>{item.title}</p>
+                    <p>{item.address}</p>
+                    <p>{item.phoneno}</p>
+                    <p>{item.introduction}</p>
                 </div>
             </NavLink>
         </ListItemContainer>
