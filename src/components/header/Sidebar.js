@@ -138,7 +138,7 @@ const Sidebar = ({setShowSidebar}) => {
 
     //     })
     // }, [])
-    console.log(data);
+    // console.log(data);
 
     return (
         <>

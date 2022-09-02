@@ -122,16 +122,17 @@ const TabPage = () => {
             // const windowHeight = window.screen.availHeight;
             // const documentHeight = document.body.scrollHeight;
             // if (scrollTop + windowHeight >= documentHeight) {   
-                
-            if(mountedRef.current){
-                // setIsEnd(data.pagenation.isEnd);
-                if(inView && !loading && !data.pagenation.isEnd){
+
+                if(mountedRef.current){
+                    // setIsEnd(data.pagenation.isEnd);
+                    if(inView && !loading && !data.pagenation.isEnd){
                         // currentPage++;
                         setCurrentPage(currentPage=>currentPage+1);
                         // console.log("증가된 페이지 : "+ currentPage);
                         dispatch(addPlaceList({page:currentPage}));
-                };
-            }
+                    };
+                }
+        
             // }
         // });
     },[mountedRef,inView,currentPage,isEnd]);
