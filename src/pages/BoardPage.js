@@ -223,11 +223,7 @@ const BoardPage = () => {
                     <ErrorView error={error} />
                 ) : data && (
                     <>
-                        {data.item.length > 0 ? (
-                            data.item.map((v, i) => <BoardItem key={v[`${api}_no`]} item={v} api={api}/>)
-                        ) : (
-                            <div className='none'>{console.log(error)}</div>
-                        )}
+                        {data.item.length > 0 && data.item.map((v, i) => <BoardItem key={v[`${api}_no`]} item={v} api={api}/>)}
                         <Pagenation>
                             {data.pagenation.prevGroupLastPage > 0 ? (
                                 <li>
@@ -253,7 +249,6 @@ const BoardPage = () => {
                                     } else {
                                         li.push(<li key={i}><NavLink to={`/service/${api}/?type=${type}&query=${query}&page=${i}&rows=${rows}`}>{i}</NavLink></li>);
                                     }
-                                    console.log(`nowPage=${i}`);
                                 }
                                 return li;
                             })()}
