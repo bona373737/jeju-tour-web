@@ -166,15 +166,15 @@ const Sidebar = ({setShowSidebar}) => {
                 <div className="back"></div>
                 {
                     // 로그인 여부에 따라 조건부 렌더링
-                    data ? ( 
+                    isLogin ? ( 
                         <div className="user_inform" data-path="/userinfo" onClick={movePage}>
                             <div className='profile_img'>
                                 {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
                                 {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
                                 {/* <img src={`http://localhost:3001/upload/profile_img${data.item.profile_thumb}`} alt="img" /> */}
                                 {
-                                    data.item.profile_img?
-                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`} alt="img" />
+                                    user.profile_img?
+                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${user.profile_img}`} alt="img" />
                                     :
                                     "기본이미지추가"
                                 }
