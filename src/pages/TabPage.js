@@ -9,6 +9,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import {useInView} from 'react-intersection-observer';
+import useMountedRef from '../hooks/useMountedRef';
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -54,6 +55,7 @@ const TabPageContainer = styled.div`
 `;
 
 const TabPage = () => {
+    
     //path파라미터 값 가져오기
     const { api } = useParams();
     let tagArr;
@@ -64,28 +66,31 @@ const TabPage = () => {
     } else if (api === "food") {
         tagArr = ["food", "food", "food", "실내관광지", "수국"];
     }
+    
+    /** redux */
+    const dispatch = useDispatch();
+    const { data, loading, error } = useSelector((state) => state[api]);  
+    const { data:loginData} = useSelector((state) => state.member);    
+    // console.log(data);
 
+    /**무한스크롤 */
     // let currentPage = 1;
+    const [ref, inView] = useInView();
     const [currentPage, setCurrentPage] = useState(1);
     // console.log("현재 페이지 : "+currentPage);
     //검색어
     let queryKeyword = null;
     //마지막페이지 인지 검사
-    let isEnd = false;
+    const [isEnd, setIsEnd] = useState(false);
+    const [query, setQuery] = useState("");
 
-    let [query, setQuery] = useState("");
-
-    const dispatch = useDispatch();
-    //redux_여행지 목록데이터
-    const { data, loading, error } = useSelector((state) => state[api]);  
-    //redux_회원정보
-    const { data:loginData} = useSelector((state) => state.member);    
 
     //페이지 마운트 될때 로그인상태 확인--> 로그인여부에 따라 "좋아요"버튼 조건부 렌더링
     //tab바뀔때마다 데이터 재전송,재랜더링
     useEffect(() => {
-        dispatch(getIsLogin());
-        
+        if(loginData){
+            dispatch(getIsLogin());
+        }
         //api값(place,accom,food)에 따라 dispatch함수 분기처리필요
         if (api === "place") {
             dispatch(getPlaceList());
@@ -94,8 +99,7 @@ const TabPage = () => {
         } else if (api === "food") {
             dispatch(getFoodList());
         }
-        
-    },[dispatch,api,loginData]);
+    },[dispatch,api]);
     
 
     /** 태그버튼 클릭이벤트 */
@@ -110,24 +114,27 @@ const TabPage = () => {
         //파란색으로 css변경
     },[]);
 
-    const [ref, inView] = useInView();
-
+    const mountedRef = useMountedRef();
     //스크롤이벤트_스크롤이 바닥에 닿으면 다음페이지의 데이터 로딩
     useEffect(()=>{
         // window.addEventListener('scroll', e => {
             // const scrollTop = Math.ceil(window.scrollY);
             // const windowHeight = window.screen.availHeight;
             // const documentHeight = document.body.scrollHeight;
-            // if (scrollTop + windowHeight >= documentHeight) {
-                if(inView && !loading){
-                    // currentPage++;
-                    setCurrentPage(currentPage=>currentPage+1);
-                    // console.log("증가된 페이지 : "+ currentPage);
-                    dispatch(addPlaceList({page:currentPage}));
-                }
+            // if (scrollTop + windowHeight >= documentHeight) {   
+                
+            if(mountedRef.current){
+                // setIsEnd(data.pagenation.isEnd);
+                if(inView && !loading && !data.pagenation.isEnd){
+                        // currentPage++;
+                        setCurrentPage(currentPage=>currentPage+1);
+                        // console.log("증가된 페이지 : "+ currentPage);
+                        dispatch(addPlaceList({page:currentPage}));
+                };
+            }
             // }
         // });
-    },[inView,currentPage]);
+    },[mountedRef,inView,currentPage,isEnd]);
 
     return (
         <TabPageContainer>
