@@ -17,16 +17,29 @@ const ListItemContainer = styled.div`
     line-height: 20px;
 
     a{
-        height: 100px;
         display: flex;
 
         .img_wrap{
             width: 30%;
             background-color: var(--blue);
+            img{
+                object-fit: contain;
+                width: 100%;
+                overflow: hidden;
+            }
 
         }
         .text_wrap{
             width: 70%;
+            margin-left: 5px;
+            .introduction{
+                line-height: 20px;
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
 
         }
 
@@ -44,14 +57,14 @@ const ListItem = ({item,api}) => {
         <ListItemContainer>
             <NavLink to={'/tab/'+api+'/'+id} state={{item:item}}>
                 <div className='img_wrap'>
-                    <img src=''/>
+                    <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
                 <div className='text_wrap'>
-                    <p>{id}</p>
-                    <p>{item?.title}</p>
-                    <p>{item?.address}</p>
-                    <p>{item?.phoneno}</p>
-                    <p>{item?.introduction}</p>
+                    {/* <p>{id}</p> */}
+                    <p className='font3'>{item.title}</p>
+                    <p className='font8'>{item.address}</p>
+                    <p className='font8'>{item.phoneno}</p>
+                    <p className='font8 introduction'>{item.introduction}</p>
                 </div>
             </NavLink>
         </ListItemContainer>

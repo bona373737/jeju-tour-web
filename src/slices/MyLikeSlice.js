@@ -3,7 +3,7 @@
  * @Author: 구본아(bona373737@gmail.com)
  * @Description: 내저장 데이터를 불러오기
  */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { pending, fulfilled, rejected } from "../Util";
 import axios from "axios";
 import {cloneDeep} from 'lodash';
@@ -61,13 +61,22 @@ const MyLikeSlice = createSlice({
         /** 다중행 데이터 조회를 위한 액션 함수 */
         [getMyLikeList.pending]: pending,
         [getMyLikeList.fulfilled]: fulfilled,
-        [getMyLikeList.rejected]: rejected,   
+        [getMyLikeList.rejected]: rejected,  
+        
+        // [postItem.pending]: pending,
+        // [postItem.fulfilled]: fulfilled,
+        // [postItem.rejected]: rejected,  
+
+        // [deleteMyLikeItem.pending]: pending,
+        // [deleteMyLikeItem.fulfilled]: fulfilled,
+        // [deleteMyLikeItem.rejected]: rejected,  
+        
        
         [postItem.pending]: pending,
         [postItem.fulfilled]: (state, {meta,payload})=>{
             //원본데이터 복사
             const data = cloneDeep(state.data);
-            // console.log(data);
+            console.log("좋아요 추가");
             //추가된 데이터를 기존 상태값 data의 맨 앞에 추가
             data.item.unshift(payload.data.item);
 
@@ -88,11 +97,13 @@ const MyLikeSlice = createSlice({
         [deleteMyLikeItem.pending]: pending,
         [deleteMyLikeItem.fulfilled]: (state, {meta,payload})=>{
             //기존의 상태값(data) 깊은복사
+            // console.log(current(state)) //기존 data
             const data = cloneDeep(state.data);
+            console.log("좋아요 삭제");
             // console.log(data);
 
             //기존의 데이터에서 삭제가 요청된 항목의 위치를 검색한다.
-            const index = data.item.findIndex(element=>element.deptno === parseInt(meta.arg.like_no));
+            const index = data.item.findIndex(element=>element.like_no === parseInt(meta.arg.like_no));
             //console.log(index);
 
             // 검색이 되었다면 해당 항목을 삭제한다.
@@ -101,7 +112,7 @@ const MyLikeSlice = createSlice({
             }
             // console.log(data);
 
-            // redux store에 원본data에서 삭제요청한 해당 데이터 하나만 삭제처리 후 나머지 데이터 그대로 반환
+            // redux store의 기존 원본data에서 삭제요청한 해당 데이터 하나만 삭제처리 후 나머지 데이터 그대로 반환
             return{
                 data:data,
                 loading:false,
