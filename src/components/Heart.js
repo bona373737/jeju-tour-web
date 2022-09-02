@@ -13,14 +13,16 @@ import likeIcon from '../assets/icon/star_active.png';
 import axios from 'axios';
 
  const HeartContainer = styled.div`
+    display: flex;
+    align-items: center;
     .like_icon{
-        width: 50px;
+        width: 20px;
         cursor: pointer;
         //gray색상(좋아요X 상태)
         filter: invert(99%) sepia(2%) saturate(2923%) hue-rotate(203deg) brightness(115%) contrast(76%);
     }
     .like_icon_active{
-        width: 50px;
+        width: 20px;
         cursor: pointer;
         //red색상(좋아요O 상태)
         filter:invert(11%) sepia(99%) saturate(6586%) hue-rotate(350deg) brightness(100%) contrast(88%);
