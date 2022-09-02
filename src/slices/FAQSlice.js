@@ -16,6 +16,7 @@ export const getFAQList = createAsyncThunk('FAQSlice/getFAQList', async (payload
     try {
         result = await axios.get(URL, {
             params: {
+                type: payload?.type,
                 query: payload?.query,
                 page: payload?.page,
                 rows: payload?.rows

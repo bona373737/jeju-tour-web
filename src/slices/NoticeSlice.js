@@ -16,6 +16,7 @@ export const getNoticeList = createAsyncThunk('NoticeSlice/getNoticeList', async
     try {
         result = await axios.get(URL, {
             params: {
+                type: payload?.type,
                 query: payload?.query,
                 page: payload?.page,
                 rows: payload?.rows
