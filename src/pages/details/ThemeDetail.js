@@ -24,7 +24,7 @@ const ThemeDetailContainer = styled.div`
         .themedetail_title {
             width: 80%;
             margin: 0 auto;
-            padding: 40px 0;
+            padding: 40px 0 120px 0;
             color: var(--white);
 
             .intro {
@@ -43,12 +43,20 @@ const ThemeDetailContainer = styled.div`
         .line {
             padding: 15px 0;
             border-bottom: 1px solid var(--subgray);
+
+            &:first-child {
+                padding-top: 0;
+            }
         }
 
         .tag_wrap {
-            margin-top: 20px;
             display: flex;
             flex-flow: row wrap;
+
+            .tag_title {
+                width: 100%;
+                padding-bottom: 15px;
+            }
 
             .tags {
                 padding: 10px;
@@ -81,7 +89,7 @@ const ThemeDetail = memo(() => {
         const idx = data.item.findIndex(e => e.place_no === parseInt(id));
         setItem(data.item[idx]);
     }, [data, id]);
-    // console.log(item);
+    console.log(item);
     
     return (
         item && (
@@ -96,17 +104,14 @@ const ThemeDetail = memo(() => {
                 <ul className="themedetail_content">
                     <li className='line'>
                         <p className="font8">우편 번호</p>
-                        <p className="font4">{item.postcode ? item.postcode : '등록된 번호가 없습니다.'}</p>
+                        <p className="font4">{item.postcode ? item.postcode : '등록된 우편 번호가 없습니다.'}</p>
                     </li>
                     <li className='line'>
-                        <p className="font8">상세 주소</p>
-                        <p className="font4">{item.address ? item.address : '등록된 주소지가 없습니다.'}</p>
+                        <p className="font8">주소지</p>
+                        <p className="font4">{item.roadaddress ? item.roadaddress : '등록된 주소지가 없습니다.'}</p>
                     </li>
-                    <li className='line'>
-                        <p className="font8">도로명 주소</p>
-                        <p className="font4">{item.roadaddress ? item.address : '등록된 주소지가 없습니다.'}</p>
-                    </li>
-                    <li className="tag_wrap">
+                    <li className='line tag_wrap'>
+                        <p className="font8 tag_title">연관 태그</p>
                         {item.tag && item.tag.split(",").map((v, i) => <div className="tags" key={i}>#{v}</div>)}
                     </li>
                     <NavLink to={`/tab/place/${item.place_no}`} state={{item: item}}>
