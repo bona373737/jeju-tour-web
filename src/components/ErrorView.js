@@ -7,17 +7,11 @@ import React from 'react';
 import styled from "styled-components";
 
 const ErrorContainer = styled.div`
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 9999;
-    background-color: #fff;
-    width: 100%;
-    height: 100%;
-    padding-top: 20%;
     text-align: center;
-
-    h1 {
+    .code {
+        padding: 15%;
+    }
+    .msg {
         padding-bottom: 12%;
     }
 `;
@@ -25,8 +19,8 @@ const ErrorContainer = styled.div`
 const ErrorView = ({error}) => {
     return (
         <ErrorContainer>
-            <h1 className="font1"> {error.code} Error</h1>
-            <p className="font2"> {error.message} </p>
+            <div className="code font3">{error.code} Error</div>
+            <div className="msg font4">{error.message}</div>
         </ErrorContainer>
     );
 };

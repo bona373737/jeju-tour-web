@@ -3,9 +3,10 @@
  * @Author: 구본아(bona373737@gmail.com)
  * @Description: 여행지 데이터를 불러오기
  */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { pending, fulfilled, rejected } from "../Util";
 import axios from "axios";
+import {cloneDeep} from 'lodash';
 
 const URL='/place';
 
@@ -14,6 +15,29 @@ export const getPlaceList = createAsyncThunk('PlaceSlice/getPlaceList',async(pay
     let result = null;
     try{
         result = await axios.get(URL,{
+            params:{
+                query:payload?.query,
+                page:payload?.page,
+                rows:payload?.rows
+            },
+            withCredentials: true
+        });
+    }
+    catch(error){
+        result = rejectWithValue(error.response);
+    }
+    return result;
+});
+
+export const addPlaceList = createAsyncThunk('PlaceSlice/addPlaceList',async(payload,{rejectWithValue})=>{
+    let result = null;
+    try{
+        result = await axios.get(URL,{
+            params:{
+                query:payload?.query,
+                page:payload?.page,
+                rows:payload?.rows
+            },
             withCredentials: true
         });
     }
@@ -36,6 +60,26 @@ const PlaceSlice = createSlice({
         [getPlaceList.pending]: pending,
         [getPlaceList.fulfilled]: fulfilled,
         [getPlaceList.rejected]: rejected,
+
+        [addPlaceList.pending]: pending,
+        [addPlaceList.fulfilled]: (state, { payload }) => {
+            // console.log(current(state.data.item)) //기존 data
+            const originData = payload.data;
+            const newItem = [...state.data.item.concat(...payload.data.item)];
+            // for(let v of state.data.item){
+            //     originData.item.unshift(v);
+            // }
+            originData.item = newItem
+            // console.log(newItem);
+            // console.log(originData);
+
+            return {
+                data: originData,
+                loading: false,
+                error: null
+            }
+        },
+        [addPlaceList.rejected]: rejected,
     }
 })
 

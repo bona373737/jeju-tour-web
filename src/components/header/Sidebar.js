@@ -4,11 +4,11 @@
  *          로그인/아웃 기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { getIsLogin, deleteLogin } from '../../slices/MemberSlice';
+import { deleteLogin } from '../../slices/MemberSlice';
 
 import Spinner from '../Spinner';
 
@@ -89,11 +89,26 @@ const Sidebar = ({setShowSidebar}) => {
     // 리덕스 로그인 세션 상태 관리
     const dispatch = useDispatch();
     const { data, loading } = useSelector((state) => state.member);
-    
-    /** 사이드바 마운트 시 로그인 여부 검사 */
+    // 로그인 여부 상태값
+    const [isLogin, setIsLogin] = useState();
+    // 로그인 회원정보 상태값
+    const [user, setUser] = useState({
+        profile_img: '',
+        userid: ''
+    });
+
+    /** 로그인 상태값 갱신 */
     useEffect(() => {
-        dispatch(getIsLogin());
-    }, [dispatch]);
+        if (data && data.item) {
+            setIsLogin(true);
+            setUser({
+                profile_img: data.item.profile_img,
+                userid: data.item.userid,
+            });
+        } else {
+            setIsLogin(false);
+        }
+    }, [data]);
 
     /** logout 버튼 클릭 이벤트 */
     const logout = useCallback(e => {
@@ -105,6 +120,8 @@ const Sidebar = ({setShowSidebar}) => {
             // 로그아웃 성공 시
             navigate('/');
             setShowSidebar(false);
+            setIsLogin(false);
+            setUser(null);
         })
         .catch(() => {
             // 로그아웃 실패 시
@@ -122,7 +139,7 @@ const Sidebar = ({setShowSidebar}) => {
     /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 + 비회원접속제한 */
     const movePage2=useCallback(e => {
         e.preventDefault();
-        if(data) { // 로그인 상태
+        if(isLogin) { // 로그인 상태
             navigate(e.target.dataset.path);
             setShowSidebar(false);
         } else { // 로그아웃 상태
@@ -130,7 +147,7 @@ const Sidebar = ({setShowSidebar}) => {
             navigate("/login");
             setShowSidebar(false);
         }
-    }, [data, navigate, setShowSidebar]);
+    }, [isLogin, navigate, setShowSidebar]);
 
     // sidebar가 unmount될때 fadeout애니메이션 적용??
     // useEffect(()=>{
@@ -138,7 +155,7 @@ const Sidebar = ({setShowSidebar}) => {
 
     //     })
     // }, [])
-    console.log(data);
+    // console.log(data);
 
     return (
         <>
@@ -149,28 +166,25 @@ const Sidebar = ({setShowSidebar}) => {
                 <div className="back"></div>
                 {
                     // 로그인 여부에 따라 조건부 렌더링
-                    data ? ( 
+                    isLogin ? ( 
                         <div className="user_inform" data-path="/userinfo" onClick={movePage}>
                             <div className='profile_img'>
                                 {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
                                 {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
                                 {/* <img src={`http://localhost:3001/upload/profile_img${data.item.profile_thumb}`} alt="img" /> */}
                                 {
-                                    data.item.profile_img?
-                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`} alt="img" />
+                                    user.profile_img?
+                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${user.profile_img}`} alt="img" />
                                     :
                                     "기본이미지추가"
                                 }
                             </div>
                             <div className="profile_text">
                                 <h1 className="font2">Hello,</h1>
-                                <h1 className="font2">{data.item.userid}!</h1>
+                                <h1 className="font2">{user.userid}!</h1>
                             </div>
                         </div>
-                        ) : (
-                        <div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>
-                        )
-                }
+                    ) : (<div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>)}
                 {/* menu 링크 */}
                 <ul className='menu'>
                 <li onClick={movePage2} data-path='/mylike'>내 저장</li>
@@ -178,13 +192,8 @@ const Sidebar = ({setShowSidebar}) => {
                 <li onClick={movePage2} data-path='/myqna'>내 문의</li>
                 <li onClick={movePage} data-path='/tourkit'>여행도구</li>
                 <li onClick={movePage} data-path='/service'>고객센터</li>
-                {
-                    // 로그인 여부에 따라 조건부 렌더링
-                    data ? (
-                    <li>
-                        <button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button>
-                    </li>) : ''
-                }
+                {/* 로그인 여부에 따라 조건부 렌더링 */}
+                {isLogin && <li><button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button></li>}
                 </ul>
                 </div>
             </SidebarContainer>

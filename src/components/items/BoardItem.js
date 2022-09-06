@@ -33,7 +33,7 @@ const BoardItemContainer = styled.div`
         }
     }
     
-    img {
+    .arrow {
         width: 12px;
         height: 12px;
         transform: rotate(-90deg);
@@ -47,7 +47,7 @@ const BoardItem = ({item, api}) => {
                 <p className='title font5'>{item.title}</p>
                 <span className='date'>{item.reg_date.substring(0,10)}</span>
             </NavLink>
-            <img className="arrow" src ={Arrow} alt="arrow"/>
+            <img className="arrow" src={Arrow} alt="arrow"/>
         </BoardItemContainer>
     );
 };

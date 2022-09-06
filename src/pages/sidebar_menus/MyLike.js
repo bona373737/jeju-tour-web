@@ -37,6 +37,7 @@ const MyLike = () => {
     //리덕스초기화
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.myLike);
+    // console.log(data);
 
     //화면 렌더링될때 내저장 리스트 불러오기
     useEffect(()=>{
@@ -47,14 +48,11 @@ const MyLike = () => {
     return (
         <MyLikeContainer>
             <Spinner visible={loading}/>
-            {
-                isClicked? 
-                <button onClick={()=>{setIsClicked(!isClicked)}}>리스트로보기</button>
-                :
-                <button onClick={()=>{setIsClicked(!isClicked)}}>이미지로보기</button>
-            }
+
             {
                 isClicked?
+                <>
+                <button onClick={()=>{setIsClicked(!isClicked)}}>리스트로보기</button>
                 <div className="thum_wrap">
                     {data&&
                         data.item.map((v,i)=>{
@@ -62,7 +60,10 @@ const MyLike = () => {
                         })
                     }
                 </div>
+                </>
                 :
+                <>
+                <button onClick={()=>{setIsClicked(!isClicked)}}>이미지로보기</button>
                 <div>
                     {data&&
                         data.item.map((v,i)=>{
@@ -75,6 +76,7 @@ const MyLike = () => {
                         })
                     }
                 </div>
+                </>
             }
         </MyLikeContainer>
     );
