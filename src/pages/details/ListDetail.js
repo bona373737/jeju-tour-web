@@ -54,6 +54,11 @@ const ListDetail = () => {
             <h1>{item.introduction}</h1>
             <h1>{item.address}</h1>
             <h1>{item.tag}</h1>
+            {/* <h3 className="font3">유의사항</h3>
+            <div className="font4">
+                ※ 위 정보는 {item.edit_date}에 작성된 정보로, 이후 변경될 수 있으니 여행 하시기 전에 반드시 확인하시기 바랍니다.
+                ※ 위 콘텐츠에 사용된 텍스트, 사진, 동영상 등의 정보는 제주관광공사가 저작권을 보유하고 있으므로 콘텐츠의 무단 사용을 금합니다.
+            </div> */}
             <hr/>            
             <div className='review_wrap'>
                 {

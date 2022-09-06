@@ -8,8 +8,6 @@ import styled from 'styled-components';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getNoticeItem } from '../../slices/NoticeSlice';
-import { getFAQItem } from '../../slices/FAQSlice';
 
 const BoardDetailContainer = styled.div`
     width: 80%;
