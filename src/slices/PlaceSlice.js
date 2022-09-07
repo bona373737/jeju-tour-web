@@ -6,7 +6,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const URL='/place';
+//백엔드 구축하고 나면 url변경하기
+const URL='http://localhost:3001/place';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
 export const getPlaceList = createAsyncThunk('PlaceSlice/getPlaceList',async(payload,{rejectWithValue})=>{

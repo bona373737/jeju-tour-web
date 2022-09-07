@@ -63,7 +63,7 @@ const TourInfoAdd =()=>{
         /**여행지정보추가를 위한 post요청시 formData 전달 */
         let json = null;
         try {    
-            json = await axios.post('/tourinfo',formData,{
+            json = await axios.post('http://localhost:3001/tourinfo',formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data',
                 }

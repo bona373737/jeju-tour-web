@@ -56,7 +56,7 @@ const Main = () => {
                 <Route path='/login' element={<Login/>}/>
                 <Route path='/signup' element={<Signup/>}/>
                 {/* 사이드바의 메뉴 페이지 */}
-                {/* <Route path='/userinfo' element={<TourInfoAdd/>}/> */}
+                <Route path='/userinfo' element={<TourInfoAdd/>}/>
                 <Route path='/userinfo' element={<UserInfo/>}/>
                 <Route path='/mylike' element={<MyLike/>}/>
                 <Route path='/myreview' element={<MyReview/>}/>
