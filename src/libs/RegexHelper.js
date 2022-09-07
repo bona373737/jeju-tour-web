@@ -91,6 +91,15 @@ class RegexHelper {
     }
 
     /**
+     * 영문,숫자조합의 8~16자리로 이루어 졌는지 검사하기 위해 field()를 간접적으로 호출한다.
+     * @param  {string} content   입력내용
+     * @param  {string} msg        표시할 메시지
+     */
+    useridCheck(content, msg) {
+        return this.field(content, msg, /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/);
+    }
+
+    /**
      * 영문으로만 이루어 졌는지 검사하기 위해 field()를 간접적으로 호출한다.
      * @param  {string} content   입력내용
      * @param  {string} msg        표시할 메시지
