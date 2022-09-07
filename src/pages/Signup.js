@@ -9,24 +9,16 @@
 import React, { useCallback,useRef } from "react";
 import styled from "styled-components";
 import RegexHelper from '../libs/RegexHelper';
-import useAxios from "axios-hooks";
+import { useNavigate } from 'react-router-dom';
 
 import crypto from 'crypto-js';
 import axios from "axios";
-import { current } from "@reduxjs/toolkit";
-import { Bubble } from "react-chartjs-2";
 // import Arrow from "../assets/icon/arrow.png";
 
 const SignupContainer = styled.div`
     width: 100%;
     padding-top: 20%;
     padding-bottom: 20%;
-
-    h3 {
-        padding-bottom: 12%;
-        display: flex;
-        justify-content: center;
-    }
 
     .signup_content {
         width: 80%;
@@ -36,35 +28,24 @@ const SignupContainer = styled.div`
         flex-wrap: wrap;
         align-content: center;
 
+        h3 {
+            padding-bottom: 12%;
+            display: flex;
+            justify-content: center;
+        }
+
         form {
             width: 100%;
 
             .message {
-                /* display: flex; */
+                display: block;
                 padding-bottom: 2%;
+                font-size: 14px;
 
                 span{
                     font-size: 14px;
                     color: red;
-
                 }
-            }
-
-            label {
-                font-size: 14px;
-            }
-
-            /* select 기본 스타일 제거 */
-            select {
-                appearance: none;
-                -moz-appearance: none; /* Firefox */
-                -webkit-appearance: none; /* Safari and Chrome */
-                color: var(--gray)
-            }
-
-            /* select IE 기본 스타일 제거 */
-            select::-ms-expand {
-                display: none; /* IE 10, 11 */
             }
 
             .err_msg {
@@ -78,8 +59,6 @@ const SignupContainer = styled.div`
                 width: 90%;
                 height: 16px;
                 padding: 5%;
-                border: solid 1px #eee;
-                border-radius: 1mm;
             }
 
             .birth_area {
@@ -88,19 +67,15 @@ const SignupContainer = styled.div`
                 justify-content: space-between;
 
                 .user_birth {
-                    width: 20%;
+                    width: 22%;
                     height: 16px;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
 
                 .user_mm {
                     width: 30%;
                     height: auto;
                     padding: 4%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
             }
 
@@ -114,30 +89,16 @@ const SignupContainer = styled.div`
                 }
 
                 .user_email {
-                    width: 40%;
+                    width: 38%;
                     height: 16px;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
 
                 .user_email_sel {
-                    width: 45%;
+                    width: 49%;
                     height: auto;
                     padding: 5%;
-                    border: solid 1px #eee;
-                    border-radius: 1mm;
                 }
-            }
-
-            .signup {
-                font-size: 16px;
-                width: 100%;
-                height: 2.4em;
-                border: none;
-                border-radius: 1mm;
-                color: var(--white);
-                background-color: var(--blue);
             }
         }
     }
@@ -152,7 +113,7 @@ const Signup = () => {
     for (let i = 1; i < 13; i++) month.push(i);
 
     //사용자 입력값 담을 변수정의
-    let userid = null
+    let userid = null;
     let password = null;
     let passwordCheck = null;
     let username = null;
@@ -208,12 +169,12 @@ const Signup = () => {
                     if(current.value){
                         RegexHelper.value(current.value,'출생년도를 입력해주세요');
                     }
-                    break;
+                break;
                 case 'birth_month':
                     if(current.value){
                         RegexHelper.value(current.value,'출생 월을 선택해주세요');
                     }
-                    break;
+                break;
                 case 'birth_day':
                     if(current.value){
                         RegexHelper.value(current.value,'출생 일자를 입력해주세요');
@@ -227,7 +188,7 @@ const Signup = () => {
                     RegexHelper.value(current.value, '도메인을 입력해주세요.');
                 break;
                 default:
-                    break;
+                break;
             }
         } catch (error) {
             // console.log(error);
@@ -237,18 +198,17 @@ const Signup = () => {
             sibling.innerHTML = error.message;        
             throw error;
         }
-        
     },[]);
 
     /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
-    const [{ data, loading, error }, refetch] = useAxios({
-          url: 'http://itpaper.co.kr:9910/members',
-          method: 'POST'
-        },
-        { manual: true })
+    // const [{ data, loading, error }, refetch] = useAxios({
+    //       url: 'http://itpaper.co.kr:9910/members',
+    //       method: 'POST'
+    //     },
+    //     { manual: true })
 
     /**submit이벤트 : 전체입력값 유효성검사 재실행, 입력값 post전송 */
-    const onSubmit=async(e)=>{
+    const onSubmit = async(e) => {
         e.preventDefault();
 
         const current = e.target;
@@ -257,20 +217,20 @@ const Signup = () => {
         passwordCheck = current.passwordCheck.value;
         username = current.username.value;
         birthday = current.birth_year.value+'-'+current.birth_month.value+'-'+current.birth_day.value;
-        email = current.input_email.value+current.input_domain.value
+        email = current.input_email.value+current.input_domain.value;
         
         /**유효성검사*/
         try {
-            RegexHelper.value(userid,'아이디를 입력해 주세요')
-            RegexHelper.engNum(userid,'아이디는 영어,숫자만 가능합니다.')
-            RegexHelper.value(password,'비밀번호를 입력해 주세요')            
-            RegexHelper.value(passwordCheck,'비밀번호 확인을 입력해 주세요')
-            RegexHelper.value(username,'성함를 입력해 주세요')
-            if(birthday){
-                RegexHelper.value(birthday,'생년월일을 입력해 주세요')
-            }
-            RegexHelper.value(email, '이메일을 입력해주세요.')
-            RegexHelper.email(email,'이메일 형식이 잘못되었습니다.')
+            RegexHelper.value(userid,'아이디를 입력해주세요');
+            RegexHelper.engNum(userid,'아이디는 영어,숫자만 가능합니다.');
+            RegexHelper.value(password,'비밀번호를 입력해주세요');          
+            RegexHelper.value(passwordCheck,'비밀번호 확인을 입력해주세요');
+            RegexHelper.value(username,'성함를 입력해주세요');
+            if (birthday) {
+                RegexHelper.value(birthday,'생년월일을 입력해주세요');
+            };
+            RegexHelper.value(email, '이메일을 입력해주세요.');
+            RegexHelper.email(email,'이메일 형식이 잘못되었습니다.');
 
         } catch (error) {
             console.log(error);
@@ -279,11 +239,10 @@ const Signup = () => {
 
         /**비밀번호 암호화_crypto-js모듈 사용 */
         // AES알고리즘 사용 암호화
-        const secretKey =  'secret key'; //config.env파일 저장된 값 불러온는 방식으로 수정필요
+        const secretKey = process.env.REACT_APP_CRYPTO_KEY;
         password = crypto.AES.encrypt(password, secretKey).toString();
         passwordCheck = crypto.AES.encrypt(passwordCheck, secretKey).toString();
         
-
         /**유효성검사 완료 후 입력값 변수로 저장 */
         const input_data={
             userid : userid,
@@ -296,22 +255,20 @@ const Signup = () => {
 
         let json = null;
         try {
-            await refetch({data:input_data})
-            // json = response.data;
+            json = await axios.post("/members",input_data)
         } catch (error) {
             console.log(error);
-            // window.(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
+            window.alert(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
         }
         window.alert(json.data.item + "님 회원가입 완료")
         // console.log(json);
         navigate("/");
     };
 
-
     return (
         <SignupContainer>
             <div className="signup_content">
-                <h3 className="headfont">회원가입</h3>
+                <h3 className="font2">회원가입</h3>
 
                 <form onSubmit={onSubmit} ref={signup_form}>
                     {/* 아이디 */}
@@ -386,8 +343,8 @@ const Signup = () => {
                     <span id="err_email" className="err_msg"></span>
                     <br />
 
-                    <button type="submit" id="signup" className="signup">
-                        회원가입
+                    <button type="submit" id="signup" className="btn_act">
+                        가입하기
                     </button>
                 </form>
             </div>

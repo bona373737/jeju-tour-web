@@ -7,6 +7,7 @@
  */
 import React from 'react';
 import styled from 'styled-components';
+import Heart2 from '../Heart2';
 
 const ThumbItemContainer = styled.div`
     width: 150px;
@@ -25,11 +26,12 @@ const ThumbItemContainer = styled.div`
 `;
 
 const ThumbItem = ({item}) => {
+    // console.log(item);
     return (
         <ThumbItemContainer>
             <img src="" alt="thumbnail" />
             <div className="heart">
-                하트
+                <Heart2 item={item}></Heart2>
             </div>
         </ThumbItemContainer>
     );

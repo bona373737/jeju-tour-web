@@ -5,6 +5,7 @@
  */
 import React from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
 
 const ReviewTriggerContainer=styled.div`
     .review_item_top{
@@ -22,22 +23,27 @@ const ReviewTriggerContainer=styled.div`
     }
 `;
 
-const ReviewTrigger = () => {
+const ReviewTrigger = ({item}) => {
+
+    const edit_date = dayjs(item?.edit_date).format("YYYY-MM-DD")
+
     return (
-        <ReviewTriggerContainer>
-            <div className='review_item_top'>
-                <div className='left'>
-                    <span>★★★★☆</span>
-                    <span>작성자이름</span>
-                </div>
-                <div className='right'>
-                    <span>작성날짜</span>
-                </div>
-            </div>
-            <div className='trigger_title'>
-                review title
-            </div>
-        </ReviewTriggerContainer>
+        item&&(
+                <ReviewTriggerContainer>
+                    <div className='review_item_top'>
+                        <div className='left'>
+                            <span>★★★★☆</span>
+                            <span>작성자</span>
+                        </div>
+                        <div className='right'>
+                            <span>{edit_date}</span>
+                        </div>
+                    </div>
+                    <div className='trigger_title'>
+                        {item.title}
+                    </div>
+                </ReviewTriggerContainer>
+        )      
     );
 };
 

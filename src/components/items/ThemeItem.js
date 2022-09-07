@@ -1,57 +1,55 @@
 /**
  * @Filename: ThemeItem.js
- * @Author: 이재이(loveleej87@gmail.com)
+ * @Author: 웹퍼블작업_이재이(loveleej87@gmail.com),
+ *          웹퍼블수정 및 js기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 홈 페이지 추천 테마 리스트 아이템 컴포넌트
  */
 import React, { memo } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import Theme1 from "../../assets/img/img_gotjawal.jpeg";
-
 const ThemeItemContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    padding-top: 10%;
-
-    img {
-        width: 80%;
-        border-radius: 6px;
-        position: absolute;
-        left: 10%;
-        margin-bottom: 10%;
-        margin: 0 auto;
-    }
+    width: 80%;
+    height: 200px;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-top: 10%;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)
+    ), url(${props => props.src});
+    background-size: cover;
+    background-position: center;
 
     .themeitem_text {
-        width: 80%;
-        position: relative;
-        padding-top: 6%;
-        padding-bottom: 20%;
-        left: 15%;
+        color: var(--white);
 
-        p,
-        h1 {
-            color: var(--white);
+        .title {
+            padding: 20px 15px 0;
         }
 
-        p {
-            padding-bottom: 2%;
+        .intro {
+            padding: 15px 15px 0;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
         }
     }
 `;
 
-const ThemeItem = memo(() => {
+const ThemeItem = memo(({item}) => {
     return (
-        <ThemeItemContainer>
-            <NavLink to="/theme/:id">
-                <img src={Theme1} alt="theme1" />
+        <NavLink to={`/theme/${item.place_no}`}>
+            <ThemeItemContainer src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`}>
                 <div className="themeitem_text">
-                    <p className="font5">제주의 걷기 좋은 길</p>
-                    <h1 className="font1">곶자왈</h1>
+                    <h1 className="title font1">{item.title}</h1>
+                    <p className="intro font5">{item.introduction}</p>
                 </div>
-            </NavLink>
-        </ThemeItemContainer>
+            </ThemeItemContainer>
+        </NavLink>
     );
 });
 

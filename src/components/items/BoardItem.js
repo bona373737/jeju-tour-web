@@ -10,21 +10,32 @@ import styled from 'styled-components';
 import Arrow from '../../assets/icon/arrow.png'; 
 
 const BoardItemContainer = styled.div`
-    border-bottom: 1px solid var(--subblue);
+    border-bottom: 1px solid var(--subgray);
     padding: 15px 0;
+    width: 100%;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center; 
 
-    .left {
-        p {
-            padding-bottom: 7px;
+    .item {
+        width: 90%;
+        
+        .title {
+            padding-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .date {
+            color: var(--textgray);
         }
     }
     
-    img {
-        width: 10px;
-        height: 10px;
+    .arrow {
+        width: 12px;
+        height: 12px;
         transform: rotate(-90deg);
     }
 `;
@@ -32,26 +43,11 @@ const BoardItemContainer = styled.div`
 const BoardItem = ({item, api}) => {
     return (
         <BoardItemContainer>
-            {api === 'notice' ? (
-                <>
-                    {/* notice_no은 notice 아이디값(PK) */}
-                    <NavLink to={`/service/notice/${item.notice_no}`} state={{item: item, api: api}} className ="left">
-                        <p className='title'>{item.title}</p>
-                        <span>{item.reg_date}</span>
-                    </NavLink>
-                    <img className="arrow" src ={Arrow} alt="arrow"/>
-                </>
-                
-            ) : (
-                <>
-                    {/* faq_no은 faq 아이디값(PK) */}
-                    <NavLink to={`/service/faq/${item.faq_no}`} state={{item: item, api: api}} className ="left">
-                        <p className='title'>{item.title}</p>
-                        <span>{item.reg_date}</span>
-                    </NavLink>
-                    <img className="arrow" src ={Arrow} alt="arrow"/>
-                </>
-            )}
+            <NavLink to={`/service/${api}/${item[`${api}_no`]}`} className ="item">
+                <p className='title font5'>{item.title}</p>
+                <span className='date'>{item.reg_date.substring(0,10)}</span>
+            </NavLink>
+            <img className="arrow" src={Arrow} alt="arrow"/>
         </BoardItemContainer>
     );
 };

@@ -4,17 +4,37 @@
  * @Description: 공지사항 데이터 처리
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { pending, fulfilled, rejected } from "../Util";
 import axios from 'axios';
 
-//백엔드 구축하고 나면 url변경하기
-const URL = 'http://localhost:3001/notice';
+const URL = '/notice/';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
 export const getNoticeList = createAsyncThunk('NoticeSlice/getNoticeList', async (payload, { rejectWithValue }) => {
     let result = null;
 
     try {
-        result = await axios.get(URL);
+        result = await axios.get(URL, {
+            params: {
+                type: payload?.type,
+                query: payload?.query,
+                page: payload?.page,
+                rows: payload?.rows
+            }
+        });
+    } catch(err) {
+        result = rejectWithValue(err.response);
+    }
+
+    return result;
+});
+
+/** 단일행 데이터 조회를 위한 비동기 함수 */
+export const getNoticeItem = createAsyncThunk('NoticeSlice/getNoticeItem', async (payload, { rejectWithValue }) => {
+    let result = null;
+
+    try {
+        result = await axios.get(`${URL}${payload?.notice_no}/`);
     } catch(err) {
         result = rejectWithValue(err.response);
     }
@@ -32,26 +52,14 @@ const NoticeSlice = createSlice({
     reducers: {},
     extraReducers: {
         /** 다중행 데이터 조회를 위한 액션 함수 */
-        [getNoticeList.pending]: (state, { payload }) => {
-            return {...state, loading: true }
-        },
-        [getNoticeList.fulfilled]: (state, { payload }) => {
-            return {
-                data: payload?.data,
-                loading: false,
-                error: null
-            }
-        },
-        [getNoticeList.rejected]: (state, { payload }) => {
-            return {
-                data: null,
-                loading: false,
-                error: {
-                    code: payload?.status ? payload.status : 500,
-                    message: payload?.statusText ? payload.statusText : 'Server Error'
-                }
-            }
-        }
+        [getNoticeList.pending]: pending,
+        [getNoticeList.fulfilled]: fulfilled,
+        [getNoticeList.rejected]: rejected,
+
+        /** 단일행 데이터 조회를 위한 액션 함수 */
+        [getNoticeItem.pending]: pending,
+        [getNoticeItem.fulfilled]: fulfilled,
+        [getNoticeItem.rejected]: rejected,
     }
 });
 

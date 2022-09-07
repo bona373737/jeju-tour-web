@@ -5,9 +5,10 @@
  *               클릭된 리스트를 식별할 수 있도록
  *               props로 클릭된 리스트의 id를 ListDetail.js에 전달한다.
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Heart from '../Heart';
 
 const ListItemContainer = styled.div`
     box-sizing: border-box;
@@ -16,52 +17,54 @@ const ListItemContainer = styled.div`
     line-height: 20px;
 
     a{
-        height: 100px;
         display: flex;
 
         .img_wrap{
             width: 30%;
             background-color: var(--blue);
+            img{
+                object-fit: contain;
+                width: 100%;
+                overflow: hidden;
+            }
 
         }
         .text_wrap{
             width: 70%;
+            margin-left: 5px;
+            .introduction{
+                line-height: 20px;
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
 
         }
 
     }
 `;
 
-const ListItem = ({item,api}) => {
-
-    // const rawData = item.sbst.data;
-    // rawData == 타입이 뭔지
-    // 16진수 헥사 바이트 base64
+const ListItem = ({item,api}) => { 
+    let id;
+    if(item){
+        id = item?.place_no? item.place_no : (item.accom_no? item.accom_no : item.food_no);
+    }
     
-
-    // var string = new TextDecoder().decode(binaryData);
-    // console.log(string);
-
-    // blob.text();
-    // console.log(blob.text())
-
-    // const reader = new FileReader();
-    // const nana = reader.readAsText(blob);
-    // console.log(reader);
-
     return (
+        item&&
         <ListItemContainer>
-            {/* id---> 여행지정보의 primary key값으로 넣어주기 */}
-            <NavLink to={'/tab/'+api+'/'+item.placeno} state={{item:item}}>
+            <NavLink to={'/tab/'+api+'/'+id} state={{item:item}}>
                 <div className='img_wrap'>
-                    <img src=''/>
+                    <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
                 <div className='text_wrap'>
-                    <p>{item?.placeno}</p>
-                    <p>{item?.title}</p>
-                    <p>{item?.address}</p>
-                    <p>{item?.phoneno}</p>
-                    <p>{item?.introduction}</p>
+                    {/* <p>{id}</p> */}
+                    <p className='font3'>{item.title}</p>
+                    <p className='font8'>{item.address}</p>
+                    <p className='font8'>{item.phoneno}</p>
+                    <p className='font8 introduction'>{item.introduction}</p>
                 </div>
             </NavLink>
         </ListItemContainer>

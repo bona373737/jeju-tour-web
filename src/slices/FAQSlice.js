@@ -4,23 +4,44 @@
  * @Description: 자주 묻는 질문 데이터 처리
  */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { pending, fulfilled, rejected } from "../Util";
 import axios from 'axios';
 
-//백엔드 구축하고 나면 url변경하기
-const URL = 'http://localhost:3001/faq';
+const URL = '/faq/';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
 export const getFAQList = createAsyncThunk('FAQSlice/getFAQList', async (payload, { rejectWithValue }) => {
     let result = null;
 
     try {
-        result = await axios.get(URL);
+        result = await axios.get(URL, {
+            params: {
+                type: payload?.type,
+                query: payload?.query,
+                page: payload?.page,
+                rows: payload?.rows
+            }
+        });
     } catch(err) {
         result = rejectWithValue(err.response);
     }
 
     return result;
 });
+
+/** 단일행 데이터 조회를 위한 비동기 함수 */
+export const getFAQItem = createAsyncThunk('NoticeSlice/getFAQItem', async (payload, { rejectWithValue }) => {
+    let result = null;
+
+    try {
+        result = await axios.get(`${URL}${payload?.faq_no}/`);
+    } catch(err) {
+        result = rejectWithValue(err.response);
+    }
+
+    return result;
+});
+
 
 const FAQSlice = createSlice({
     name: 'faq',
@@ -32,26 +53,14 @@ const FAQSlice = createSlice({
     reducers: {},
     extraReducers: {
         /** 다중행 데이터 조회를 위한 액션 함수 */
-        [getFAQList.pending]: (state, { payload }) => {
-            return {...state, loading: true }
-        },
-        [getFAQList.fulfilled]: (state, { payload }) => {
-            return {
-                data: payload?.data,
-                loading: false,
-                error: null
-            }
-        },
-        [getFAQList.rejected]: (state, { payload }) => {
-            return {
-                data: null,
-                loading: false,
-                error: {
-                    code: payload?.status ? payload.status : 500,
-                    message: payload?.statusText ? payload.statusText : 'Server Error'
-                }
-            }
-        }
+        [getFAQList.pending]: pending,
+        [getFAQList.fulfilled]: fulfilled,
+        [getFAQList.rejected]: rejected,
+
+        /** 단일행 데이터 조회를 위한 액션 함수 */
+        [getFAQItem.pending]: pending,
+        [getFAQItem.fulfilled]: fulfilled,
+        [getFAQItem.rejected]: rejected,
     }
 });
 

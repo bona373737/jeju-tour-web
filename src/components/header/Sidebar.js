@@ -1,11 +1,26 @@
 /** 
  * @Filename: Sidebar.js
- * @Author: 구본아(bona373737@gmail.com)
+ * @Author: 웹퍼블작업 및 전체기능구현_구본아(bona373737@gmail.com)
+ *          로그인/아웃 기능구현_구나래(nrggrnngg@gmail.com)
  * @Description: 사이드바 영역
  */
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled,{keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteLogin } from '../../slices/MemberSlice';
+
+import Spinner from '../Spinner';
+
+
+//아이콘
+import cogwheel from '../../assets/icon/cogwheel.png';
+import icon_heart from '../../assets/icon/heart.png';
+import icon_review from '../../assets/icon/review.png';
+import icon_mail from '../../assets/icon/mail.png';
+import icon_tools from '../../assets/icon/tools.png';
+import icon_logout from '../../assets/icon/logout.png';
+import icon_qna from '../../assets/icon/qna.png';
 
 const fadeIn = keyframes`
     from{
@@ -57,7 +72,8 @@ const SidebarContainer = styled.div`
                 height: 70px;
                 border-radius: 50%;
                 img{
-                    
+                    width: 100%;
+                    border-radius: 50%;
                 }
             }
             .profile_text{
@@ -66,6 +82,11 @@ const SidebarContainer = styled.div`
                 justify-content: center;
                 align-items: center; 
             }
+            .icon_cogwheel{
+                color: red;
+                /* color: var(--gray); */
+                width: 50px
+            }
         }
         .menu{
             margin: 15px 0;
@@ -73,76 +94,133 @@ const SidebarContainer = styled.div`
                 display: block;
                 width: 100%;
                 padding: 15px 0;
+                img{
+                    width: 20px;
+                    filter: invert(75%) sepia(4%) saturate(75%) hue-rotate(22deg) brightness(85%) contrast(86%);
+                }
             }//li end
         }//menu end
     }//sidebar_content end
 `;
 
 const Sidebar = ({setShowSidebar}) => {
-    //로그인여부를 나타내는 상태값_로그인기능구현전까지 임의로 활용.
-    const [isLogin, setIsLogin] = useState(false);
-    
-    //클릭시 페이지이동과 함께 sidebar닫아주는 함수
+    // 페이지 강제 이동 함수 생성
     const navigate = useNavigate();
-    const movePage=useCallback((e)=>{
+    // 리덕스 로그인 세션 상태 관리
+    const dispatch = useDispatch();
+    const { data, loading } = useSelector((state) => state.member);
+    // 로그인 여부 상태값
+    const [isLogin, setIsLogin] = useState();
+    // 로그인 회원정보 상태값
+    const [user, setUser] = useState({
+        profile_img: '',
+        userid: ''
+    });
+
+    /** 로그인 상태값 갱신 */
+    useEffect(() => {
+        if (data && data.item) {
+            setIsLogin(true);
+            setUser({
+                profile_img: data.item.profile_img,
+                userid: data.item.userid,
+            });
+        } else {
+            setIsLogin(false);
+        }
+    }, [data]);
+
+    /** logout 버튼 클릭 이벤트 */
+    const logout = useCallback(e => {
+        e.preventDefault();
+        // 리덕스를 통해 로그아웃 요청
+        dispatch(deleteLogin())
+        .unwrap()
+        .then(() => {
+            // 로그아웃 성공 시
+            navigate('/');
+            setShowSidebar(false);
+            setIsLogin(false);
+            setUser(null);
+        })
+        .catch(() => {
+            // 로그아웃 실패 시
+            alert('로그아웃에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        });
+    }, [dispatch, navigate, setShowSidebar]);
+
+    /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 */
+    const movePage=useCallback(e => {
+        e.preventDefault();
         navigate(e.target.dataset.path);
         setShowSidebar(false);
-    },[])
-    //클릭시 페이지이동과 함께 sidebar닫아주는 함수 +비회원접속제한
-    const movePage2=useCallback((e)=>{
-        if(isLogin===true){
+    }, [navigate, setShowSidebar]);
+
+    /** 클릭시 페이지이동과 함께 sidebar닫아주는 함수 + 비회원접속제한 */
+    const movePage2=useCallback(e => {
+        e.preventDefault();
+        if(isLogin) { // 로그인 상태
             navigate(e.target.dataset.path);
             setShowSidebar(false);
-        }else{
-            alert("로그인하세요")
+        } else { // 로그아웃 상태
+            alert("로그인을 해주세요.");
             navigate("/login");
             setShowSidebar(false);
         }
-    },[])
+    }, [isLogin, navigate, setShowSidebar]);
 
-    //sidebar가 unmount될때 fadeout애니메이션 적용??
-    useEffect(()=>{
-        return(()=>{
+    // sidebar가 unmount될때 fadeout애니메이션 적용??
+    // useEffect(()=>{
+    //     return(()=>{
 
-        })
-    },[])
+    //     })
+    // }, [])
+    // console.log(data);
 
     return (
-        <SidebarContainer>
-            <div className="sidebar_content">
-            <div className="back"></div>
-            {
-                //로그인여부에 따라 조건부 렌더링
-                isLogin? ( 
-                    <div className="user_inform" data-path="/userinfo" onClick={movePage}>
-                        <div className='profile_img'>
-                            <img src="" alt="img" />
+        <>
+            <Spinner visible={loading}/>
+
+            <SidebarContainer>
+                <div className="sidebar_content">
+                <div className="back"></div>
+                {
+                    // 로그인 여부에 따라 조건부 렌더링
+                    isLogin ? ( 
+                        <div className="user_inform" >
+                            <div className='profile_img'>
+                                {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
+                                {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
+                                {/* <img src={`http://localhost:3001/upload/profile_img${data.item.profile_thumb}`} alt="img" /> */}
+                                {
+                                    user.profile_img?
+                                    <img src={`${process.env.REACT_APP_STATIC_PATH}${user.profile_img}`} alt="img" />
+                                    :
+                                    "기본이미지추가"
+                                }
+                            </div>
+                            <div className="profile_text">
+                                <h1 className="font2">Hello,</h1>
+                                <h1 className="font2">{user.userid}!</h1>
+                            </div>
+                            <div>
+                                <img src={cogwheel} className="icon_cogwheel" data-path="/userinfo" onClick={movePage}></img>
+                            </div>
                         </div>
-                        <div className="profile_text">
-                            <h1>Hello</h1>
-                            <h1>Bona!(변수)</h1>
-                        </div>
-                    </div>
-                    ):(
-                        <div className='login' data-path='/login' onClick={movePage}>
-                        로그인/회원가입
-                        </div>
-                    )
-            }
-            {/* menu 링크 */}
-            <ul className='menu'>
-            <li onClick={movePage2} data-path='/mylike'>내 저장</li>
-            <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
-            <li onClick={movePage2} data-path='/myqna'>내 문의</li>
-            <li onClick={movePage} data-path='/tourkit'>여행도구</li>
-            <li onClick={movePage} data-path='/service'>고객센터</li>
-            {
-                isLogin? (<li>로그아웃</li>):''
-            }
-            </ul>
-            </div>
-        </SidebarContainer>
-        
+                    ) : (<div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>)}
+                {/* menu 링크 */}
+                <ul className='menu'>
+                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장</li>
+                <li onClick={movePage2} data-path='/myreview'><img src={icon_review}/>내 리뷰</li>
+                <li onClick={movePage2} data-path='/myqna'><img src={icon_mail}/>내 문의</li>
+                <li onClick={movePage} data-path='/tourkit'><img src={icon_tools}/>여행도구</li>
+                <li onClick={movePage} data-path='/service'><img src={icon_qna}/>고객센터</li>
+                {/* 로그인 여부에 따라 조건부 렌더링 */}
+                {isLogin && <li><button type="button" name="logout" className="logout" onClick={logout}><img src={icon_logout}/>로그아웃</button></li>}
+                </ul>
+                </div>
+            </SidebarContainer>
+        </>
     );
 }; 
 
