@@ -12,6 +12,16 @@ import { deleteLogin } from '../../slices/MemberSlice';
 
 import Spinner from '../Spinner';
 
+
+//아이콘
+import cogwheel from '../../assets/icon/cogwheel.png';
+import icon_heart from '../../assets/icon/heart.png';
+import icon_review from '../../assets/icon/review.png';
+import icon_mail from '../../assets/icon/mail.png';
+import icon_tools from '../../assets/icon/tools.png';
+import icon_logout from '../../assets/icon/logout.png';
+import icon_qna from '../../assets/icon/qna.png';
+
 const fadeIn = keyframes`
     from{
         transform: translateX(100%);
@@ -63,6 +73,7 @@ const SidebarContainer = styled.div`
                 border-radius: 50%;
                 img{
                     width: 100%;
+                    border-radius: 50%;
                 }
             }
             .profile_text{
@@ -71,6 +82,11 @@ const SidebarContainer = styled.div`
                 justify-content: center;
                 align-items: center; 
             }
+            .icon_cogwheel{
+                color: red;
+                /* color: var(--gray); */
+                width: 50px
+            }
         }
         .menu{
             margin: 15px 0;
@@ -78,6 +94,10 @@ const SidebarContainer = styled.div`
                 display: block;
                 width: 100%;
                 padding: 15px 0;
+                img{
+                    width: 20px;
+                    filter: invert(75%) sepia(4%) saturate(75%) hue-rotate(22deg) brightness(85%) contrast(86%);
+                }
             }//li end
         }//menu end
     }//sidebar_content end
@@ -167,7 +187,7 @@ const Sidebar = ({setShowSidebar}) => {
                 {
                     // 로그인 여부에 따라 조건부 렌더링
                     isLogin ? ( 
-                        <div className="user_inform" data-path="/userinfo" onClick={movePage}>
+                        <div className="user_inform" >
                             <div className='profile_img'>
                                 {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
                                 {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
@@ -183,17 +203,20 @@ const Sidebar = ({setShowSidebar}) => {
                                 <h1 className="font2">Hello,</h1>
                                 <h1 className="font2">{user.userid}!</h1>
                             </div>
+                            <div>
+                                <img src={cogwheel} className="icon_cogwheel" data-path="/userinfo" onClick={movePage}></img>
+                            </div>
                         </div>
                     ) : (<div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>)}
                 {/* menu 링크 */}
                 <ul className='menu'>
-                <li onClick={movePage2} data-path='/mylike'>내 저장</li>
-                <li onClick={movePage2} data-path='/myreview'>내 리뷰</li>
-                <li onClick={movePage2} data-path='/myqna'>내 문의</li>
-                <li onClick={movePage} data-path='/tourkit'>여행도구</li>
-                <li onClick={movePage} data-path='/service'>고객센터</li>
+                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장</li>
+                <li onClick={movePage2} data-path='/myreview'><img src={icon_review}/>내 리뷰</li>
+                <li onClick={movePage2} data-path='/myqna'><img src={icon_mail}/>내 문의</li>
+                <li onClick={movePage} data-path='/tourkit'><img src={icon_tools}/>여행도구</li>
+                <li onClick={movePage} data-path='/service'><img src={icon_qna}/>고객센터</li>
                 {/* 로그인 여부에 따라 조건부 렌더링 */}
-                {isLogin && <li><button type="button" name="logout" className="logout" onClick={logout}>로그아웃</button></li>}
+                {isLogin && <li><button type="button" name="logout" className="logout" onClick={logout}><img src={icon_logout}/>로그아웃</button></li>}
                 </ul>
                 </div>
             </SidebarContainer>
