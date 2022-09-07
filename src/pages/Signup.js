@@ -12,12 +12,9 @@ import RegexHelper from '../libs/RegexHelper';
 import useAxios from "axios-hooks";
 
 import crypto from 'crypto-js';
-<<<<<<< Updated upstream
-=======
 import axios from "axios";
 import { current } from "@reduxjs/toolkit";
 import { Bubble } from "react-chartjs-2";
->>>>>>> Stashed changes
 // import Arrow from "../assets/icon/arrow.png";
 
 const SignupContainer = styled.div`
@@ -147,12 +144,9 @@ const SignupContainer = styled.div`
 `;
 
 const Signup = () => {
-<<<<<<< Updated upstream
-=======
     const navigate = useNavigate();
     const signup_form = useRef();
 
->>>>>>> Stashed changes
     /** 월 입력폼 반복 돌려 구현하기 */
     const month = [];
     for (let i = 1; i < 13; i++) month.push(i);
@@ -183,34 +177,12 @@ const Signup = () => {
     };
 
     /**input입력칸 onBlur 이벤트 */
-<<<<<<< Updated upstream
-    const onBlur = useCallback((e)=>{
-
-=======
     const onBlur = useCallback(e => {
         const current = e.target;
         const sibling = current.nextElementSibling;
->>>>>>> Stashed changes
         try {            
             switch (current.id) {
                 case 'userid':
-<<<<<<< Updated upstream
-                    RegexHelper.value(e.target.value,'아이디를 입력해 주세요');
-                    RegexHelper.engNum(e.target.value,'아이디는 영어,숫자만 가능합니다.');
-                    break;
-                case 'password':
-                    RegexHelper.value(e.target.value,'비밀번호를 입력해 주세요');
-                    break;
-                    case 'passwordCheck':
-                    RegexHelper.value(e.target.value,'비밀번호 확인을 입력해 주세요');
-                    break;
-                case 'username':
-                    RegexHelper.value(e.target.value,'성함를 입력해 주세요');
-                    break;
-                case 'birth_year':
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생년도를 입력해 주세요');
-=======
                     RegexHelper.value(current.value,'아이디를 입력해주세요');
                     RegexHelper.useridCheck(current.value,'아이디는 영문+숫자조합의 8~16자리로 가능합니다.');
                     const msg = isMember(current.value);
@@ -235,30 +207,14 @@ const Signup = () => {
                 case 'birth_year':
                     if(current.value){
                         RegexHelper.value(current.value,'출생년도를 입력해주세요');
->>>>>>> Stashed changes
                     }
                     break;
                 case 'birth_month':
-<<<<<<< Updated upstream
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 월을 선택해 주세요');
-=======
                     if(current.value){
                         RegexHelper.value(current.value,'출생 월을 선택해주세요');
->>>>>>> Stashed changes
                     }
                     break;
                 case 'birth_day':
-<<<<<<< Updated upstream
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 일자를 입력해 주세요');
-                    }
-                    break;
-                case 'email':
-                    RegexHelper.value(e.target.value, '이메일을 입력해주세요.');
-                    RegexHelper.engNum(e.target.value, '이메일은 영어,숫자만 가능합니다.')
-                    break;
-=======
                     if(current.value){
                         RegexHelper.value(current.value,'출생 일자를 입력해주세요');
                     }
@@ -270,7 +226,6 @@ const Signup = () => {
                 case 'input_domain':
                     RegexHelper.value(current.value, '도메인을 입력해주세요.');
                 break;
->>>>>>> Stashed changes
                 default:
                     break;
             }
@@ -347,13 +302,9 @@ const Signup = () => {
             console.log(error);
             // window.(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
         }
-<<<<<<< Updated upstream
-
-=======
         window.alert(json.data.item + "님 회원가입 완료")
         // console.log(json);
         navigate("/");
->>>>>>> Stashed changes
     };
 
 
