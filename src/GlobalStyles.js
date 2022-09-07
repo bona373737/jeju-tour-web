@@ -57,7 +57,7 @@ const GlobalStyles = createGlobalStyle`
     /* input 기본 스타일 */
     input { 
         font-family: inherit;
-        border: solid 1px #eee;
+        border: solid 1px var(--subgray);
         border-radius: 4px;
         caret-color: var(--blue);
     };
@@ -67,14 +67,14 @@ const GlobalStyles = createGlobalStyle`
         appearance: none;
         -moz-appearance: none; // Firefox
         -webkit-appearance: none; // Safari & Chrome
-        border: solid 1px #eee;
+        border: solid 1px var(--subgray);
         border-radius: 4px;
     };
     /* select 기본 스타일 */
     select::-ms-expand {
         font-family: inherit;
         display: none; // IE 10, 11
-        border: solid 1px #eee;
+        border: solid 1px var(--subgray);
         border-radius: 4px;
     };
     /* input & select 포커싱 */
