@@ -6,7 +6,7 @@
  *               axios-hooks모듈 사용
  *               비밀번호 암호화_crypto-js사용_양방향암호화하여 전송
  */
-import React, { useCallback } from "react";
+import React, { useCallback,useRef } from "react";
 import styled from "styled-components";
 import RegexHelper from '../libs/RegexHelper';
 import { useNavigate } from 'react-router-dom';
@@ -85,6 +85,7 @@ const SignupContainer = styled.div`
                 .input_box{
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                 }
 
                 .user_email {
@@ -105,6 +106,7 @@ const SignupContainer = styled.div`
 
 const Signup = () => {
     const navigate = useNavigate();
+    const signup_form = useRef();
 
     /** 월 입력폼 반복 돌려 구현하기 */
     const month = [];
@@ -118,51 +120,92 @@ const Signup = () => {
     let birthday = null;
     let email = null;
 
+
+    /** 중복아이디 검사 함수 
+     * @param : userid
+     * @returns : 중복아이디있는 경우-> 에러발생 error.response.data.rtmsg:"사용중인 아이디 입니다."
+     *            중복아이디없는 경우-> json.data.rtmsg:"사용가능한 아이디 입니다"
+    */
+    const isMember = async(userid)=>{
+        let json = null;
+        try {
+            json = await axios.post("/members/ismember",{userid:userid})
+        } catch (error) {
+            return error.response.data.rtmsg;
+        }
+        const msg = json.data.rtmsg;
+        return msg;
+    };
+
     /**input입력칸 onBlur 이벤트 */
     const onBlur = useCallback(e => {
+        const current = e.target;
+        const sibling = current.nextElementSibling;
         try {            
-            switch (e.target.id) {
+            switch (current.id) {
                 case 'userid':
-                    RegexHelper.value(e.target.value,'아이디를 입력해주세요');
-                    RegexHelper.engNum(e.target.value,'아이디는 영어,숫자만 가능합니다.');
-                break;
+                    RegexHelper.value(current.value,'아이디를 입력해주세요');
+                    RegexHelper.useridCheck(current.value,'아이디는 영문+숫자조합의 8~16자리로 가능합니다.');
+                    const msg = isMember(current.value);
+                    msg.then((PromiseResult)=>{
+                        current.nextElementSibling.innerHTML = PromiseResult;
+                        current.nextElementSibling.style.color = "#0058FF";
+                    })
+                    break;
                 case 'password':
-                    RegexHelper.value(e.target.value,'비밀번호를 입력해주세요');
+                    RegexHelper.value(current.value,'비밀번호를 입력해주세요');
+                    current.nextElementSibling.innerHTML = "안전한 비밀번호입니다.";
                 break;
                 case 'passwordCheck':
-                    RegexHelper.value(e.target.value,'비밀번호 확인을 입력해주세요');
+                    RegexHelper.value(current.value,'비밀번호 확인을 입력해주세요');
+                    RegexHelper.compareTo(signup_form.current.password.value,current.value,'비밀번호가 일치하지 않습니다.');
+                    current.nextElementSibling.innerHTML = "비밀번호가 일치합니다.";
                 break;
                 case 'username':
-                    RegexHelper.value(e.target.value,'성함를 입력해주세요');
+                    RegexHelper.value(current.value,'성함를 입력해주세요');
+                    current.nextElementSibling.innerHTML = "ok";
                 break;
                 case 'birth_year':
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생년도를 입력해주세요');
+                    if(current.value){
+                        RegexHelper.value(current.value,'출생년도를 입력해주세요');
                     }
                 break;
                 case 'birth_month':
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 월을 선택해주세요');
+                    if(current.value){
+                        RegexHelper.value(current.value,'출생 월을 선택해주세요');
                     }
                 break;
                 case 'birth_day':
-                    if(e.target.value){
-                        RegexHelper.value(e.target.value,'출생 일자를 입력해주세요');
+                    if(current.value){
+                        RegexHelper.value(current.value,'출생 일자를 입력해주세요');
                     }
                 break;
-                case 'email':
-                    RegexHelper.value(e.target.value, '이메일을 입력해주세요.');
-                    RegexHelper.engNum(e.target.value, '이메일은 영어,숫자만 가능합니다.');
+                case 'input_email':
+                    RegexHelper.value(current.value, '이메일을 입력해주세요.');
+                    RegexHelper.engNum(current.value, '이메일은 영어,숫자만 가능합니다.');
+                break;
+                case 'input_domain':
+                    RegexHelper.value(current.value, '도메인을 입력해주세요.');
                 break;
                 default:
                 break;
             }
-                    
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            
+            sibling.style.color = "red";
+            sibling.innerHTML = '';
+            sibling.innerHTML = error.message;        
             throw error;
         }
     },[]);
+
+    /**입력값 post전송함수 정의 axios-hooks 모듈사용  */
+    // const [{ data, loading, error }, refetch] = useAxios({
+    //       url: 'http://itpaper.co.kr:9910/members',
+    //       method: 'POST'
+    //     },
+    //     { manual: true })
 
     /**submit이벤트 : 전체입력값 유효성검사 재실행, 입력값 post전송 */
     const onSubmit = async(e) => {
@@ -218,7 +261,7 @@ const Signup = () => {
             window.alert(`[ ${e.response.status} ] ${e.response.statusText} \n ${e.message}`);
         }
         window.alert(json.data.item + "님 회원가입 완료")
-        console.log(json);
+        // console.log(json);
         navigate("/");
     };
 
@@ -227,12 +270,12 @@ const Signup = () => {
             <div className="signup_content">
                 <h3 className="font2">회원가입</h3>
 
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} ref={signup_form}>
                     {/* 아이디 */}
                     <div>
                         <label htmlFor="userid" className="message">아이디 <span>*</span></label>
                         <input id="userid" name="userid" type="text" onBlur={onBlur} className="input_text" ></input>
-                        <span id="err_id" className="err_msg"> 아이디를 입력하세요. </span>
+                        <span id="err_id" className="err_msg" ></span>
                         <br />
                     </div>
 
@@ -240,7 +283,7 @@ const Signup = () => {
                     <div >
                     <label htmlFor="passord" className="message">비밀번호 <span>*</span></label>
                     <input id="password" name="password" type="password" onBlur={onBlur} className="input_text" placeholder="영문+숫자 조합8~16자리"></input>
-                    <span id="err_pw" className="err_msg"> 비밀번호를 입력하세요. </span>
+                    <span id="err_pw" className="err_msg"></span>
                     <br />
                     </div>
 
@@ -248,7 +291,7 @@ const Signup = () => {
                     <div>
                         <label htmlFor="passordCheck" className="message">비밀번호 확인<span>*</span></label>
                         <input id="passwordCheck" name="passwordCheck" type="password" onBlur={onBlur} className="input_text"/>
-                        <span id="err_pw_check" className="err_msg"> 비밀번호가 일치하지 않습니다.</span>
+                        <span id="err_pw_check" className="err_msg"></span>
                         <br />
                     </div>
 
@@ -256,7 +299,7 @@ const Signup = () => {
                     <div>
                         <label htmlFor="username" className="message">이름<span>*</span></label>
                         <input id="username" name="username" type="text" className="input_text" onBlur={onBlur}></input>
-                        <span id="err_name" className="err_msg"> 이름을 입력하세요.</span>
+                        <span id="err_name" className="err_msg"></span>
                         <br />
                     </div>
 
@@ -277,7 +320,7 @@ const Signup = () => {
                             </select>
                             <input id="birth_day" name="birth_day" type="text" placeholder="일" className="user_birth" maxLength={2} onBlur={onBlur}/>
                         </div>
-                        <span id="err_birth" className="err_msg"> 생년월일을 입력하세요. </span>
+                        <span id="err_birth" className="err_msg"></span>
                         <br />
                     </div>
 
@@ -286,15 +329,18 @@ const Signup = () => {
                         <label htmlFor="user_email" className="message">이메일</label>
                         <div className="input_box">
                             <input id="input_email" name="input_email" type="text"  onBlur={onBlur} className="user_email" maxLength={20}/>
-                            <select id="input_domain" name="input_domain" type="text" className="user_email_sel">
+                            <div>@</div>
+                            {/* <input type="text"></input> */}
+                            <select id="input_domain" name="input_domain" type="text" onBlur={onBlur} className="user_email_sel">
                                 {/* 메일 주소 직접 입력란 추가해야함 */}
-                                <option value="@gmail.com">@gmail.com</option>
-                                <option value="@naver.com">@naver.com</option>
-                                <option value="@daum.com">@daum.com</option>
+                                <option>직접입력</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="daum.com">daum.com</option>
                             </select>
                         </div>
                     </div>
-                    <span id="err_email" className="err_msg"> 이메일 주소를 입력하세요.</span>
+                    <span id="err_email" className="err_msg"></span>
                     <br />
 
                     <button type="submit" id="signup" className="btn_act">
