@@ -129,7 +129,7 @@ const TabPage = () => {
                         // currentPage++;
                         setCurrentPage(currentPage=>currentPage+1);
                         // console.log("증가된 페이지 : "+ currentPage);
-                        dispatch(addPlaceList({page:currentPage}));
+                        dispatch(addPlaceList({page:currentPage+1}));
                     };
                 }
         
