@@ -7,7 +7,12 @@
 import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import FormData from 'form-data';
+import dayjs from "dayjs";
+//리덕스관련 
+import { useSelector, useDispatch } from 'react-redux';
+import { getIsLogin } from "../slices/MemberSlice";
 
 const UserInfoContainer = styled.div`
     width: 80%;
@@ -35,12 +40,19 @@ const UserInfoContainer = styled.div`
 
 
 const UserInfo =()=>{
-    
+    const navigate = useNavigate();
     //UserInfo페이지 마운트될때 session에 저장되어 있는 로그인한 사용자의 회원정보 가져오기
+    const dispatch = useDispatch();
+    const { data } = useSelector((state) => state.member);
+    
     // useEffect(()=>{
-    //     useDispatch();
+    //     dispatch(getIsLogin());
     // },[])
+    // console.log(data);
 
+    const onChangePreview = useCallback(()=>{
+        console.log()
+    },[]);
 
     //회원정보 변경사항 저장버튼 클릭이벤트
     const onSubmit = useCallback(async(e)=>{
@@ -77,33 +89,36 @@ const UserInfo =()=>{
         } catch (error) {
             
         }
+        dispatch(getIsLogin());
+        alert('수정되었습니다.');
      
     },[]);
 
     return(
+        data&&
         <UserInfoContainer>
             <form name="userinfo_form" onSubmit={onSubmit}>
                 <div className="input_wrap profile_img_wrap">
                     <label>
-                        <img src="" alt="profile_img"></img>
-                        <input type="file" name="profile_img"></input>
+                        <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`}  alt="profile_img"></img>
+                        <input type="file" name="profile_img" onChange={onChangePreview}></input>
                     </label>
                 </div>
                 <div className="input_wrap">
                     <label>아이디</label>
-                    <input name="userid" disabled></input>
+                    <input name="userid" defaultValue={data.item.userid} disabled></input>
                 </div>
                 <div className="input_wrap">
                     <label>이름</label>
-                    <input type="text" name="username" disabled></input>
+                    <input type="text" name="username" defaultValue={data.item.username} disabled></input>
                 </div>
                 <div className="input_wrap">
                     <label>생년월일</label>
-                    <input type="date" name="birthday"></input>
+                    <input type="date" name="birthday" defaultValue={dayjs(data.item.birthday).format("YYYY-MM-DD")}></input>
                 </div>
                 <div className="input_wrap">
                     <label>이메일</label>
-                    <input type="text" name="email"></input>
+                    <input type="text" name="email" defaultValue={data.item.email}></input>
                 </div>
                 <button >
                     저장하기
