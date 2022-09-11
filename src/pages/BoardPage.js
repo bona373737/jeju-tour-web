@@ -171,8 +171,7 @@ const BoardPage = () => {
     const typeDropdownRef = useRef();
     // 검색어 input 참조변수
     const queryInputRef = useRef();
-
-
+    
     /** api 및 QueryString이 변경될 때마다 실행되는 hook */
     // 페이지 마운트 될때 로그인 상태 확인
     // --> 로그인 여부에 따라 [1:1 문의하기] 버튼 조건부 렌더링
@@ -195,6 +194,8 @@ const BoardPage = () => {
         }));
         typeDropdownRef.current.value = type;
         queryInputRef.current.value = query;
+        // loginData가 추가되면 무한 새로고침,
+        // 없으면 주의 표시가 뜸... 해결 요망!!
     }, [dispatch, api, type, query, page, rows]);
 
     /** 검색 이벤트 */
@@ -277,7 +278,8 @@ const BoardPage = () => {
                         </Pagenation> 
                     </>
                 )}
-
+                
+                {/* 로그인이 되어 있고, api가 faq일 때 1:1문의하기 버튼 활성화 */}
                 {loginData && (
                     api === 'faq' && (
                         <NavLink to='/qna'>
