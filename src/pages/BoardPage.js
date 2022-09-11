@@ -11,6 +11,7 @@ import { useQueryString } from '../hooks/useQueryString';
 import { useSelector, useDispatch } from 'react-redux';
 import { getNoticeList } from '../slices/NoticeSlice';
 import { getFAQList } from '../slices/FAQSlice';
+import { getIsLogin } from '../slices/MemberSlice';
 
 import Spinner from '../components/Spinner';
 import ErrorView from '../components/ErrorView';
@@ -156,6 +157,7 @@ const BoardPage = () => {
     // redux 관련 초기화
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state[api]);
+    const { data: loginData } = useSelector((state) => state.member);
     // 페이지 강제 이동 함수 생성
     const navigate = useNavigate();
     // QueryString 문자열 얻기
@@ -170,8 +172,14 @@ const BoardPage = () => {
     // 검색어 input 참조변수
     const queryInputRef = useRef();
 
-    /** api 및 QueryString이 변경될 때마다 실행되는 hook */ 
+
+    /** api 및 QueryString이 변경될 때마다 실행되는 hook */
+    // 페이지 마운트 될때 로그인 상태 확인
+    // --> 로그인 여부에 따라 [1:1 문의하기] 버튼 조건부 렌더링
     useEffect(() => {
+        if(loginData){
+            dispatch(getIsLogin());
+        }
         api === 'notice' ?
         dispatch(getNoticeList({
             type: type,
@@ -187,7 +195,7 @@ const BoardPage = () => {
         }));
         typeDropdownRef.current.value = type;
         queryInputRef.current.value = query;
-    }, [api, dispatch, page, query, rows, type]);
+    }, [dispatch, api, type, query, page, rows]);
 
     /** 검색 이벤트 */
     const onSearchSubmit = useCallback(e => {
@@ -195,7 +203,7 @@ const BoardPage = () => {
         const dropdown = typeDropdownRef.current;
         const input = queryInputRef.current;
         navigate(`/service/${api}/?type=${dropdown.value}&query=${input.value}`);
-    },[api, navigate]);
+    },[navigate, api]);
 
     return (
         <>
@@ -270,10 +278,12 @@ const BoardPage = () => {
                     </>
                 )}
 
-                {api === 'faq' && (
-                    <NavLink to='/qna'>
-                        <button type='button' className='qna btn_act'>1:1 문의하기</button>
-                    </NavLink>
+                {loginData && (
+                    api === 'faq' && (
+                        <NavLink to='/qna'>
+                            <button type='button' className='qna btn_act'>1:1 문의하기</button>
+                        </NavLink>
+                    )
                 )}
             </div>
         </BoardPageContainer>
