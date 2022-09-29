@@ -14,8 +14,8 @@ import useMountedRef from '../hooks/useMountedRef';
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getPlaceList, addPlaceList } from "../slices/PlaceSlice";
-import { getAccomList } from "../slices/AccomSlice";
-import { getFoodList } from "../slices/FoodSlice";
+import { getAccomList, addAccomList } from "../slices/AccomSlice";
+import { getFoodList, addFoodList } from "../slices/FoodSlice";
 import { getIsLogin } from '../slices/MemberSlice';
 
 
@@ -62,9 +62,9 @@ const TabPage = () => {
     if (api === "place") {
         tagArr = ["섬속의섬", "지질트레일", "오름", "실내관광지", "수국"];
     } else if (api === "accom") {
-        tagArr = ["accom", "accom", "accom", "실내관광지", "수국"];
+        tagArr = ["게스트하우스", "독채", "휴양펜션", "수영장", "가족호텔"];
     } else if (api === "food") {
-        tagArr = ["food", "food", "food", "실내관광지", "수국"];
+        tagArr = ["향토음식", "카페", "물회", "고기국수", "수제버거"];
     }
     
     /** redux */
@@ -110,7 +110,13 @@ const TabPage = () => {
         // console.log("원래query :"+ query)
         setQuery(activeQuery);
         // console.log("변경query :"+ query)
-        dispatch(getPlaceList({query:activeQuery}));
+        if (api === "place") {
+            dispatch(getPlaceList({query:activeQuery}));
+        } else if (api === "accom") {
+            dispatch(getAccomList({query:activeQuery}));
+        } else if (api === "food") {
+            dispatch(getFoodList({query:activeQuery}));
+        }
         //파란색으로 css변경
     },[]);
 
@@ -129,7 +135,13 @@ const TabPage = () => {
                         // currentPage++;
                         setCurrentPage(currentPage=>currentPage+1);
                         // console.log("증가된 페이지 : "+ currentPage);
-                        dispatch(addPlaceList({page:currentPage+1}));
+                        if (api === "place") {
+                            dispatch(addPlaceList({page:currentPage+1}));
+                        } else if (api === "accom") {
+                            dispatch(addAccomList({page:currentPage+1}));
+                        } else if (api === "food") {
+                            dispatch(addFoodList({page:currentPage+1}));
+                        }
                     };
                 }
         
