@@ -3,16 +3,17 @@
  * @Author: 구나래, 구본아, 이재이
  * @Description: 헤더 영역 아래 여행지, 숙소, 음식 탭 버튼 영역
  */
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import TabBtn from "./buttons/TabBtn";
 import styled from "styled-components";
 
-// import TravelIcon from "../assets/icon/pin.png";
+import TravelIcon from "../assets/icon/pin.png";
 import HotelIcon from "../assets/icon/hotel.png";
 import FoodIcon from "../assets/icon/food.png";
 import TravelIconAct from "../assets/icon/pin_active.png";
-// import HotelIconAct from "../assets/icon/hotel_active.png";
-// import FoodIconAct from "../assets/icon/food_active.png";
+import { NavLink } from "react-router-dom";
+import HotelIconAct from "../assets/icon/hotel_active.png";
+import FoodIconAct from "../assets/icon/food_active.png";
 
 const TabAreaContainer = styled.div`
     box-sizing: border-box;
@@ -34,6 +35,12 @@ const TabAreaContainer = styled.div`
             justify-content: center;
             align-items: center;
 
+            a{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
             .line {
                 background-color: var(--subgray);
                 width: 100%;
@@ -67,48 +74,58 @@ const TabAreaContainer = styled.div`
             .fontactive {
                 color: var(--blue);
             }
+            .activeStyle{
+                /* color: red; */
+                color: var(--blue);
+                /* filter: invert(20%) sepia(74%) saturate(5454%) hue-rotate(220deg) brightness(103%) contrast(103%); */
+            }
+
         }
     }
 `;
 
 const TabArea = memo(() => {
+    const isActive =useCallback(()=>{
+        
+    });
+
     return (
         <TabAreaContainer>
             <div className="tab_area">
-                <div className="tab tabactive">
+                <div className="tab">
                     <div className="line lineactive"></div>
-                    <TabBtn to="/tab/place">
+                    <NavLink to="/tab/place" className={({isActive})=>isActive? 'activeStyle':'fontactive'}>
                         <img
                             className="travel_icon"
                             src={TravelIconAct}
                             alt="travelicon"
                         />
-                        <span className="font5 fontactive">여행지</span>
-                    </TabBtn>
+                        <span className="font5">여행지</span>
+                    </NavLink>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
-                    <TabBtn to="/tab/accom">
+                    <NavLink to="/tab/accom">
                         <img
                             className="hotel_icon"
                             src={HotelIcon}
                             alt="hotelicon"
                         />
                         <span className="font6">숙소</span>
-                    </TabBtn>
+                    </NavLink>
                 </div>
 
                 <div className="tab">
                     <div className="line"></div>
-                    <TabBtn to="/tab/food">
+                    <NavLink to="/tab/food">
                         <img
                             className="food_icon"
                             src={FoodIcon}
                             alt="foodicon"
                         />
                         <span className="font6">음식</span>
-                    </TabBtn>
+                    </NavLink>
                 </div>
             </div>
         </TabAreaContainer>
