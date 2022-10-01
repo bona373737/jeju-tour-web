@@ -22,10 +22,12 @@ const ListItemContainer = styled.div`
         .img_wrap{
             width: 30%;
             background-color: var(--blue);
+            overflow: hidden;
+            margin: 0 auto;
             img{
-                object-fit: contain;
+                object-fit: cover;
+                height: 100%;
                 width: 100%;
-                overflow: hidden;
             }
 
         }
