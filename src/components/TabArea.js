@@ -37,94 +37,108 @@ const TabAreaContainer = styled.div`
 
             a{
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                justify-content: flex-end;
                 align-items: center;
                 height: 100%;
-            }
-            .line {
-                background-color: var(--subgray);
-                width: 100%;
-                margin: 0 auto;
-                height: 0.4vh;
-                position: relative;
-                top: 96%;
-            }
-
-            span {
                 color: var(--gray);
-                padding-left: 8px;
+                &:active{
+                    background-color: var(--sky);
+                    color: var(--blue);
+                }
+                .line {
+                        background-color: var(--subgray);
+                        width: 100%;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        height: 0.4vh;
+                        /* position: relative;
+                        top: 80%; */
+                    }
+                span {
+                    padding-left: 8px;
+                }
+                .travel_icon {
+                    height: 24px;
+                }
+    
+                .hotel_icon, .food_icon {
+                    height: 22px;
+                }
             }
-
-            .travel_icon {
-                height: 24px;
-            }
-
-            .hotel_icon, .food_icon {
-                height: 22px;
-            }
-
-            .tabactive {
+            /* .tabactive {
                 background-color: var(--sky);
             }
-
             .lineactive {
                 background-color: var(--blue);
             }
 
             .fontactive {
                 color: var(--blue);
-            }
-            .activeStyle{
-                /* color: red; */
-                color: var(--blue);
-                /* filter: invert(20%) sepia(74%) saturate(5454%) hue-rotate(220deg) brightness(103%) contrast(103%); */
-            }
-
+            } */
         }
     }
 `;
 
-const TabArea = memo(() => {
-    const isActive =useCallback(()=>{
-        
-    });
-
+const TabArea = memo(() => {    
     return (
         <TabAreaContainer>
             <div className="tab_area">
                 <div className="tab">
-                    <div className="line lineactive"></div>
-                    <NavLink to="/tab/place" className={({isActive})=>isActive? 'activeStyle':'fontactive'}>
-                        <img
-                            className="travel_icon"
-                            src={TravelIconAct}
-                            alt="travelicon"
-                        />
-                        <span className="font5">여행지</span>
+                    <NavLink to="/tab/place" style={({ isActive }) => isActive ? {color:"#0058FF"} : {color:"#9E9E9D"}}>
+                            {
+                            ({isActive})=>(
+                                <>
+                                <div>
+                                    <img
+                                        className="travel_icon"
+                                        src={isActive? TravelIconAct:TravelIcon}
+                                        alt="travelicon"
+                                        />
+                                    <span className="font5">여행지</span>
+                                    </div>
+                                <div className="line"></div>
+                                </>
+                            )}
                     </NavLink>
                 </div>
 
                 <div className="tab">
-                    <div className="line"></div>
-                    <NavLink to="/tab/accom">
-                        <img
-                            className="hotel_icon"
-                            src={HotelIcon}
-                            alt="hotelicon"
-                        />
-                        <span className="font6">숙소</span>
+                    <NavLink to="/tab/accom" style={({ isActive }) => isActive ? {color:"#0058FF"} : {color:"#9E9E9D"}}>
+                    {
+                        ({isActive})=>(
+                            <>
+                            <div>
+                                <img
+                                    className="hotel_icon"
+                                    src={isActive? HotelIconAct:HotelIcon}
+                                    alt="hotelicon"
+                                    />
+                                <span className="font5">숙소</span>
+                                </div>
+                            <div className="line"></div>
+                
+                            </>
+                    )}
                     </NavLink>
                 </div>
 
                 <div className="tab">
-                    <div className="line"></div>
-                    <NavLink to="/tab/food">
-                        <img
-                            className="food_icon"
-                            src={FoodIcon}
-                            alt="foodicon"
-                        />
-                        <span className="font6">음식</span>
+                    <NavLink to="/tab/food" style={({ isActive }) => isActive ? {color:"#0058FF"} : {color:"#9E9E9D"}}>
+                    {
+                        ({isActive})=>(
+                            <>
+                                <div>
+                                    <img
+                                        className="food_icon"
+                                        src={isActive? FoodIconAct:FoodIcon}
+                                        alt="foodicon"
+                                        />
+                                    <span className="font5">음식</span>
+                                </div>
+                                <div className="line"></div>
+                            </>
+                    )}
                     </NavLink>
                 </div>
             </div>

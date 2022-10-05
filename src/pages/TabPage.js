@@ -110,6 +110,7 @@ const TabPage = () => {
         // console.log("원래query :"+ query)
         setQuery(activeQuery);
         // console.log("변경query :"+ query)
+
         if (api === "place") {
             dispatch(getPlaceList({query:activeQuery}));
         } else if (api === "accom") {
@@ -118,7 +119,7 @@ const TabPage = () => {
             dispatch(getFoodList({query:activeQuery}));
         }
         //파란색으로 css변경
-    },[]);
+    },[api]);
 
     const mountedRef = useMountedRef();
     //스크롤이벤트_스크롤이 바닥에 닿으면 다음페이지의 데이터 로딩
@@ -128,7 +129,6 @@ const TabPage = () => {
             // const windowHeight = window.screen.availHeight;
             // const documentHeight = document.body.scrollHeight;
             // if (scrollTop + windowHeight >= documentHeight) {   
-
                 if(mountedRef.current){
                     // setIsEnd(data.pagenation.isEnd);
                     if(inView && !loading && !data.pagenation.isEnd){
@@ -147,7 +147,7 @@ const TabPage = () => {
         
             // }
         // });
-    },[mountedRef,inView,currentPage,isEnd]);
+    },[mountedRef,inView,currentPage,isEnd,api]);
 
     return (
         <TabPageContainer>
