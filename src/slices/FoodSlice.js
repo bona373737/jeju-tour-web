@@ -9,7 +9,7 @@ import axios from "axios";
 import {cloneDeep} from 'lodash';
 
 //백엔드 구축하고 나면 url변경하기
-const URL='http://localhost:3001/food';
+const URL='/food';
 
 /** 다중행 데이터 조회를 위한 비동기 함수 */
 export const getFoodList = createAsyncThunk('FoodSlice/getFoodList',async(payload,{rejectWithValue})=>{
