@@ -7,7 +7,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux';
 import {getMyLikeList} from '../../slices/MyLikeSlice';
+<<<<<<< Updated upstream
 import Heart2 from '../../components/Heart2';
+=======
+import {deleteMyLikeItem} from '../../slices/MyLikeSlice'
+import { getPlaceList } from "../../slices/PlaceSlice";
+import xMark from '../../assets/icon/close.png';
+>>>>>>> Stashed changes
 
 import ThumbItem from '../../components/items/ThumbItem';
 import ListItem from '../../components/items/ListItem';
