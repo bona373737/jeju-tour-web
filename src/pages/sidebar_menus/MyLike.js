@@ -9,7 +9,6 @@ import { useSelector,useDispatch } from 'react-redux';
 import {getMyLikeList} from '../../slices/MyLikeSlice';
 import {deleteMyLikeItem} from '../../slices/MyLikeSlice'
 import { getPlaceList } from "../../slices/PlaceSlice";
-import Heart2 from '../../components/Heart2';
 import xMark from '../../assets/icon/close.png';
 
 import ThumbItem from '../../components/items/ThumbItem';

@@ -11,6 +11,7 @@ import SubmitBtn from '../buttons/SubmitBtn';
 import ReviewTrigger from '../ReviewTrigger';
 
 const ReviewItemContainer = styled.li`
+    list-style: none;
     box-sizing: border-box;
     padding: 10px 0;
     border-bottom: 0.5px solid var(--gray);
@@ -38,7 +39,8 @@ const ReviewItem = ({item}) => {
         item &&(
             <ReviewItemContainer>
             <Collapsible trigger={<ReviewTrigger item={item}/>}>
-            {
+                <p>{item.content}</p>
+            {/* {
                 editBtn? 
                 <textarea name="" id="" cols="30" rows="10" defaultValue={item.content}>
                 </textarea>
@@ -46,8 +48,9 @@ const ReviewItem = ({item}) => {
                 <p>
                     {item.content}
                 </p>
-                }
+                } */}
                 <div className='btn_wrap'>
+
                     {
                         editBtn?
                         <SubmitBtn children="등록" onClickFun={()=>setEditBtn(false)}></SubmitBtn>

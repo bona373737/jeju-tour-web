@@ -32,15 +32,14 @@ const ReviewTrigger = ({item}) => {
                 <ReviewTriggerContainer>
                     <div className='review_item_top'>
                         <div className='left'>
-                            <span>★★★★☆</span>
-                            <span>작성자</span>
+                            <span>작성자 : {item.userid}</span>
                         </div>
                         <div className='right'>
                             <span>{edit_date}</span>
                         </div>
                     </div>
                     <div className='trigger_title'>
-                        {item.title}
+                        {item.title}▽
                     </div>
                 </ReviewTriggerContainer>
         )      
