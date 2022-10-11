@@ -3,11 +3,14 @@
  * @Author: 구본아(bona373737@gmail.com)
  * @Description: 사이드바의 메뉴링크에서 연결되는 내 저장 메뉴 페이지 
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import styled from 'styled-components';
 import { useSelector,useDispatch } from 'react-redux';
 import {getMyLikeList} from '../../slices/MyLikeSlice';
+import {deleteMyLikeItem} from '../../slices/MyLikeSlice'
+import { getPlaceList } from "../../slices/PlaceSlice";
 import Heart2 from '../../components/Heart2';
+import xMark from '../../assets/icon/close.png';
 
 import ThumbItem from '../../components/items/ThumbItem';
 import ListItem from '../../components/items/ListItem';
@@ -27,6 +30,10 @@ const MyLikeContainer = styled.div`
     }
     .item_wrap{
         display: flex;
+        align-items: center;
+        img{
+            height: 30px;
+        }
     }
 `;
 
@@ -44,6 +51,25 @@ const MyLike = () => {
         dispatch(getMyLikeList());
     },[])
 
+    const xMarkClick = useCallback((e)=>{
+        //이벤트버블링 방지 
+        e.stopPropagation();
+        // e.preventDefault();
+        const like_no = e.target.dataset.like_no
+
+        //좋아요 삭제요청전송 
+        try {
+            dispatch(deleteMyLikeItem({like_no:like_no}))
+        } catch (error) {
+            window.alert(error);
+            return;
+        }
+        //redux dispatch
+        dispatch(getMyLikeList());
+        dispatch(getPlaceList());
+        
+
+},[]);
 
     return (
         <MyLikeContainer>
@@ -70,7 +96,9 @@ const MyLike = () => {
                             return (
                                 <div className='item_wrap' key={i}>
                                     <ListItem item={v}></ListItem>
-                                    <Heart2 item={v}></Heart2>
+                                    <div>
+                                    <img src={xMark} onClick={xMarkClick} data-like_no={v.like_no}></img>
+                                    </div>
                                 </div>
                             )
                         })
