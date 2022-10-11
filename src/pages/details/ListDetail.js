@@ -8,6 +8,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
 import useAxios from 'axios-hooks';
 import ReviewItem from '../../components/items/ReviewItem';
@@ -19,11 +20,29 @@ const DetailContainer=styled.div`
     padding: 15px;
     width: 80%;
     margin: auto;
+    
+    .content_wrap{
+        margin: 15px 0;
+
+        .img_wrap{
+            width: 100%;
+            overflow: hidden;
+            margin: 0 auto;
+            
+            img{
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+            
+        }
+    }
 `;
 
 const ListDetail = () => {
     const location = useLocation();
     const { item } = location.state;
+    const { data:loginData} = useSelector((state) => state.member); 
 
     let ref_id;
     let ref_type;
@@ -48,25 +67,26 @@ const ListDetail = () => {
 
     return (
         <DetailContainer>
-            {/* 좋아요버튼 : 로그인 상태인 경우에만 렌더링 */}
-            {/* <Heart ref_id={ref_id} ref_type={ref_type}></Heart> */}
-            <h1>{item.title}</h1>
-            <h1>{item.introduction}</h1>
-            <h1>{item.address}</h1>
-            <h1>{item.tag}</h1>
-            {/* <h3 className="font3">유의사항</h3>
-            <div className="font4">
-                ※ 위 정보는 {item.edit_date}에 작성된 정보로, 이후 변경될 수 있으니 여행 하시기 전에 반드시 확인하시기 바랍니다.
-                ※ 위 콘텐츠에 사용된 텍스트, 사진, 동영상 등의 정보는 제주관광공사가 저작권을 보유하고 있으므로 콘텐츠의 무단 사용을 금합니다.
-            </div> */}
+            {
+                loginData &&
+                <Heart className='heart' item={item}></Heart>
+            }
+            <div className='content_wrap'>
+                <h1>{item.title}</h1>
+                <div className='img_wrap'>
+                    <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
+                </div>
+                <p>{item.introduction}</p>
+                <h1>{item.address}</h1>
+                <h1>{item.tag}</h1>
+            </div>
             <hr/>            
             <div className='review_wrap'>
                 {
                     data && (
                         data.item.map((v,i)=>
                             <ReviewItem key={i} item={v}></ReviewItem>
-                        )
-                    )
+                        ))
                 }
             </div>    
         </DetailContainer>

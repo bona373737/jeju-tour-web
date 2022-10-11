@@ -55,7 +55,6 @@ const TabPageContainer = styled.div`
 `;
 
 const TabPage = () => {
-    
     //path파라미터 값 가져오기
     const { api } = useParams();
     let tagArr;
@@ -88,10 +87,11 @@ const TabPage = () => {
     //페이지 마운트 될때 로그인상태 확인--> 로그인여부에 따라 "좋아요"버튼 조건부 렌더링
     //tab바뀔때마다 데이터 재전송,재랜더링
     useEffect(() => {
+        console.log(api)
         if(loginData){
             dispatch(getIsLogin());
         }
-        //api값(place,accom,food)에 따라 dispatch함수 분기처리필요
+        //api값(place,accom,food)에 따라 dispatch함수 분기처리
         if (api === "place") {
             dispatch(getPlaceList());
         } else if (api === "accom") {
@@ -105,7 +105,7 @@ const TabPage = () => {
     /** 태그버튼 클릭이벤트 */
     const onTagClick = useCallback((e) => {
         e.preventDefault();
-        //해당 태그명을 검색조건으로 하여 데이터 재요청
+        //해당 태그명을 검색어으로 하여 데이터 재요청
         const activeQuery = e.target.innerHTML.slice(1); 
         // console.log("원래query :"+ query)
         setQuery(activeQuery);
@@ -124,29 +124,18 @@ const TabPage = () => {
     const mountedRef = useMountedRef();
     //스크롤이벤트_스크롤이 바닥에 닿으면 다음페이지의 데이터 로딩
     useEffect(()=>{
-        // window.addEventListener('scroll', e => {
-            // const scrollTop = Math.ceil(window.scrollY);
-            // const windowHeight = window.screen.availHeight;
-            // const documentHeight = document.body.scrollHeight;
-            // if (scrollTop + windowHeight >= documentHeight) {   
-                if(mountedRef.current){
-                    // setIsEnd(data.pagenation.isEnd);
-                    if(inView && !loading && !data.pagenation.isEnd){
-                        // currentPage++;
-                        setCurrentPage(currentPage=>currentPage+1);
-                        // console.log("증가된 페이지 : "+ currentPage);
-                        if (api === "place") {
-                            dispatch(addPlaceList({page:currentPage+1}));
-                        } else if (api === "accom") {
-                            dispatch(addAccomList({page:currentPage+1}));
-                        } else if (api === "food") {
-                            dispatch(addFoodList({page:currentPage+1}));
-                        }
-                    };
+        if(mountedRef.current){
+            if(inView && !loading && !data.pagenation.isEnd){
+                setCurrentPage(currentPage=>currentPage+1);
+                if (api === "place") {
+                    dispatch(addPlaceList({page:currentPage+1}));
+                } else if (api === "accom") {
+                    dispatch(addAccomList({page:currentPage+1}));
+                } else if (api === "food") {
+                    dispatch(addFoodList({page:currentPage+1}));
                 }
-        
-            // }
-        // });
+            };
+        }        
     },[mountedRef,inView,currentPage,isEnd,api]);
 
     return (
@@ -177,7 +166,7 @@ const TabPage = () => {
                             ) 
                         })}
                 </div>
-                <div ref={ref} />
+                <div ref={ref}/>
             </div>
         </TabPageContainer>
     );
