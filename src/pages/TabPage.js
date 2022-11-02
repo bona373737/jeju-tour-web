@@ -87,6 +87,7 @@ const TabPage = () => {
     //페이지 마운트 될때 로그인상태 확인--> 로그인여부에 따라 "좋아요"버튼 조건부 렌더링
     //tab바뀔때마다 데이터 재전송,재랜더링
     useEffect(() => {
+        setCurrentPage(1)
         console.log(api)
         if(loginData){
             dispatch(getIsLogin());
@@ -112,11 +113,11 @@ const TabPage = () => {
         // console.log("변경query :"+ query)
 
         if (api === "place") {
-            dispatch(getPlaceList({query:activeQuery}));
+            dispatch(getPlaceList({query:activeQuery,page:1}));
         } else if (api === "accom") {
-            dispatch(getAccomList({query:activeQuery}));
+            dispatch(getAccomList({query:activeQuery,page:1}));
         } else if (api === "food") {
-            dispatch(getFoodList({query:activeQuery}));
+            dispatch(getFoodList({query:activeQuery,page:1}));
         }
         //파란색으로 css변경
     },[api]);
@@ -126,6 +127,7 @@ const TabPage = () => {
     useEffect(()=>{
         if(mountedRef.current){
             if(inView && !loading && !data.pagenation.isEnd){
+                console.log(currentPage);
                 setCurrentPage(currentPage=>currentPage+1);
                 if (api === "place") {
                     dispatch(addPlaceList({page:currentPage+1}));
@@ -136,7 +138,8 @@ const TabPage = () => {
                 }
             };
         }        
-    },[mountedRef,inView,currentPage,isEnd,api]);
+    // },[mountedRef,inView,currentPage,isEnd,api]);
+    },[inView]);
 
     return (
         <TabPageContainer>
@@ -159,7 +162,10 @@ const TabPage = () => {
                                 <div key={i} className="item_wrap">
                                     <ListItem item={v} api={api}></ListItem>
                                     {loginData&&(
+                                        <>
                                         <Heart item={v}></Heart>
+                                        <p>{`placeno:${v.place_no} accomno:${v.accom_no} foodno:${v.food_no}`}</p>
+                                        </>
                                         )
                                     }
                                 </div>
