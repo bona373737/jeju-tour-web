@@ -34,6 +34,10 @@ const MyLikeContainer = styled.div`
             height: 30px;
         }
     }
+    .empty_massage{
+        text-align: center;
+        margin-top: 100px;
+    }
 `;
 
 const MyLike = () => {
@@ -47,31 +51,29 @@ const MyLike = () => {
         dispatch(getMyLikeList());
     },[])
 
-    const xMarkClick = useCallback((e)=>{
-        //이벤트버블링 방지 
-        e.stopPropagation();
-        // e.preventDefault();
-        const like_no = e.target.dataset.like_no
+//     const xMarkClick = useCallback((e)=>{
+//         //이벤트버블링 방지 
+//         e.stopPropagation();
+//         // e.preventDefault();
+//         const like_no = e.target.dataset.like_no
 
-        //좋아요 삭제요청전송 
-        try {
-            dispatch(deleteMyLikeItem({like_no:like_no}))
-        } catch (error) {
-            window.alert(error);
-            return;
-        }
-        //redux dispatch
-        dispatch(getMyLikeList());
-        dispatch(getPlaceList());
-        
-
-},[]);
+//         //좋아요 삭제요청전송 
+//         try {
+//             dispatch(deleteMyLikeItem({like_no:like_no}))
+//         } catch (error) {
+//             window.alert(error);
+//             return;
+//         }
+//         //redux dispatch
+//         dispatch(getMyLikeList());
+//         dispatch(getPlaceList());
+// },[]);
 
     return (
         <MyLikeContainer>
             <Spinner visible={loading}/>
                 <div>
-                    {data&&
+                    {data?
                         data.item.map((v,i)=>{
                             return (
                                 <div className='item_wrap' key={i}>
@@ -82,6 +84,8 @@ const MyLike = () => {
                                 </div>
                             )
                         })
+                        :
+                        <h1 className='empty_massage font5'>저장된 여행지가 없습니다.</h1>
                     }
                 </div>
         </MyLikeContainer>

@@ -9,6 +9,7 @@ import { postItem, deleteMyLikeItem } from '../slices/MyLikeSlice';
 import { getPlaceList } from "../slices/PlaceSlice";
 import { getAccomList } from "../slices/AccomSlice";
 import { getFoodList } from "../slices/FoodSlice";
+import { getMyLikeList } from '../slices/MyLikeSlice';
 import useMountedRef from '../hooks/useMountedRef';
 
 import heart from '../assets/icon/heart.png';
@@ -80,6 +81,7 @@ import heart_active from '../assets/icon/heart_active.png';
                 return;
             }
             setIsLiked(false)
+            dispatch(getMyLikeList());
             switch (ref_type) {
                 case "place":
                     dispatch(getPlaceList());
@@ -93,13 +95,6 @@ import heart_active from '../assets/icon/heart_active.png';
                 default:
                     break;
             }
-            // if(ref_type==="place"){
-            //     dispatch(getPlaceList());
-            // }else if( ref_type ==='accom'){
-            //     dispatch(getAccomList());
-            // }else if(ref_type==='food'){
-            //     dispatch(getFoodList());
-            // }
 
         }else if(!isLiked){
             //isLiked값이 현재 false면 클릭시 좋아요 추가요청 전송 
@@ -114,6 +109,7 @@ import heart_active from '../assets/icon/heart_active.png';
                 return;
             }
             setIsLiked(true)
+            dispatch(getMyLikeList());
         }
     },[isLiked]);
 
