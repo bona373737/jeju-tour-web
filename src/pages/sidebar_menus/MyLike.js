@@ -37,9 +37,6 @@ const MyLikeContainer = styled.div`
 `;
 
 const MyLike = () => {
-    //이미지로보기,리스트로보기 버튼 클릭 상태값
-    const [isClicked, setIsClicked] = useState(false);
-
     //리덕스초기화
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.myLike);
@@ -73,38 +70,20 @@ const MyLike = () => {
     return (
         <MyLikeContainer>
             <Spinner visible={loading}/>
-
-            {
-                isClicked?
-                <>
-                <button onClick={()=>{setIsClicked(!isClicked)}}>리스트로보기</button>
-                <div className="thum_wrap">
-                    {data&&
-                        data.item.map((v,i)=>{
-                            return <ThumbItem key={i} item={v}></ThumbItem> 
-                        })
-                    }
-                </div>
-                </>
-                :
-                <>
-                <button onClick={()=>{setIsClicked(!isClicked)}}>이미지로보기</button>
                 <div>
                     {data&&
                         data.item.map((v,i)=>{
                             return (
                                 <div className='item_wrap' key={i}>
                                     <ListItem item={v}></ListItem>
-                                    <div>
+                                    {/* <div>
                                     <img src={xMark} onClick={xMarkClick} data-like_no={v.like_no}></img>
-                                    </div>
+                                    </div> */}
                                 </div>
                             )
                         })
                     }
                 </div>
-                </>
-            }
         </MyLikeContainer>
     );
 };

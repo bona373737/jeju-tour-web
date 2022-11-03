@@ -10,6 +10,9 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import FormData from 'form-data';
 import dayjs from "dayjs";
+import profileNoImg from '../assets/icon/profile_man_1.png';
+
+
 //리덕스관련 
 import { useSelector, useDispatch } from 'react-redux';
 import { getIsLogin } from "../slices/MemberSlice";
@@ -17,13 +20,16 @@ import { getIsLogin } from "../slices/MemberSlice";
 const UserInfoContainer = styled.div`
     width: 80%;
     margin: auto;
-
-    .input_wrap{
-        margin: 10px 0;
+    margin-top: 30px;
+    
+    .userinfo_form{
+        width: 100%;
         display: flex;
         flex-direction: column;
-    }
+        justify-content: center;
+        align-items: center;
     .profile_img_wrap{
+        padding: 10px 0;
         input{
             display: none;
         }
@@ -35,6 +41,20 @@ const UserInfoContainer = styled.div`
             border-radius: 50%;
         }
     }
+    .input_area{
+        width: 100%;
+        .input_wrap{
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            input{
+                height: 30px;
+            }
+        }
+    }
+}
+
+
     
 `;
 
@@ -97,28 +117,35 @@ const UserInfo =()=>{
     return(
         data&&
         <UserInfoContainer>
-            <form name="userinfo_form" onSubmit={onSubmit}>
+            <form name="userinfo_form" className="userinfo_form" onSubmit={onSubmit}>
                 <div className="input_wrap profile_img_wrap">
                     <label>
-                        <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`}  alt="profile_img"></img>
+                        {
+                            data.item.profile_img? 
+                            <img src={`${process.env.REACT_APP_STATIC_PATH}${data.item.profile_img}`}  alt="profile_img"></img>
+                            :
+                            <img src={profileNoImg}></img>
+                        }
                         <input type="file" name="profile_img" onChange={onChangePreview}></input>
                     </label>
                 </div>
-                <div className="input_wrap">
-                    <label>아이디</label>
-                    <input name="userid" defaultValue={data.item.userid} disabled></input>
-                </div>
-                <div className="input_wrap">
-                    <label>이름</label>
-                    <input type="text" name="username" defaultValue={data.item.username} disabled></input>
-                </div>
-                <div className="input_wrap">
-                    <label>생년월일</label>
-                    <input type="date" name="birthday" defaultValue={dayjs(data.item.birthday).format("YYYY-MM-DD")}></input>
-                </div>
-                <div className="input_wrap">
-                    <label>이메일</label>
-                    <input type="text" name="email" defaultValue={data.item.email}></input>
+                <div className="input_area">
+                    <div className="input_wrap">
+                        <label>아이디</label>
+                        <input name="userid" defaultValue={data.item.userid} disabled></input>
+                    </div>
+                    <div className="input_wrap">
+                        <label>이름</label>
+                        <input type="text" name="username" defaultValue={data.item.username} disabled></input>
+                    </div>
+                    <div className="input_wrap">
+                        <label>생년월일</label>
+                        <input type="date" name="birthday" defaultValue={dayjs(data.item.birthday).format("YYYY-MM-DD")}></input>
+                    </div>
+                    <div className="input_wrap">
+                        <label>이메일</label>
+                        <input type="text" name="email" defaultValue={data.item.email}></input>
+                    </div>
                 </div>
                 <button >
                     저장하기

@@ -113,7 +113,7 @@ const Header = memo(() => {
                     <NavLink to="/">
                         <div className="logo_area">
                             <img className="logo" src={Logo} alt="logo" />
-                            <h1>tray</h1>
+                            <h1>My Jeju</h1>
                         </div>
                     </NavLink>
                     <div className="icons_area">

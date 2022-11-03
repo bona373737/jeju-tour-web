@@ -74,7 +74,8 @@ const TabPage = () => {
 
     /**무한스크롤 */
     // let currentPage = 1;
-    const [ref, inView] = useInView();
+    const [ref, inView] = useInView({ root: document.body,threshold: 0,     root: null,
+        rootMargin: "0px" });
     const [currentPage, setCurrentPage] = useState(1);
     // console.log("현재 페이지 : "+currentPage);
     //검색어
@@ -161,18 +162,18 @@ const TabPage = () => {
                             return (
                                 <div key={i} className="item_wrap">
                                     <ListItem item={v} api={api}></ListItem>
-                                    {loginData&&(
+                                    {/* {loginData&&(
                                         <>
                                         <Heart item={v}></Heart>
                                         <p>{`placeno:${v.place_no} accomno:${v.accom_no} foodno:${v.food_no}`}</p>
                                         </>
                                         )
-                                    }
+                                    } */}
                                 </div>
                             ) 
                         })}
                 </div>
-                <div ref={ref}/>
+                <div ref={ref}></div>
             </div>
         </TabPageContainer>
     );

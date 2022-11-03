@@ -3,7 +3,7 @@
  * @Author: 구나래, 구본아, 이재이
  * @Description: 웹 메인 페이지
  */
-import React from 'react';
+import React,{memo} from 'react';
 import {Routes, Route} from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -44,7 +44,7 @@ const MainContainer=styled.div`
     padding-top: 70px;  
 `;
 
-const Main = () => {
+const Main = memo(() => {
     return (
         <MainContainer>
             <Routes>
@@ -79,6 +79,6 @@ const Main = () => {
             </Routes>
         </MainContainer>
     );
-};
+});
 
 export default Main;

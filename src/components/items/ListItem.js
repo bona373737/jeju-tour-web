@@ -49,15 +49,28 @@ const ListItemContainer = styled.div`
 `;
 
 const ListItem = ({item,api}) => { 
-    let id;
-    if(item){
-        id = item?.place_no? item.place_no : (item.accom_no? item.accom_no : item.food_no);
+    // let id;
+    // if(item){
+    //     id = item?.place_no? item.place_no : (item.accom_no? item.accom_no : item.food_no);
+    // }
+    let ref_id;
+    let ref_type;
+    let like_no= item.like_no;
+    if(item.place_no){
+        ref_id=item.place_no;
+        ref_type='place';
+    }else if(item.accom_no){
+        ref_id=item.accom_no;
+        ref_type='accom';
+    }else if(item.food_no){
+        ref_id=item.food_no;
+        ref_type='food';
     }
     
     return (
         item&&
         <ListItemContainer>
-            <NavLink to={'/tab/'+api+'/'+id} state={{item:item}}>
+            <NavLink to={'/tab/'+api+'/'+ref_id} state={{item:item}}>
                 <div className='img_wrap'>
                     <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
@@ -68,6 +81,10 @@ const ListItem = ({item,api}) => {
                     <p className='font8'>{item.phoneno}</p>
                     <p className='font8 introduction'>{item.introduction}</p>
                 </div>
+                {
+                    item.hasOwnProperty("like_no") &&
+                    <Heart ref_id={ref_id} ref_type={ref_type} like_no={like_no}></Heart>
+                }
             </NavLink>
         </ListItemContainer>
     );
