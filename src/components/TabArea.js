@@ -66,16 +66,6 @@ const TabAreaContainer = styled.div`
                     height: 22px;
                 }
             }
-            /* .tabactive {
-                background-color: var(--sky);
-            }
-            .lineactive {
-                background-color: var(--blue);
-            }
-
-            .fontactive {
-                color: var(--blue);
-            } */
         }
     }
 `;

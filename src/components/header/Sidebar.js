@@ -9,11 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteLogin } from '../../slices/MemberSlice';
+import axios from 'axios';
 
 import Spinner from '../Spinner';
 
-
 //아이콘
+import profileNoImg from '../../assets/icon/profile_man_1.png';
 import cogwheel from '../../assets/icon/cogwheel.png';
 import icon_heart from '../../assets/icon/heart.png';
 import icon_review from '../../assets/icon/review.png';
@@ -66,26 +67,35 @@ const SidebarContainer = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-            .profile_img{
-                background-color: tomato;
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-                img{
-                    width: 100%;
+            .profile_wrap{
+                display: flex;
+                justify-content: space-between;
+                .profile_img{
+                    background-color: tomato;
+                    width: 70px;
+                    height: 70px;
                     border-radius: 50%;
+                    overflow: hidden;
+                    margin: 0 auto;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: fill;
+                }
+                }
+                .profile_text{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center; 
                 }
             }
-            .profile_text{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center; 
-            }
-            .icon_cogwheel{
-                color: red;
-                /* color: var(--gray); */
-                width: 50px
+            .icon_cogwheel_wrap{
+                height: 100%;
+                padding-left: 10px;
+                .icon_cogwheel{
+                    width: 22px;
+                }
             }
         }
         .menu{
@@ -94,6 +104,15 @@ const SidebarContainer = styled.div`
                 display: block;
                 width: 100%;
                 padding: 15px 0;
+                span{
+                    display: inline-block;
+                    background-color: red;
+                    border-radius: 5px;
+                    width: 20px;
+                    text-align: center;
+                    color: white;
+                    margin-left: 5px;
+                }
                 img{
                     width: 20px;
                     filter: invert(75%) sepia(4%) saturate(75%) hue-rotate(22deg) brightness(85%) contrast(86%);
@@ -109,6 +128,7 @@ const Sidebar = ({setShowSidebar}) => {
     // 리덕스 로그인 세션 상태 관리
     const dispatch = useDispatch();
     const { data, loading } = useSelector((state) => state.member);
+    const { data:myLikeData} = useSelector((state)=> state.myLike);
     // 로그인 여부 상태값
     const [isLogin, setIsLogin] = useState();
     // 로그인 회원정보 상태값
@@ -116,6 +136,7 @@ const Sidebar = ({setShowSidebar}) => {
         profile_img: '',
         userid: ''
     });
+
 
     /** 로그인 상태값 갱신 */
     useEffect(() => {
@@ -169,14 +190,6 @@ const Sidebar = ({setShowSidebar}) => {
         }
     }, [isLogin, navigate, setShowSidebar]);
 
-    // sidebar가 unmount될때 fadeout애니메이션 적용??
-    // useEffect(()=>{
-    //     return(()=>{
-
-    //     })
-    // }, [])
-    // console.log(data);
-
     return (
         <>
             <Spinner visible={loading}/>
@@ -188,29 +201,30 @@ const Sidebar = ({setShowSidebar}) => {
                     // 로그인 여부에 따라 조건부 렌더링
                     isLogin ? ( 
                         <div className="user_inform" >
+                            <div className='profile_wrap'>
+
+                           
                             <div className='profile_img'>
-                                {/* 프로필 업로드 성공 후 저장되는거까지 확인했습니다! */}
-                                {/* 저장된 경로로 이미지 불러오기는 미확인 상태입니다~ */}
-                                {/* <img src={`http://localhost:3001/upload/profile_img${data.item.profile_thumb}`} alt="img" /> */}
                                 {
                                     user.profile_img?
                                     <img src={`${process.env.REACT_APP_STATIC_PATH}${user.profile_img}`} alt="img" />
                                     :
-                                    "기본이미지추가"
+                                    <img src={profileNoImg}/>
                                 }
                             </div>
                             <div className="profile_text">
                                 <h1 className="font2">Hello,</h1>
                                 <h1 className="font2">{user.userid}!</h1>
                             </div>
-                            <div>
+                            </div>
+                            <div className='icon_cogwheel_wrap'>
                                 <img src={cogwheel} className="icon_cogwheel" data-path="/userinfo" onClick={movePage}></img>
                             </div>
                         </div>
                     ) : (<div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>)}
                 {/* menu 링크 */}
                 <ul className='menu'>
-                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장</li>
+                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장<span>{myLikeData.item.length}</span></li>
                 <li onClick={movePage2} data-path='/myreview'><img src={icon_review}/>내 리뷰</li>
                 <li onClick={movePage2} data-path='/myqna'><img src={icon_mail}/>내 문의</li>
                 <li onClick={movePage} data-path='/tourkit'><img src={icon_tools}/>여행도구</li>

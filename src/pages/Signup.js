@@ -218,6 +218,7 @@ const Signup = () => {
         username = current.username.value;
         birthday = current.birth_year.value+'-'+current.birth_month.value+'-'+current.birth_day.value;
         email = current.input_email.value+current.input_domain.value;
+        console.log(email);
         
         /**유효성검사*/
         try {
@@ -333,10 +334,9 @@ const Signup = () => {
                             {/* <input type="text"></input> */}
                             <select id="input_domain" name="input_domain" type="text" onBlur={onBlur} className="user_email_sel">
                                 {/* 메일 주소 직접 입력란 추가해야함 */}
-                                <option>직접입력</option>
-                                <option value="gmail.com">gmail.com</option>
-                                <option value="naver.com">naver.com</option>
-                                <option value="daum.com">daum.com</option>
+                                <option value="@gmail.com">gmail.com</option>
+                                <option value="@naver.com">naver.com</option>
+                                <option value="@daum.com">daum.com</option>
                             </select>
                         </div>
                     </div>
