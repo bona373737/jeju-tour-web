@@ -49,17 +49,11 @@ const DetailContainer=styled.div`
         .desc_wrap{
             h1{
                 margin: 5px 0;
-<<<<<<< HEAD
                 word-break: keep-all;
             }
             p{
                 margin:20px 0;
                 word-break: keep-all;
-=======
-            }
-            p{
-                margin:20px 0;
->>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
             }
         }
         .review_wrap{

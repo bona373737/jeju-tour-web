@@ -73,11 +73,7 @@ const TabPage = () => {
     
     /**무한스크롤 */
     // let currentPage = 1;
-<<<<<<< HEAD
     const [ref, inView] = useInView({threshold: 0});
-=======
-    const [ref, inView] = useInView({ threshold: 0});
->>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
     const [currentPage, setCurrentPage] = useState(1);
     // console.log("현재 페이지 : "+currentPage);
     //검색어
