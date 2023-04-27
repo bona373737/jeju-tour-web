@@ -12,7 +12,7 @@ import crypto from 'crypto-js';
 import { useSelector, useDispatch } from "react-redux";
 import { postLogin } from '../slices/MemberSlice';
 
-import regexHelper from '../libs/RegexHelper';
+import regexHelper from '../utils/RegexHelper';
 import Spinner from '../components/Spinner';
 
 const LoginContainer = styled.div`
@@ -136,10 +136,10 @@ const Login = () => {
                         <button type="submit" name="login" className="login btn_act">로그인</button>
                     </form>
 
-                    <div className="find_btn_area">
+                    {/* <div className="find_btn_area">
                         <button type="button" name="find_id" className="find_btn btn_dis">아이디 찾기</button>
                         <button type="button" name="find_pw" className="find_btn btn_dis">비밀번호 재발급</button>
-                    </div>
+                    </div> */}
 
                     <h3 className="font2">아직 계정이 없으신가요?</h3>
 

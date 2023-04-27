@@ -21,7 +21,7 @@ const ListItemContainer = styled.div`
 
         .img_wrap{
             width: 30%;
-            background-color: var(--blue);
+            height: 120px;
             overflow: hidden;
             margin: 0 auto;
             img{
@@ -34,6 +34,9 @@ const ListItemContainer = styled.div`
         .text_wrap{
             width: 70%;
             margin-left: 5px;
+            p{
+                word-break: keep-all;
+            }
             .introduction{
                 line-height: 20px;
                 white-space: normal;
@@ -57,6 +60,7 @@ const ListItem = ({item,api}) => {
     let ref_type;
     let like_no= item.like_no;
     if(item.place_no){
+        // console.log(item.place_no)
         ref_id=item.place_no;
         ref_type='place';
     }else if(item.accom_no){
@@ -66,6 +70,7 @@ const ListItem = ({item,api}) => {
         ref_id=item.food_no;
         ref_type='food';
     }
+    // console.log(ref_type)
     
     return (
         item&&
@@ -75,7 +80,6 @@ const ListItem = ({item,api}) => {
                     <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
                 <div className='text_wrap'>
-                    {/* <p>{id}</p> */}
                     <p className='font3'>{item.title}</p>
                     <p className='font8'>{item.address}</p>
                     <p className='font8'>{item.phoneno}</p>

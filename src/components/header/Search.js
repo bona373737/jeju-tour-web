@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
 import { useQueryString } from '../../hooks/useQueryString';
-import RegexHelper from '../../libs/RegexHelper';
+import RegexHelper from '../../utils/RegexHelper';
 import HashtagBtn from "../buttons/HashtagBtn";
 import CloseButton from '../../assets/icon/close.png';
 import SearchButton from '../../assets/icon/search_active.png';

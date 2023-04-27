@@ -34,44 +34,46 @@ const MyLikeContainer = styled.div`
             height: 30px;
         }
     }
+    .message{
+        width: 100%;
+        margin-top: 100px;
+        text-align: center;
+    }
 `;
 
 const MyLike = () => {
     //리덕스초기화
     const dispatch = useDispatch();
     const { data, loading, error } = useSelector((state) => state.myLike);
-    // console.log(data);
 
     //화면 렌더링될때 내저장 리스트 불러오기
     useEffect(()=>{
         dispatch(getMyLikeList());
     },[])
 
-    const xMarkClick = useCallback((e)=>{
-        //이벤트버블링 방지 
-        e.stopPropagation();
-        // e.preventDefault();
-        const like_no = e.target.dataset.like_no
+//     const xMarkClick = useCallback((e)=>{
+//         //이벤트버블링 방지 
+//         e.stopPropagation();
+//         // e.preventDefault();
+//         const like_no = e.target.dataset.like_no
 
-        //좋아요 삭제요청전송 
-        try {
-            dispatch(deleteMyLikeItem({like_no:like_no}))
-        } catch (error) {
-            window.alert(error);
-            return;
-        }
-        //redux dispatch
-        dispatch(getMyLikeList());
-        dispatch(getPlaceList());
-        
-
-},[]);
+//         //좋아요 삭제요청전송 
+//         try {
+//             dispatch(deleteMyLikeItem({like_no:like_no}))
+//         } catch (error) {
+//             window.alert(error);
+//             return;
+//         }
+//         //redux dispatch
+//         dispatch(getMyLikeList());
+//         dispatch(getPlaceList());
+// },[]);
 
     return (
         <MyLikeContainer>
             <Spinner visible={loading}/>
                 <div>
-                    {data&&
+                    {data ?
                         data.item.map((v,i)=>{
                             return (
                                 <div className='item_wrap' key={i}>
@@ -82,6 +84,8 @@ const MyLike = () => {
                                 </div>
                             )
                         })
+                        :
+                        <h1 className='message font5'> 저장된 여행지가 없습니다. </h1>
                     }
                 </div>
         </MyLikeContainer>

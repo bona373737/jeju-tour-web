@@ -31,7 +31,7 @@ const BoardDetailContainer = styled.div`
         width: 100%;
         padding: 30px 0 50px 0;
         white-space: pre-wrap;
-        word-wrap: break-word;
+        word-break: keep-all;
     }
 `;
 

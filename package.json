@@ -65,5 +65,8 @@
     "path": false,
     "os": false,
     "crypto": false
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }

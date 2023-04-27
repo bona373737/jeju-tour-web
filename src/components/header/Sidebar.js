@@ -60,6 +60,7 @@ const SidebarContainer = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 16px;
         }
         .user_inform{
             background-color: white;
@@ -114,7 +115,9 @@ const SidebarContainer = styled.div`
                     margin-left: 5px;
                 }
                 img{
+                    vertical-align: middle;
                     width: 20px;
+                    margin-right: 6px;
                     filter: invert(75%) sepia(4%) saturate(75%) hue-rotate(22deg) brightness(85%) contrast(86%);
                 }
             }//li end
@@ -224,10 +227,10 @@ const Sidebar = ({setShowSidebar}) => {
                     ) : (<div className='login' data-path='/login' onClick={movePage}>로그인/회원가입</div>)}
                 {/* menu 링크 */}
                 <ul className='menu'>
-                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장<span>{myLikeData.item.length}</span></li>
+                <li onClick={movePage2} data-path='/mylike'><img src={icon_heart}/>내 저장<span>{myLikeData?.item?.length}</span></li>
                 <li onClick={movePage2} data-path='/myreview'><img src={icon_review}/>내 리뷰</li>
-                <li onClick={movePage2} data-path='/myqna'><img src={icon_mail}/>내 문의</li>
-                <li onClick={movePage} data-path='/tourkit'><img src={icon_tools}/>여행도구</li>
+                {/* <li onClick={movePage2} data-path='/myqna'><img src={icon_mail}/>내 문의</li> */}
+                {/* <li onClick={movePage} data-path='/tourkit'><img src={icon_tools}/>여행도구</li> */}
                 <li onClick={movePage} data-path='/service'><img src={icon_qna}/>고객센터</li>
                 {/* 로그인 여부에 따라 조건부 렌더링 */}
                 {isLogin && <li><button type="button" name="logout" className="logout" onClick={logout}><img src={icon_logout}/>로그아웃</button></li>}

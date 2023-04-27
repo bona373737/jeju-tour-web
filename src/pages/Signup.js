@@ -8,7 +8,7 @@
  */
 import React, { useCallback,useRef } from "react";
 import styled from "styled-components";
-import RegexHelper from '../libs/RegexHelper';
+import RegexHelper from '../utils/RegexHelper';
 import { useNavigate } from 'react-router-dom';
 
 import crypto from 'crypto-js';
@@ -218,7 +218,6 @@ const Signup = () => {
         username = current.username.value;
         birthday = current.birth_year.value+'-'+current.birth_month.value+'-'+current.birth_day.value;
         email = current.input_email.value+current.input_domain.value;
-        console.log(email);
         
         /**유효성검사*/
         try {
@@ -234,7 +233,8 @@ const Signup = () => {
             RegexHelper.email(email,'이메일 형식이 잘못되었습니다.');
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
+            window.alert(error.message);
             throw error;
         }
 
@@ -308,7 +308,7 @@ const Signup = () => {
                     <div>
                         <label htmlFor="birth_year" className="message">생년월일</label>
                         <div className="birth_area">
-                            <input id="birth_year" name="birth_year" type="text" placeholder="년(4자)" className="user_birth" maxLength={4} onBlur={onBlur} />
+                            <input id="birth_year" name="birth_year" type="number" placeholder="년(4자)" className="user_birth" maxLength={4} onBlur={onBlur} />
                             <select id="birth_month" name="birth_month" className="user_mm" placeholder="월" onBlur={onBlur}>
                                 <option value="">월</option>
                                 {month.map((v, i) => {
@@ -319,7 +319,7 @@ const Signup = () => {
                                     );
                                 })}
                             </select>
-                            <input id="birth_day" name="birth_day" type="text" placeholder="일" className="user_birth" maxLength={2} onBlur={onBlur}/>
+                            <input id="birth_day" name="birth_day" type="number" placeholder="일" className="user_birth" maxLength={2} onBlur={onBlur}/>
                         </div>
                         <span id="err_birth" className="err_msg"></span>
                         <br />

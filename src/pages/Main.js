@@ -42,6 +42,7 @@ import FAQAdd from './admin/FAQAdd';
 // header 높이만큼 Main 영역 상단에 padding값 적용
 const MainContainer=styled.div`
     padding-top: 70px;  
+    /* background-color: #e3eeff88; */
 `;
 
 const Main = memo(() => {

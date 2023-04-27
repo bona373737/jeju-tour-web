@@ -25,7 +25,8 @@ const MyReview = () => {
 
     return (
         <MyReviewContainer>
-            <h1>내 리뷰</h1>
+            <h1 className="title font4">내 리뷰</h1>
+            <hr/>
             <ul>
                 { data && (  
                     data.item.map((v,i)=>{

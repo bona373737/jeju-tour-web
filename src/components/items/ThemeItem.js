@@ -41,6 +41,7 @@ const ThemeItemContainer = styled.div`
 `;
 
 const ThemeItem = memo(({item}) => {
+    console.log(item.ima)
     return (
         <NavLink to={`/theme/${item.place_no}`}>
             <ThemeItemContainer src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`}>
