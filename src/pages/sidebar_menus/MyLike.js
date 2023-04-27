@@ -34,10 +34,16 @@ const MyLikeContainer = styled.div`
             height: 30px;
         }
     }
+<<<<<<< HEAD
     .message{
         width: 100%;
         margin-top: 100px;
         text-align: center;
+=======
+    .empty_massage{
+        text-align: center;
+        margin-top: 100px;
+>>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
     }
 `;
 
@@ -73,7 +79,11 @@ const MyLike = () => {
         <MyLikeContainer>
             <Spinner visible={loading}/>
                 <div>
+<<<<<<< HEAD
                     {data ?
+=======
+                    {data?
+>>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
                         data.item.map((v,i)=>{
                             return (
                                 <div className='item_wrap' key={i}>
@@ -85,7 +95,11 @@ const MyLike = () => {
                             )
                         })
                         :
+<<<<<<< HEAD
                         <h1 className='message font5'> 저장된 여행지가 없습니다. </h1>
+=======
+                        <h1 className='empty_massage font5'>저장된 여행지가 없습니다.</h1>
+>>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
                     }
                 </div>
         </MyLikeContainer>

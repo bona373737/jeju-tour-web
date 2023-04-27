@@ -24,20 +24,10 @@ const DetailContainer=styled.div`
     .content_wrap{
         margin: 15px 0;
 
-        .title_wrap{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            .title{
-                
-            }
-        }
-
         .img_wrap{
             width: 100%;
             overflow: hidden;
-            margin: 10px auto;
+            margin: 0 auto;
             
             img{
                 object-fit: cover;
@@ -45,25 +35,6 @@ const DetailContainer=styled.div`
                 width: 100%;
             }
             
-        }
-        .desc_wrap{
-            h1{
-                margin: 5px 0;
-<<<<<<< HEAD
-                word-break: keep-all;
-            }
-            p{
-                margin:20px 0;
-                word-break: keep-all;
-=======
-            }
-            p{
-                margin:20px 0;
->>>>>>> 06b4c8ce601396113160d7368428a2f6c9119d06
-            }
-        }
-        .review_wrap{
-            margin: 10px auto;
         }
     }
 `;
@@ -96,22 +67,18 @@ const ListDetail = () => {
 
     return (
         <DetailContainer>
+            {
+                loginData &&
+                <Heart className='heart' item={item}></Heart>
+            }
             <div className='content_wrap'>
-                <div className='title_wrap'>
-                    <h1 className='font2'>{item.title}</h1>
-                    {
-                        loginData &&
-                        <Heart className='heart' ref_id={ref_id} ref_type={ref_type} like_no={item.like_no}></Heart>
-                    }
-                </div>
+                <h1>{item.title}</h1>
                 <div className='img_wrap'>
                     <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
-                <div className='desc_wrap'>
-                    <p className='font8' >{item.introduction}</p>
-                    <h1 className='font9'>{item.address}</h1>
-                    <h1 className='font9'>여행지 키워드<br/>{item.tag}</h1>
-                </div>
+                <p>{item.introduction}</p>
+                <h1>{item.address}</h1>
+                <h1>{item.tag}</h1>
             </div>
             <hr/>            
             <div className='review_wrap'>

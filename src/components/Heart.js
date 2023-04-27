@@ -9,6 +9,7 @@ import { postItem, deleteMyLikeItem } from '../slices/MyLikeSlice';
 import { getPlaceList } from "../slices/PlaceSlice";
 import { getAccomList } from "../slices/AccomSlice";
 import { getFoodList } from "../slices/FoodSlice";
+import { getMyLikeList } from '../slices/MyLikeSlice';
 import useMountedRef from '../hooks/useMountedRef';
 
 import heart from '../assets/icon/heart.png';
@@ -82,6 +83,7 @@ import heart_active from '../assets/icon/heart_active.png';
                 return;
             }
             setIsLiked(false)
+            dispatch(getMyLikeList());
             switch (ref_type) {
                 case "place":
                     dispatch(getPlaceList());
@@ -108,6 +110,7 @@ import heart_active from '../assets/icon/heart_active.png';
                 return;
             }
             setIsLiked(true)
+            dispatch(getMyLikeList());
         }
     },[]);
 

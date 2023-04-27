@@ -14,6 +14,35 @@
 ( 로그인, 홈화면, 고객센터, QnA, 여행도구, 검색바 )
 - jei : 디자인, 웹퍼블
 
+## [ 문서구조 ]
+```
+index.js ─┬─GlobalStyles.js
+          ├─Meta.js
+          ├─App.js ─┬─ Header.js ─────────────┬─ Search.js 
+          └─store.js│                         └─ Sidebar.js
+                    │
+                    ├─ Main.js ─────────────┬─ Home.js ─┬─ TabArea.js               
+                    └─ Footer.js            │           ├─ ThemeItem.js       
+                                            │           └─ Spinner.js
+                                            ├─ Login.js
+                                            ├─ Signup.js
+                                            ├─ UserInfo.js
+                                            ├─ MyLike.js ───────┬─ ThumbItem.js
+                                            │                   ├─ ListItem.js
+                                            │                   └─ Spinner.js
+                                            ├─ MyReview.js ─────── ReviewItem.js 
+                                            ├─ ServiceCenter.js
+                                            ├─ QNA.js
+                                            ├─ BoardPage.js ─────┬─ BoardItem.js
+                                            │                    ├─ ErrorView.js
+                                            │                    └─ Spinner.js
+                                            ├─ BoardDetaile.js
+                                            ├─ TabPage.js ───────┬─ TabArea.js
+                                            ├─ ThemeDetail.js    ├─ ListItem.js
+                                            └─ ListDetail.js     └─ Spinner.js
+                                                                                 
+``` 
+
 ## [ 공통컴포넌트] 
 ![common](https://user-images.githubusercontent.com/73373898/193018980-afe7389f-53b7-4caa-8076-f5232e76edb5.png)
 
