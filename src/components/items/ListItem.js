@@ -22,6 +22,7 @@ const ListItemContainer = styled.div`
         .img_wrap{
             width: 30%;
             height: 120px;
+            border-radius: 3px;
             overflow: hidden;
             margin: 0 auto;
             img{
@@ -33,9 +34,16 @@ const ListItemContainer = styled.div`
         }
         .text_wrap{
             width: 70%;
-            margin-left: 5px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */
+            justify-content: center;
             p{
                 word-break: keep-all;
+            }
+            .title{
+                margin-bottom: 8px;
             }
             .introduction{
                 line-height: 20px;
@@ -80,7 +88,7 @@ const ListItem = ({item,api}) => {
                     <img src={`${process.env.REACT_APP_STATIC_PATH}${item.image}`} alt="img" />
                 </div>
                 <div className='text_wrap'>
-                    <p className='font3'>{item.title}</p>
+                    <p className='font3 title'>{item.title}</p>
                     <p className='font8'>{item.address}</p>
                     <p className='font8'>{item.phoneno}</p>
                     <p className='font8 introduction'>{item.introduction}</p>

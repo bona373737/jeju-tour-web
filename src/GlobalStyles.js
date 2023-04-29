@@ -18,7 +18,8 @@ const GlobalStyles = createGlobalStyle`
     };
     
     html { 
-        font-family: ‘SUIT’, sans-serif;
+        font-family: 'Gamja Flower', cursive;
+        /* font-family: ‘SUIT’, sans-serif; */
         font-size: 12px;
     };
     
